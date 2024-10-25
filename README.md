@@ -50,3 +50,5 @@ Login for the "fresh" image is root:root or pico:luckfox.
 Login for the configured BBS images is bbs:mesh.
 
 glhf
+
+![pinout](https://github.com/noon92/luckfox/blob/main/Luckfox-Pico-Mini-details-inter.jpg)
