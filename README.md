@@ -21,12 +21,12 @@ After many hours of fiddling, I've cobbled together a firmware image with suppor
 
 Also, I turned off the activity LED. Every μW counts!
 
-Three images are available:
+#### Three images are available:
 1. [A 'fresh' image with no changes.](https://drive.google.com/file/d/1Wp0fCF9LE-x4iwPgTxnTF7eixSthc9gC/view?usp=sharing)
 2. [An image preconfigured with the TC2-BBS for comms over UART4.](https://drive.google.com/file/d/1RlhRYVnvSTviAUey-cvDCM10HQMEuSvV/view?usp=drive_link)
 3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1FeKXmsZaS6a3FwgwfjkuimlVRJ-OS4HC/view?usp=drive_link) Note that this assumes the USB device is recognized as /dev/ttyACM0.
 
-# Installation
+## Installation
 1. Uncompress the 7z file - will require ~29gb of space. In windows, use [7-zip](https://www.7-zip.org/).
 2. Flash the image to a reasonably fast Micro-SD card of at least 32gb in size using [Balena Etcher](https://etcher.balena.io/) or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.
 3. Insert the microSD card into the Pico Mini.
