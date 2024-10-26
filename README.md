@@ -18,6 +18,7 @@ After many hours of fiddling, I've cobbled together a firmware image with suppor
 * USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP)
 * Many wifi adapter drivers (haven't tried to get this to work)
 * Drivers for CH341, CP210x and generic serial comms over USB
+* Drivers for several common RTCs - untested
 
 Also, I turned off the activity LED. Every μW counts!
 
