@@ -13,11 +13,11 @@ Disadvantages:
 * No simple way to compile drivers (no available linux headers)
 
 After many hours of fiddling, I've cobbled together a firmware image with support for:
-* 2x UART pin pairs (only tested UART4)
-* USB mass storage support (such as flash drives)
-* USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP)
-* Many wifi adapter drivers (haven't tried to get this to work)
-* Drivers for CH341, CP210x and generic serial comms over USB
+* 2x UART pin pairs - only tested UART4, working
+* USB mass storage support (such as flash drives) - tested working
+* USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - tested working with RTL8152 chipset
+* Many wifi adapter drivers - untested, data coming soon
+* Drivers for CH341, CP210x and generic serial over USB - tested working: ch341 (e.g RAK)
 * Drivers for several common RTCs - untested
 
 Also, I turned off the activity LED. Every μW counts!
