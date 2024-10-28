@@ -3,14 +3,15 @@
 #### The Luckfox Pico Mini is a compact and power efficient (~0.25w) linux capable board, ideal for running a Meshtastic BBS (or anything else).
 
 Advantages:
-* Small size
-* Power efficiency
-* Full linux
+* Small size (28x21mm)
+* Power efficiency (~0.25w)
+* Full linux (Ubuntu!)
+* Cheap - $7!
 
 Disadvantages:
 * By default, no simple way to get online (no built in wifi/ble/ethernet)
 * Annoying SDK for building firmware images
-* No simple way to compile drivers (no available linux headers)
+* No simple way to compile drivers (no available linux headers - if anyone manages to compile the headers, please let me know)
 
 After many hours of fiddling, I've cobbled together a firmware image with support for:
 * 2x UART pin pairs - only tested UART4, working
@@ -22,7 +23,7 @@ After many hours of fiddling, I've cobbled together a firmware image with suppor
 
 Also, I turned off the activity LED. Every μW counts!
 
-#### Three images are available:
+#### Three Ubuntu 22.04.5 LTS images are available:
 1. [A 'fresh' image with no changes.](https://drive.google.com/file/d/1Wp0fCF9LE-x4iwPgTxnTF7eixSthc9gC/view?usp=sharing)
 2. [An image preconfigured with the TC2-BBS for comms over UART4.](https://drive.google.com/file/d/1RlhRYVnvSTviAUey-cvDCM10HQMEuSvV/view?usp=drive_link)
 3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1FeKXmsZaS6a3FwgwfjkuimlVRJ-OS4HC/view?usp=drive_link) Note that this assumes the USB device is recognized as /dev/ttyACM0.
