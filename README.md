@@ -1,12 +1,12 @@
 <img src="https://github.com/noon92/luckfox/blob/main/splash.jpg" width="400">
 
-#### The Luckfox Pico Mini is a compact and power efficient (~0.25w) linux capable board, ideal for running a Meshtastic BBS (or anything else).
+#### The Luckfox Pico Mini is a compact and power efficient (~0.25w) linux capable board, ideal for running a [Meshtastic BBS](https://github.com/TheCommsChannel/TC2-BBS-mesh) (or anything else).
 
 Advantages:
 * Small size (~28x21mm)
 * Power efficiency (~0.25w)
 * Full linux (Ubuntu!)
-* Cheap - $7!
+* Cheap - $7-8 on [Waveshare](https://www.waveshare.com/luckfox-pico-min.htm)! Get the A model - the B just has added flash storage that's too small for our purposes.
 
 Disadvantages:
 * By default, no simple way to get online (no built in wifi/ble/ethernet)
