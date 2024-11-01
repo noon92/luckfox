@@ -17,7 +17,7 @@ After many hours of fiddling, I've cobbled together a firmware image with suppor
 * 2x UART pin pairs - both tested working for communications with meshtastic devices
 * USB mass storage support (such as flash drives) - tested working
 * USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - tested working with RTL8152 chipset
-* Ethernet support WITHOUT an adapter, soldered directly to board - coming soon
+* Ethernet support WITHOUT an adapter, soldered directly to board - see wiring diagram - tested working
 * Many wifi adapter drivers - untested, data coming soon
 * Drivers for CH341, CH343, CP210x and generic serial over USB - tested working: ch341 (e.g RAK)
 * Drivers for several common RTCs - untested
@@ -59,4 +59,5 @@ Login for the configured BBS images is bbs:mesh.
 
 glhf
 
+![pinout](https://github.com/noon92/luckfox/blob/main/modified_wiring_diagram.jpg)
 ![pinout](https://github.com/noon92/luckfox/blob/main/Luckfox-Pico-Mini-details-inter.jpg)
