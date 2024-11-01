@@ -16,7 +16,7 @@ Disadvantages:
 After many hours of fiddling, I've cobbled together a firmware image with support for:
 * 2x UART pin pairs - both tested working for communications with meshtastic devices
 * USB mass storage support (such as flash drives) - tested working
-* USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - tested working with RTL8152 chipset
+* USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - tested working with RTL8152 chipset, should work with most others
 * Ethernet support WITHOUT an adapter, soldered directly to board - see wiring diagram - tested working
 * Many wifi adapter drivers - untested, data coming soon
 * Drivers for CH341, CH343, CP210x and generic serial over USB - tested working: ch341 (e.g RAK)
@@ -25,9 +25,9 @@ After many hours of fiddling, I've cobbled together a firmware image with suppor
 Also, I turned off the activity LED. Every μW counts!
 
 #### I've built three Ubuntu 22.04.5 LTS images with Luckfox's SDK:
-1. [A 'fresh' image with no changes.](https://drive.google.com/file/d/1Wp0fCF9LE-x4iwPgTxnTF7eixSthc9gC/view?usp=sharing)
-2. [An image preconfigured with the TC2-BBS for comms over UART4.](https://drive.google.com/file/d/1RlhRYVnvSTviAUey-cvDCM10HQMEuSvV/view?usp=drive_link)
-3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1FeKXmsZaS6a3FwgwfjkuimlVRJ-OS4HC/view?usp=drive_link) This assumes the USB device is recognized as /dev/ttyACM0.
+1. [A 'fresh' image with no changes.](https://drive.google.com/file/d/17ofd-bt6IVE3EDBe9cu1_IK2BuYEeg_a/view?usp=sharing)
+2. [An image preconfigured with the TC2-BBS for comms over UART4.](https://drive.google.com/file/d/1YSlR-At4rCv29A_f9hgME6Z_D2mZ1WO3/view?usp=drive_link)
+3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1iXApWAXAhl-iirATAJVD0Ilr2K8OdY3i/view?usp=sharing) This assumes the USB device is recognized as /dev/ttyACM0.
 
 NOTE: The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 6am UTC, but the luckfox does not have an RTC, so it's hard to say when it'll happen. The luckfox will try to get network time on boot. Default timezone is UTC.
 
