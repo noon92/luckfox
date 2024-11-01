@@ -6,6 +6,7 @@ Advantages:
 * Small size (~28x21mm)
 * Power efficiency (~0.25w)
 * Full linux (Ubuntu!)
+* USB host support
 * Cheap - $7-8 on [Waveshare](https://www.waveshare.com/luckfox-pico-min.htm)! Get the A model - the B just has added flash storage that's too small for our purposes.
 
 Disadvantages:
