@@ -59,5 +59,5 @@ Login for the configured BBS images is bbs:mesh.
 
 glhf
 
-![pinout](https://github.com/noon92/luckfox/blob/main/modified_wiring_diagram.jpg)
+![pinout](https://github.com/noon92/luckfox/blob/main/modified_wiring_diagram.png)
 ![pinout](https://github.com/noon92/luckfox/blob/main/Luckfox-Pico-Mini-details-inter.jpg)
