@@ -27,7 +27,7 @@ Also, I turned off the activity LED. Every μW counts!
 #### I've built three Ubuntu 22.04.5 LTS images with Luckfox's SDK:
 1. [A 'fresh' image with no changes.](https://drive.google.com/file/d/1Wp0fCF9LE-x4iwPgTxnTF7eixSthc9gC/view?usp=sharing)
 2. [An image preconfigured with the TC2-BBS for comms over UART4.](https://drive.google.com/file/d/1RlhRYVnvSTviAUey-cvDCM10HQMEuSvV/view?usp=drive_link)
-3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1FeKXmsZaS6a3FwgwfjkuimlVRJ-OS4HC/view?usp=drive_link) Note that this assumes the USB device is recognized as /dev/ttyACM0.
+3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1FeKXmsZaS6a3FwgwfjkuimlVRJ-OS4HC/view?usp=drive_link) This assumes the USB device is recognized as /dev/ttyACM0.
 <br>NOTE: The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 6am UTC, but the luckfox does not have an RTC, so it's hard to say when it'll happen. If the Luckfox has networking, it should get network time on boot.
 
 ## Installation
