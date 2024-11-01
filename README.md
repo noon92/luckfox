@@ -1,4 +1,4 @@
-<img src="https://github.com/noon92/luckfox/blob/main/splash.jpg" width="400">
+<img src="https://github.com/noon92/luckfox/blob/main/splash.png" width="400">
 
 #### The Luckfox Pico Mini is a compact and power efficient (~0.25w) linux capable board, ideal for running a [Meshtastic BBS](https://github.com/TheCommsChannel/TC2-BBS-mesh) (or anything else).
 
