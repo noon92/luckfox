@@ -14,6 +14,10 @@ Disadvantages:
 * Annoying SDK for building firmware images
 * No simple way to compile drivers (no available linux headers - if anyone manages to compile the headers, please let me know)
 
+Issues / to do
+* USB wifi adapter
+* Meshtasticd to run lora radio over SPI
+
 After many hours of fiddling, I've cobbled together a firmware image with support for:
 * 2x UART pin pairs - both tested working for communications with meshtastic devices
 * USB mass storage support (such as flash drives) - tested working
