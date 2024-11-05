@@ -25,7 +25,7 @@ After many hours of fiddling, I've cobbled together a firmware image with suppor
 * Ethernet support WITHOUT an adapter, soldered directly to board - see wiring diagram - tested working
 * Many wifi adapter drivers - untested, data coming soon
 * Drivers for CH341, CH343, CP210x and generic serial over USB - tested working: ch341 (e.g RAK)
-* Drivers for several common RTCs - untested
+* Drivers for real time clock over i2c - tested working with [DS3231](https://aliexpress.com/item/1005007143842437.html) with DS1307 driver (should be compatible with DS1307, DS1337 and DS3231).
 
 Also, I turned off the activity LED. Every μW counts!
 
@@ -34,7 +34,12 @@ Also, I turned off the activity LED. Every μW counts!
 2. [An image preconfigured with the TC2-BBS for comms over UART4.](https://drive.google.com/file/d/1YSlR-At4rCv29A_f9hgME6Z_D2mZ1WO3/view?usp=drive_link)
 3. [An image preconfigured with the TC2-BBS for comms over USB.](https://drive.google.com/file/d/1iXApWAXAhl-iirATAJVD0Ilr2K8OdY3i/view?usp=sharing) This assumes the USB device is recognized as /dev/ttyACM0.
 
-NOTE: The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 6am UTC, but the luckfox does not have an RTC, so it's hard to say when it'll happen. The luckfox will try to get network time on boot. Default timezone is UTC.
+Login for the "fresh" image is root:root or pico:luckfox.  Login for the configured BBS images is bbs:mesh.
+
+The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 6am UTC (because both the US and . Time is set on boot with the following logic:
+1. If the system recognizes an RTC module connected via i2c, it will use that.
+2. If no RTC module is recognized, time will be set to midnight 24/1/1.
+3. If network is available, time will be retrieved from google and system time (and RTC time if present) will be set from that.
 
 ## Installation
 1. Uncompress the 7z file - will require ~29gb of space. In windows, use [7-zip](https://www.7-zip.org/).
@@ -60,8 +65,9 @@ NOTE: The preconfigured images will reboot every 24 hours, and restart the BBS e
 11. It should Just Work.
 12. You can connect to the Luckfox via USB Ethernet adapter or via UART serial as described [here](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/).
 
-Login for the "fresh" image is root:root or pico:luckfox.
-Login for the configured BBS images is bbs:mesh.
+
+
+
 
 glhf
 
