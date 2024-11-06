@@ -63,7 +63,7 @@
 <li><a href="https://drive.google.com/file/d/1YSlR-At4rCv29A_f9hgME6Z_D2mZ1WO3/view?usp=drive_link">An image preconfigured with the TC2-BBS for comms over UART4.</a></li>
 <li><a href="https://drive.google.com/file/d/1iXApWAXAhl-iirATAJVD0Ilr2K8OdY3i/view?usp=sharing">An image preconfigured with the TC2-BBS for comms over USB.</a> This assumes the USB device is recognized as /dev/ttyACM0.</li>
 </ol>
-<p>Login for the “fresh” image is <code>root:root</code> or <code>pico:luckfox</code>.  Login for the configured BBS images is bbs:mesh.</p>
+<p>Login for the “fresh” image is <code>root:root</code> or <code>pico:luckfox</code>.  Login for the configured BBS images is <code>bbs:mesh</code>.</p>
 <p>The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 7am UTC (because both the US and Europe are generally inactive at that time). Time is set on boot with the following logic:</p>
 <ol>
 <li>If the system recognizes an RTC module connected via i2c, it will use that.</li>
@@ -74,7 +74,7 @@
 <h3 id="networking">Networking</h3>
 <p>There are three methods to get online:</p>
 <ol>
-<li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>luckfox-config</code>.</li>
+<li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>.</li>
 <li>Ethernet over USB - most adapters should be supported, but I’ve only tested the RTL8152 chipset.</li>
 <li>Preconfigured ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme. Note that the MAC address for onboard ethernet is 1a:cf:50:33:5f:92 - if you need to change this, <code>sudo nano /etc/network/interfaces</code>.</li>
 </ol>
@@ -105,7 +105,7 @@
 <ol start="6">
 <li>Rak19003 will require different pin numbers - probably <code>19,20</code> but this is untested.</li>
 <li>Remember - connect TX on the Luckfox to RX on the Meshtastic board, and vice-versa.</li>
-<li>Power can be supplied to the rak via the 3.3v pin on the Luckfox.</li>
+<li>Power can be supplied to the RAK board via the 3.3v out pin on the Luckfox.</li>
 <li>If communications is via UART, you must bridge the grounds of the two boards.</li>
 <li>Supply power to the Luckfox via pins or USB.</li>
 <li>It should Just Work.</li>
