@@ -36,12 +36,16 @@ Also, I turned off the activity LED. Every μW counts!
 
 Login for the "fresh" image is root:root or pico:luckfox.  Login for the configured BBS images is bbs:mesh.
 
-The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 6am UTC (because both the US and . Time is set on boot with the following logic:
+The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 7am UTC (because both the US and Europe are generally inactive at that time). Time is set on boot with the following logic:
 1. If the system recognizes an RTC module connected via i2c, it will use that.
 2. If no RTC module is recognized, time will be set to midnight 24/1/1.
 3. If network is available, time will be retrieved from google and system time (and RTC time if present) will be set from that.
 
-## Installation
+Reboot timing is set in crontab. Time logic is in rc.local.
+
+#### Networking
+
+#### Installation
 1. Uncompress the 7z file - will require ~29gb of space. In windows, use [7-zip](https://www.7-zip.org/).
 2. Flash the image to a reasonably fast Micro-SD card of at least 32gb in size using [Balena Etcher](https://etcher.balena.io/) or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.
 3. Insert the microSD card into the Pico Mini.
