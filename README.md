@@ -36,7 +36,7 @@
 </ul>
 <p><strong>Disadvantages:</strong></p>
 <ul>
-<li>By default, no simple way to get online (no built in wifi/ble/ethernet). Ethernet can be easily added - wifi still work in progress)</li>
+<li>By default, no simple way to get online (no built in wifi/ble/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
 <li>Annoying SDK for building firmware images</li>
 <li>No simple way to compile drivers (no available linux headers - if anyone manages to compile the headers, please let me know)</li>
 </ul>
@@ -48,16 +48,15 @@
 </ul>
 <h3 id="after-many-hours-of-fiddling-ive-cobbled-together-an-ubuntu-image-with-support-for">After many hours of fiddling, I’ve cobbled together an ubuntu image with support for:</h3>
 <ul>
-<li>2x UART pin pairs - both tested working for communications with meshtastic devices</li>
-<li>USB mass storage support (such as flash drives) - tested working</li>
-<li>USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - tested working with RTL8152 chipset, should work with most others</li>
-<li>Ethernet support WITHOUT an adapter, soldered directly to board - see wiring diagram - tested working</li>
+<li>2x UART pin pairs - both tested working for communications with Meshtastic devices</li>
+<li>USB mass storage support (such as flash drives)</li>
+<li>USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - see <em>Networking</em> below</li>
+<li>Ethernet support WITHOUT an adapter, soldered directly to board - see <em>Networking</em> below and wiring diagram at bottom of this document</li>
 <li>Many wifi adapter drivers - untested, data coming soon</li>
-<li>Drivers for CH341, CH343, CP210x and generic serial over USB - tested working: ch341 (e.g RAK)</li>
+<li>Drivers for CH341, CH343, CP210x and generic serial over USB - tested working with ch341 (e.g RAK)</li>
 <li>Drivers for real time clock over i2c - tested working with <a href="https://aliexpress.com/item/1005007143842437.html">DS3231</a> with DS1307 driver (should be compatible with DS1307, DS1337 and DS3231).</li>
 </ul>
 <p>Also, I turned off the activity LED. Every μW counts!</p>
-<br>
 <h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
 <ol>
 <li><a href="https://drive.google.com/file/d/17ofd-bt6IVE3EDBe9cu1_IK2BuYEeg_a/view?usp=sharing">A ‘fresh’ image with no changes.</a></li>
