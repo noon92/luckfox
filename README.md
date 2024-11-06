@@ -36,7 +36,7 @@
 </ul>
 <p><strong>Disadvantages:</strong></p>
 <ul>
-<li>By default, no simple way to get online (no built in wifi/ble/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
+<li>By default, no simple way to get online (no built in wifi/BLE/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
 <li>Annoying SDK for building firmware images</li>
 <li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
 </ul>
@@ -53,7 +53,7 @@
 <li>USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - see <em>Networking</em> below</li>
 <li>Ethernet support WITHOUT an adapter, soldered directly to board - see <em>Networking</em> below and wiring diagram at bottom of this document</li>
 <li>Many wifi adapter drivers - untested, data coming soon</li>
-<li>Drivers for CH341, CH343, CP210x and generic serial over USB - tested working with ch341 (e.g RAK)</li>
+<li>Drivers for CH341, CH343, CP210x and generic serial over USB - tested working with ch341 (e.g. RAK)</li>
 <li>Drivers for real time clock over i2c - tested working with <a href="https://aliexpress.com/item/1005007143842437.html">DS3231</a> with DS1307 driver (should be compatible with DS1307, DS1337 and DS3231).</li>
 </ul>
 <p>Also, I turned off the activity LED. Every μW counts!</p>
