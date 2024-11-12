@@ -56,6 +56,7 @@
 <li>Drivers for CH341, CH343, CP210x and generic serial over USB - tested working with ch341 (e.g. RAK)</li>
 <li>Drivers for real time clock over i2c - tested working with <a href="https://aliexpress.com/item/1005007143842437.html">DS3231</a> with DS1307 driver (should be compatible with DS1307, DS1337 and DS3231).</li>
 </ul>
+<p>See <em>supported hardware</em> below.</p>
 <p>Also, I turned off the activity LED. Every μW counts!</p>
 <h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
 <ol>
@@ -78,7 +79,34 @@
 <li>Ethernet over USB - most adapters should be supported, but I’ve only tested the RTL8152 chipset.</li>
 <li>Preconfigured ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme. Note that the MAC address for onboard ethernet is 1a:cf:50:33:5f:92 - if you need to change this, <code>sudo nano /etc/network/interfaces</code>.</li>
 </ol>
-<h3 id="installation">Installation</h3>
+<h3 id="supported-hardware">Supported hardware</h3>
+
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Confirmed working</th>
+<th>Expected to work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTC (real time clock)</td>
+<td>DS3231, DS1307</td>
+<td></td>
+</tr>
+<tr>
+<td>sdf</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sdf</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><h3 id="installation">Installation</h3>
 <p><strong>Choosing a MicroSD card:</strong> Any reasonably fast MicroSD card of 32gb or higher should work, but ideally use a card that supports UHS-1 or higher, and is rated for high endurance.</p>
 <ol>
 <li>Uncompress the 7z file - will require ~29gb of space. In windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
