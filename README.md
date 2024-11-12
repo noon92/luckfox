@@ -1,9 +1,30 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -59,6 +80,7 @@
 <li>Preconfigured ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme. Note that the MAC address for onboard ethernet is 1a:cf:50:33:5f:92 - if you need to change this, <code>sudo nano /etc/network/interfaces</code>.</li>
 </ol>
 <h3 id="supported-hardware">Supported hardware</h3>
+<p>The following hardware is confirmed working with the linked Ubuntu images.</p>
 
 <table>
 <thead>
@@ -77,16 +99,22 @@
 <td>Some DS3231 modules are listed as have a supercapacitor - these are usually actually lithium coin cells.</td>
 </tr>
 <tr>
-<td>sdf</td>
-<td></td>
-<td></td>
-<td></td>
+<td>LoRa radios (working with Meshtasticd)</td>
+<td><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a></td>
+<td>Any SPI LoRa radio that’s Meshtastic compatible</td>
+<td>Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
-<td>sdf</td>
+<td>Meshtastic nodes</td>
+<td>RAK4631 with RAK19007 base board</td>
+<td>RAK19003</td>
+<td>RAK4630 and 4631 are the same</td>
+</tr>
+<tr>
+<td>Misc. hardware</td>
+<td>USB hubs, thumb drives, SD card readers</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Highest observed current is low - just 0.04a at 4.3v (0.17w). Unclear if this is an actual limit.+</td>
 </tr>
 </tbody>
 </table><h3 id="installation">Installation</h3>
@@ -126,3 +154,8 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_wiring_diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
