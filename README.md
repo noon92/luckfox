@@ -1,9 +1,30 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -24,6 +45,11 @@
 <li>WIFI over USB (accomplished, optimizing)</li>
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, details to follow)</li>
 <li>Test RAK19003 via UART</li>
+</ul>
+<p><strong>Project goals:</strong></p>
+<ul>
+<li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel or battery.</li>
+<li>Wifi capabilities.</li>
 </ul>
 <h3 id="after-many-hours-of-fiddling-ive-cobbled-together-an-ubuntu-image-with-support-for">After many hours of fiddling, I’ve cobbled together an ubuntu image with support for:</h3>
 <ul>
@@ -93,7 +119,7 @@
 <td>Misc. hardware</td>
 <td>USB hubs, thumb drives, SD card readers</td>
 <td></td>
-<td>Highest observed current is low - just 0.04a at 4.3v (0.17w). Unclear if this is an actual limit.+</td>
+<td>Highest observed current is low - just 0.04a at 4.3v (0.17w). If power draw exceeds this limit, the device will bootloop.</td>
 </tr>
 </tbody>
 </table><h3 id="installation">Installation</h3>
@@ -133,3 +159,8 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_wiring_diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
