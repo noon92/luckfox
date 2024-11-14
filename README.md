@@ -1,9 +1,30 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -20,29 +41,28 @@
 <li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
 <li>USB seems very power limited - highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</li>
 </ul>
-<p><strong>Issues / to do:</strong></p>
+<p><strong>Accomplished:</strong></p>
+<ul>
+<li>Ethernet over USB (see <em>supported hardware</em> below)</li>
+<li>Ethernet over pins (see <em>Networking</em> below and wiring diagram at bottom of page)</li>
+<li>UART communications with Meshtastic nodes (2 pin pairs)</li>
+<li>USB serial communications with Meshtastic nodes (see <em>supported hardware</em> below)</li>
+<li>Meshtastic native client controlling a LoRa radio (see <em>supported hardware</em> below)</li>
+<li>USB mass storage</li>
+<li>Real time clock (RTC) support (see <em>supported hardware</em> below)</li>
+<li>Activity LED disabled. User LED will blink for 5 seconds when boot is complete.</li>
+</ul>
+<p><strong>Issues / to do / in progress:</strong></p>
 <ul>
 <li>WIFI over USB or UART (accomplished, unstable, optimizing)</li>
-<li>Meshtasticd to run LoRa radio over SPI (accomplished, details to follow)</li>
-<li></li>
+<li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
+<li>Custom carrier PCB with LoRa radio</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
 <li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel or battery.</li>
 <li>Wifi capabilities.</li>
 </ul>
-<h3 id="after-many-hours-of-fiddling-ive-cobbled-together-an-ubuntu-image-with-support-for">After many hours of fiddling, I’ve cobbled together an ubuntu image with support for:</h3>
-<ul>
-<li>2x UART pin pairs - both tested working for communications with Meshtastic devices</li>
-<li>USB mass storage support (such as flash drives)</li>
-<li>USB ethernet adapters (sometimes needs to be unplugged and plugged back in after boot to get an IP) - see <em>Networking</em> below</li>
-<li>Ethernet support WITHOUT an adapter, soldered directly to board - see <em>Networking</em> below and wiring diagram at bottom of this document</li>
-<li>Many wifi adapter drivers - untested, data coming soon</li>
-<li>Drivers for CH341, CH343, CP210x and generic serial over USB - tested working with ch341 (e.g. RAK)</li>
-<li>Drivers for real time clock over i2c - tested working with <a href="https://aliexpress.com/item/1005007143842437.html">DS3231</a> with DS1307 driver (should be compatible with DS1307, DS1337 and DS3231).</li>
-</ul>
-<p>See <em>supported hardware</em> below.</p>
-<p>Also, I turned off the activity LED - every μW counts!</p>
 <h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
 <ol>
 <li><a href="https://drive.google.com/file/d/17ofd-bt6IVE3EDBe9cu1_IK2BuYEeg_a/view?usp=sharing">A ‘fresh’ image with no changes but with the added drivers for usb ethernet, wifi, serial, RTC and mass storage.</a></li>
@@ -91,7 +111,7 @@
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
-<td>RAK4631 with RAK19007 or RAK19003 base boards</td>
+<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base boards</td>
 <td></td>
 <td>RAK4630 and 4631 are the same.</td>
 </tr>
@@ -145,3 +165,8 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_wiring_diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
