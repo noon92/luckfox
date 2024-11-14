@@ -1,15 +1,36 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
 <li>Tiny size (~28x21mm)</li>
 <li>Power efficiency (~0.25w)</li>
-<li>Full Linux (Ubuntu!)</li>
+<li>Full Linux CLI (Ubuntu, Buildroot, Alpine)</li>
 <li>USB host support</li>
 <li>Cheap - $7-8 on <a href="https://www.waveshare.com/luckfox-pico-min.htm">Waveshare</a> (also available on Amazon)! Get the A model - the B just has added flash storage that’s too small for our purposes.</li>
 </ul>
@@ -18,12 +39,13 @@
 <li>By default, no simple way to get online (no built in wifi/BLE/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
 <li>Annoying SDK for building firmware images</li>
 <li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
+<li>USB seems very power limited - highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</li>
 </ul>
 <p><strong>Issues / to do:</strong></p>
 <ul>
-<li>WIFI over USB (accomplished, optimizing)</li>
+<li>WIFI over USB or UART (accomplished, unstable, optimizing)</li>
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, details to follow)</li>
-<li>Test RAK19003 via UART</li>
+<li></li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
@@ -41,7 +63,7 @@
 <li>Drivers for real time clock over i2c - tested working with <a href="https://aliexpress.com/item/1005007143842437.html">DS3231</a> with DS1307 driver (should be compatible with DS1307, DS1337 and DS3231).</li>
 </ul>
 <p>See <em>supported hardware</em> below.</p>
-<p>Also, I turned off the activity LED. Every μW counts!</p>
+<p>Also, I turned off the activity LED - every μW counts!</p>
 <h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
 <ol>
 <li><a href="https://drive.google.com/file/d/17ofd-bt6IVE3EDBe9cu1_IK2BuYEeg_a/view?usp=sharing">A ‘fresh’ image with no changes but with the added drivers for usb ethernet, wifi, serial, RTC and mass storage.</a></li>
@@ -90,34 +112,40 @@
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
-<td>RAK4631 with RAK19007 base board</td>
-<td>RAK19003</td>
-<td>RAK4630 and 4631 are the same</td>
+<td>RAK4631 with RAK19007 or RAK19003 base boards</td>
+<td></td>
+<td>RAK4630 and 4631 are the same.</td>
+</tr>
+<tr>
+<td>USB wifi adapter chipsets</td>
+<td>RTL8188EUS, MT7601U</td>
+<td></td>
+<td>USB power limitations are causing many issues. Unreliable - work in progress.</td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
 <td>USB hubs, thumb drives, SD card readers</td>
 <td></td>
-<td>Highest observed current is low - just 0.05a at 5v (0.28w). It seems that if power draw exceeds this limit, the device will bootloop.</td>
+<td>Highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</td>
 </tr>
 </tbody>
-</table><h3 id="installation">Installation</h3>
+</table><h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB</h3>
 <p><strong>Choosing a MicroSD card:</strong> Any reasonably fast MicroSD card of 32gb or higher should work, but ideally use a card that supports UHS-1 or higher, and is rated for high endurance.</p>
 <ol>
 <li>Uncompress the 7z file - will require ~29gb of space. In windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
 <li>Flash the image your MicroSD card using <a href="https://etcher.balena.io/">Balena Etcher</a> or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.</li>
 <li>Insert the microSD card into the Pico Mini.</li>
 <li>Connect Pico Mini to Meshtastic radio via pins or USB, depending on image flashed. If using pins - use pins 10 and 11 on the Luckfox board.</li>
-<li>For the rak19007 (with the rak4631 daughter board):</li>
+<li>For the rak19007 or rak19003 (with the rak4631/rak4630 daughter board):</li>
 </ol>
 <ul>
-<li>In Position settings, set <code>GPS: NOT_PRESENT</code></li>
+<li>In Position settings, set <code>GPS: NOT_PRESENT</code>. The Rak does not support GPS and UART simultaneously at this time.</li>
 <li>If using UART comms, Serial Module settings:
 <ul>
 <li><code>Serial: Enabled</code></li>
 <li><code>Echo: off</code></li>
-<li><code>RX: 15</code></li>
-<li><code>TX: 16</code></li>
+<li><code>RX: 15</code> (rak19007 and rak19003 with TX1/RX1), <code>19</code> (rak19003 with TX0/RX0)`</li>
+<li><code>TX: 16</code> (rak19007 and rak19003 with TX1/RX1), <code>20</code> (rak19003 with TX0/RX0)`</li>
 <li><code>Serial baud rate: 115200</code></li>
 <li><code>Timeout: 0</code></li>
 <li><code>Serial mode: PROTO</code></li>
@@ -138,3 +166,8 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_wiring_diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
