@@ -1,9 +1,30 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -35,7 +56,8 @@
 <ul>
 <li>WIFI over USB or UART (accomplished, unstable, optimizing)</li>
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
-<li>Custom carrier PCB with LoRa radio</li>
+<li>Custom carrier PCB with LoRa radio (in progress)</li>
+<li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
@@ -122,8 +144,8 @@
 <ul>
 <li><code>Serial: Enabled</code></li>
 <li><code>Echo: off</code></li>
-<li><code>RX: 15</code> (rak19007 and rak19003 with TX1/RX1), <code>19</code> (rak19003 with TX0/RX0)`</li>
-<li><code>TX: 16</code> (rak19007 and rak19003 with TX1/RX1), <code>20</code> (rak19003 with TX0/RX0)`</li>
+<li><code>RX: 15</code> (rak19007 and rak19003 with TX1/RX1), <code>19</code> (rak19003 with TX0/RX0)</li>
+<li><code>TX: 16</code> (rak19007 and rak19003 with TX1/RX1), <code>20</code> (rak19003 with TX0/RX0)</li>
 <li><code>Serial baud rate: 115200</code></li>
 <li><code>Timeout: 0</code></li>
 <li><code>Serial mode: PROTO</code></li>
@@ -141,6 +163,11 @@
 <li>You can connect to the Luckfox via ethernet or UART serial as described <a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/">here</a>.</li>
 </ol>
 <p>glhf</p>
-<p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_wiring_diagram.png" alt="pinout"><br>
+<p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
