@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Generate a random unicast MAC address
-random_mac=$(printf '%02X:%02X:%02X:%02X:%02X:%02X\n' \
-    $(( (RANDOM % 256) & 0xFE )) $(( RANDOM % 256 )) $(( RANDOM % 256 )) \
-    $(( RANDOM % 256 )) $(( RANDOM % 256 )) $(( RANDOM % 256 )))
+# Get the current MAC address for eth0
+current_mac=$(cat /sys/class/net/eth0/address)
 
 # Define the configuration to append
 config="
@@ -13,7 +11,7 @@ iface lo inet loopback
 # static mac address for onboard ethernet (castellated pins)
 allow-hotplug eth0
 iface eth0 inet dhcp
-hwaddress ether $random_mac
+hwaddress ether $current_mac
 
 allow-hotplug wlan0
 iface wlan0 inet dhcp
@@ -21,7 +19,7 @@ iface wlan0 inet dhcp
 "
 
 # Append the configuration to /etc/network/interfaces
-echo "$config" >> /etc/network/interfaces
+echo "$config" | sudo tee -a /etc/network/interfaces
 
-# Output the generated MAC address
-echo "Appended configuration with generated MAC address: $random_mac"
+# Output the current MAC address
+echo "Appended configuration with current MAC address: $current_mac"
