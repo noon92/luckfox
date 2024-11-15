@@ -8,15 +8,15 @@
 Lora:
 
 ### Luckfox specific configs:
-  Module: sx1262  # Waveshare SX126X XXXM
-  gpiochip: 1 # subtract 32 from the gpio numbers
-  DIO2_AS_RF_SWITCH: true
-  CS: 16 #pin6 (GPIO pin 48 1C0)
-  IRQ: 23  #pin17 (GPIO pin 55 1C7)
-  Busy: 22 #pin16 (GPIO pin 54 1C6)
-  Reset: 25 #pin13 (GPIO pin 57 1D1)
-  spidev: spidev0.0
-  spiSpeed: 2000000
+#  Module: sx1262  # Waveshare SX126X XXXM
+#  gpiochip: 1 # subtract 32 from the gpio numbers
+#  DIO2_AS_RF_SWITCH: true
+#  CS: 16 #pin6 (GPIO pin 48 1C0)
+#  IRQ: 23  #pin17 (GPIO pin 55 1C7)
+#  Busy: 22 #pin16 (GPIO pin 54 1C6)
+#  Reset: 25 #pin13 (GPIO pin 57 1D1)
+#  spidev: spidev0.0
+#  spiSpeed: 2000000
 
 #  Module: sx1262  # Bare E22-900M30S or similar
 #  gpiochip: 1 # subtract 32 from the gpio numbers
