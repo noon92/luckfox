@@ -37,6 +37,7 @@
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
 <li>Custom carrier PCB with LoRa radio (in progress)</li>
 <li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
+<li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s") - probably solved</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
@@ -58,11 +59,12 @@
 </ol>
 <p>Reboot timing is set in <code>crontab</code>. Time logic is in <code>/etc/rc.local</code>.</p>
 <h3 id="networking">Networking</h3>
-<p>There are three methods to get online:</p>
+<p>There are three methods to get online.</p>
 <ol>
-<li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>.</li>
 <li>Ethernet over USB - most adapters should be supported, but I’ve only tested the RTL8152 chipset.</li>
-<li>Preconfigured ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme. Note that the MAC address for onboard ethernet is 1a:cf:50:33:5f:92 - if you need to change this, <code>sudo nano /etc/network/interfaces</code>.</li>
+<li>Preconfigured Ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme. Note that the MAC address for onboard ethernet is hardcoded to 1a:cf:50:33:5f:92 - if you need to change this, <code>sudo nano /etc/network/interfaces</code>.</li>
+<li>USB wifi! Still a work in progress, but working with a couple different chipsets so far. Note we’re using wpa_supplicant, as networkmanager (nmcli) caused hard crashes.</li>
+<li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>. This is not really recommended, but can be used in a pinch.</li>
 </ol>
 <h3 id="supported-hardware">Supported hardware</h3>
 <p>The following hardware is confirmed working with the linked Ubuntu images.</p>
