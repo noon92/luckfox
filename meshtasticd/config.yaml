@@ -7,8 +7,7 @@
 ---
 Lora:
 
-### Luckfox
-
+### Luckfox specific configs:
   Module: sx1262  # Waveshare SX126X XXXM
   gpiochip: 1 # subtract 32 from the gpio numbers
   DIO2_AS_RF_SWITCH: true
@@ -30,7 +29,6 @@ Lora:
 #  #TXen: bridge to DIO2 on E22 module
 #  spidev: spidev0.0
 #  spiSpeed: 2000000
-
 
 ### Luckfox end
 
