@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+#printf "\n"
+echo "\e[92m                             @+               .**                            
+                           -@@@@@            @@@@@#                          
+                          #@@@@@            @@@@@@@@                         
+                         @@@@@*           =@@@@@@@@@@:                       
+                       .@@@@@.           %@@@@@  @@@@@#                      
+                      *@@@@@            @@@@@@    %@@@@@                     
+                     @@@@@%           :@@@@@-      -@@@@@                    
+                    @@@@@-           #@@@@@          @@@@@+                  
+                  =@@@@@            @@@@@@            @@@@@@                 
+                 @@@@@@           .@@@@@=              *@@@@@                
+                @@@@@+           +@@@@@                 .@@@@@+              
+              :@@@@@            @@@@@@                    @@@@@@             
+             #@@@@@            @@@@@*       POWERED        #@@@@@            
+            @@@@@#           -@@@@@:                        :@@@@@-          
+          .@@@@@.           %@@@@@                            @@@@@%         
+            %@@               @@%                              @@@
+\033[0m"
+
+
+if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
+	# Fall back to using the very slow lsb_release utility
+	DISTRIB_DESCRIPTION=$(lsb_release -s -d)
+fi
