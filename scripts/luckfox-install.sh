@@ -7,11 +7,15 @@ date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date
 echo "[1;32m*** Changed timezone to UTC and got network time ***\e[0m"
 
 #update system and install dependencies
-echo "[1;32m*** Updating Ubuntu and installing dependencies... ***\e[0m"
+echo "[1;32m*** Updating and upgrading Ubuntu... ***\e[0m"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y update && sudo DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade
+echo "[1;32m*** Ubuntu upgrade / update complete ***\e[0m"
+echo "[1;32m*** Installing necessary packages... ***\e[0m"
 sudo apt-get install linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev -y
+echo "[1;32m*** Necessary packages installed ***\e[0m"
+echo "[1;32m*** Installing pip packages... ***\e[0m"
 pip3 install pytap2 meshtastic pypubsub
-echo "[1;32m*** Done updating and installing dependencies ***\e[0m"
+echo "[1;32m*** Pip packages installed ***\e[0m"
 
 #get latest meshtasticd beta
 echo "[1;32m*** Getting latest Meshtasticd beta... ***\e[0m"
