@@ -23,14 +23,13 @@ URL=$(wget -qO- https://api.github.com/repos/meshtastic/firmware/releases/latest
 echo "[1;32m*** Installed latest Meshtasticd beta ***\e[0m"
 
 echo "[1;32m*** Getting custom FemtoFox files... ***\e[0m"
-git clone https://github.com/noon92/femtofox.git
 sudo cp ../liborcania_2.3_armhf/* /usr/lib/arm-linux-gnueabihf/
 sudo mv /etc/meshtasticd/config.yaml /etc/meshtasticd/config.yaml.bak
 sudo cp ../meshtasticd/config.yaml /etc/meshtasticd/
 sudo cp /etc/update-motd.d/00-header /etc/update-motd.d/00-header.bak
 sudo mv 00-header /etc/update-motd.d/
 sudo chmod +x /etc/update-motd.d/00-header
-echo "[1;32m*** Installed custom FemtoFox files ***\e[0m"
+echo "[1;32m*** Copied custom FemtoFox files ***\e[0m"
 
 #serial port permissions
 sudo usermod -a -G tty $USER
@@ -39,6 +38,7 @@ echo "[1;32m*** Set serial port permissions ***\e[0m"
 
 
 #disable redundant services
+echo "[1;32m*** Disabling redundant services... ***\e[0m"
 sudo systemctl disable vsftpd.service
 sudo systemctl disable ModemManager.service
 sudo systemctl disable polkit.service
@@ -53,6 +53,7 @@ sudo mv luckfox.cfg /etc/
 sudo luckfox-config load
 echo "[1;32m*** Set Luckfox system config ***\e[0m"
 
+#edit /etc/network/interfaces
 sudo chmod +x networkinterfaces.sh
 sudo ./networkinterfaces.sh
 
@@ -60,7 +61,7 @@ sudo ./networkinterfaces.sh
 sudo cp /etc/rc.local /etc/rc.local.bak
 sudo cp ./rc.local /etc/rc.local
 sudo chmod +x /etc/rc.local
-echo "[1;32m*** Replaced /etc/rc.local system config ***\e[0m"
+echo "[1;32m*** Replaced /etc/rc.local ***\e[0m"
 
 #replace /etc/issue
 sudo cp /etc/issue /etc/issue.bak
