@@ -1,9 +1,30 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -55,7 +76,7 @@
 <p>The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 7am UTC (because both the US and Europe are generally inactive at that time). Time is set on boot with the following logic:</p>
 <ol>
 <li>If the system recognizes an RTC module connected via i2c, it will use that.</li>
-<li>If no RTC module is recognized, time will be set to midnight 24/1/1.</li>
+<li>If no RTC module is recognized, time will be set to midnight 2024-1-1 midnight.</li>
 <li>If network is available, time will be retrieved from google and system time (and RTC time if present) will be set from that.</li>
 </ol>
 <p>Reboot timing is set in <code>crontab</code>. Time logic is in <code>/etc/rc.local</code>.</p>
@@ -82,7 +103,7 @@
 <tbody>
 <tr>
 <td>RTC (real time clock)</td>
-<td><a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231</a>, <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
+<td>* <a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231</a><br>* <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
 <td>DS1337, DS1338, DS1340</td>
 <td>Some DS3231 modules are listed as have a supercapacitor - these are usually actually lithium coin cells.</td>
 </tr>
@@ -94,7 +115,7 @@
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
-<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base board</td>
+<td>USB+UART: <a href="https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit">RAK4631 with RAK19007 or RAK19003 base board</a></td>
 <td></td>
 <td>RAK4630 and 4631 are the same.</td>
 </tr>
@@ -148,3 +169,8 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
