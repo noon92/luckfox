@@ -4,8 +4,7 @@
 current_mac=$(cat /sys/class/net/eth0/address)
 
 # Define the configuration string to replace
-config="
-# interfaces(5) file used by ifup(8) and ifdown(8)
+config="# interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
 source /etc/network/interfaces.d/*
 
