@@ -83,8 +83,8 @@
 <tbody>
 <tr>
 <td>RTC (real time clock)</td>
-<td>* <a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231</a><br>* <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
-<td>DS1337, DS1338, DS1340</td>
+<td>* <a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231M</a><br>* <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
+<td>DS1337, DS1338, DS1340, other DS3231 variants</td>
 <td>Some DS3231 modules are listed as have a supercapacitor - these are usually actually lithium coin cells.</td>
 </tr>
 <tr>
