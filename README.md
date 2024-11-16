@@ -18,7 +18,7 @@
 <li>By default, no simple way to get online (no built in wifi/BLE/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
 <li>Annoying SDK for building firmware images</li>
 <li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
-<li>USB seems very power limited - highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</li>
+<li>USB seems very power limited - highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash</li>
 </ul>
 <p><strong>Accomplished:</strong></p>
 <ul>
@@ -29,7 +29,7 @@
 <li>Meshtastic native client controlling a LoRa radio (see <em>supported hardware</em> below)</li>
 <li>USB mass storage</li>
 <li>Real time clock (RTC) support (see <em>supported hardware</em> below)</li>
-<li>Activity LED disabled. User LED will blink for 5 seconds when boot is complete.</li>
+<li>Activity LED disabled. User LED will blink for 5 seconds when boot is complete</li>
 </ul>
 <p><strong>Issues / to do / in progress:</strong></p>
 <ul>
@@ -38,11 +38,12 @@
 <li>Custom carrier PCB with LoRa radio (in progress)</li>
 <li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
 <li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s") - probably solved</li>
+<li>Test power consumption with LoRa radio attached to figure out what size solar panel will be required</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
-<li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel or battery.</li>
-<li>Wifi capabilities.</li>
+<li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel / battery.</li>
+<li>Wifi capabilities (with ability to disable/enable wifi via mesh for power savings.</li>
 </ul>
 <h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
 <ol>
@@ -87,25 +88,25 @@
 </tr>
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
-<td><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a></td>
+<td>* <a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a><br> * <a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></td>
 <td>Any SPI LoRa radio that’s Meshtastic compatible</td>
 <td>Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
-<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base boards</td>
+<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base board</td>
 <td></td>
 <td>RAK4630 and 4631 are the same.</td>
 </tr>
 <tr>
 <td>USB wifi adapter chipsets</td>
-<td>RTL8188EUS, MT7601U</td>
+<td>* RTL8188EUS<br>* MT7601U<br>* AR9271 (does not show in iwconfig for some users but works)</td>
 <td></td>
 <td>USB power limitations are causing many issues. Unreliable - WORK IN PROGRESS.</td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
-<td>USB hubs, thumb drives, SD card readers</td>
+<td>* USB hubs (powered or not)<br>* Thumb drives<br>* SD card readers</td>
 <td></td>
 <td>Highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</td>
 </tr>
