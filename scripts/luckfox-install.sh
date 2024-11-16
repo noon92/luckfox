@@ -1,4 +1,4 @@
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Starting Femtofox install script ***\e[0m\n"
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Starting Femtofox install script. \e[1;31mNETWORK CONNECTIVITY REQUIRED! ***\e[0m\n"
 
 read -p "Enter wifi SSID: " SSID
 echo -n "Enter wifi password: "
