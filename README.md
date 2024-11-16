@@ -39,6 +39,7 @@
 <li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
 <li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s") - probably resolved</li>
 <li>Test power consumption with LoRa radio attached / figure out what size solar panel will be required</li>
+<li>Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS.</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
