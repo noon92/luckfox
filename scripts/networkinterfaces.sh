@@ -26,4 +26,4 @@ sudo sed -i "/iface eth0 inet/d" /etc/network/interfaces
 echo "$config" | sudo tee /etc/network/interfaces > /dev/null
 
 # Output the current MAC address
-echo "Replaced configuration with current MAC address: $current_mac"
+echo "Replaced /etc/network/interfaces with new MAC address ($current_mac) and wifi support\n"
