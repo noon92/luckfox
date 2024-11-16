@@ -120,6 +120,7 @@ network={
     ssid="$SSID"
     psk="$PASSWORD"
     key_mgmt=WPA-PSK
+		priority=10
 }
 EOF
 echo 'SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?", ATTR{type}=="1", KERNEL=="wl*", NAME="wlan%n"' | sudo tee /etc/udev/rules.d/70-network.rules > /dev/null
@@ -130,8 +131,8 @@ sudo systemctl stop NetworkManager
 sudo systemctl disable NetworkManager
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added wifi support ***\e[0m\n"
 
-sudo rm -rf ~/femtofox
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Cleaning up... ***\e[0m\n"
+sudo rm -rf ~/femtofox
 
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuration complete, rebooting... ***\e[0m\n"
 
