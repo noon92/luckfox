@@ -37,13 +37,13 @@
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
 <li>Custom carrier PCB with LoRa radio (in progress)</li>
 <li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
-<li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s") - probably solved</li>
-<li>Test power consumption with LoRa radio attached to figure out what size solar panel will be required</li>
+<li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s") - probably resolved</li>
+<li>Test power consumption with LoRa radio attached / figure out what size solar panel will be required</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
-<li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel / battery.</li>
-<li>Wifi capabilities (with ability to disable/enable wifi via mesh for power savings.</li>
+<li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel / battery</li>
+<li>Wifi capabilities (with ability to disable/enable wifi via mesh for power savings)</li>
 </ul>
 <h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
 <ol>
@@ -55,7 +55,7 @@
 <p>The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 7am UTC (because both the US and Europe are generally inactive at that time). Time is set on boot with the following logic:</p>
 <ol>
 <li>If the system recognizes an RTC module connected via i2c, it will use that.</li>
-<li>If no RTC module is recognized, time will be set to midnight 24/1/1.</li>
+<li>If no RTC module is recognized, time will be set to midnight 2024-1-1 midnight.</li>
 <li>If network is available, time will be retrieved from google and system time (and RTC time if present) will be set from that.</li>
 </ol>
 <p>Reboot timing is set in <code>crontab</code>. Time logic is in <code>/etc/rc.local</code>.</p>
@@ -82,7 +82,7 @@
 <tbody>
 <tr>
 <td>RTC (real time clock)</td>
-<td><a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231</a>, <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
+<td>* <a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231</a><br>* <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
 <td>DS1337, DS1338, DS1340</td>
 <td>Some DS3231 modules are listed as have a supercapacitor - these are usually actually lithium coin cells.</td>
 </tr>
@@ -94,7 +94,7 @@
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
-<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base board</td>
+<td>USB+UART: <a href="https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit">RAK4631 with RAK19007 or RAK19003 base board</a></td>
 <td></td>
 <td>RAK4630 and 4631 are the same.</td>
 </tr>
