@@ -69,7 +69,7 @@
 <li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>. This is not really recommended, but can be used in a pinch.</li>
 </ol>
 <h3 id="supported-hardware">Supported hardware</h3>
-<p>The following hardware is confirmed working with the linked Ubuntu images.</p>
+<p>The following hardware is confirmed working with the linked Ubuntu images. Links are to generally accepted “reliable vendors”.</p>
 
 <table>
 <thead>
@@ -89,7 +89,7 @@
 </tr>
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
-<td>* <a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a><br> * <a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></td>
+<td>* <a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a><br> * <a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a><br>* <a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></td>
 <td>Any SPI LoRa radio that’s Meshtastic compatible</td>
 <td>Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
@@ -145,7 +145,9 @@
 <li>It should Just Work.</li>
 <li>You can connect to the Luckfox via ethernet or UART serial as described <a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/">here</a>.</li>
 </ol>
-<p>glhf</p>
+<blockquote>
+<p>The information on this page is given without warranty or guarantee. Links to vendors of products are for informational purposes only.</p>
+</blockquote>
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
