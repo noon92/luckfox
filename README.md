@@ -1,9 +1,30 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
 
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -87,25 +108,25 @@
 </tr>
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
-<td><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a></td>
+<td>* <a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a><br> * <a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></td>
 <td>Any SPI LoRa radio that’s Meshtastic compatible</td>
 <td>Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
-<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base boards</td>
+<td>USB+UART: RAK4631 with RAK19007 or RAK19003 base board</td>
 <td></td>
 <td>RAK4630 and 4631 are the same.</td>
 </tr>
 <tr>
 <td>USB wifi adapter chipsets</td>
-<td>RTL8188EUS<br>MT7601U<br>AR9271 (does not show in iwconfig for some users but works)</td>
+<td>* RTL8188EUS<br>* MT7601U<br>* AR9271 (does not show in iwconfig for some users but works)</td>
 <td></td>
 <td>USB power limitations are causing many issues. Unreliable - WORK IN PROGRESS.</td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
-<td>USB hubs, thumb drives, SD card readers</td>
+<td>* USB hubs (powered or not)<br>* Thumb drives<br>* SD card readers</td>
 <td></td>
 <td>Highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</td>
 </tr>
@@ -147,3 +168,8 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+    </div>
+  </div>
+</body>
+
+</html>
