@@ -3,8 +3,12 @@
 # Get the current MAC address for eth0
 current_mac=$(cat /sys/class/net/eth0/address)
 
-# Define the configuration to append
+# Define the configuration string to replace
 config="
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+source /etc/network/interfaces.d/*
+
 auto lo
 iface lo inet loopback
 
@@ -18,8 +22,9 @@ iface wlan0 inet dhcp
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 "
 
-# Append the configuration to /etc/network/interfaces
-echo "$config" | sudo tee -a /etc/network/interfaces
+# Replace the existing configuration for eth0 in /etc/network/interfaces
+sudo sed -i "/iface eth0 inet/d" /etc/network/interfaces
+echo "$config" | sudo tee /etc/network/interfaces > /dev/null
 
 # Output the current MAC address
-echo "Appended configuration with current MAC address: $current_mac"
+echo "Replaced configuration with current MAC address: $current_mac"
