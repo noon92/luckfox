@@ -21,6 +21,7 @@
   #  Module: sx1262  # Bare E22-900M30S or similar
   #  gpiochip: 1 # subtract 32 from the gpio numbers
   #  DIO2_AS_RF_SWITCH: true
+  #  DIO3_TCXO_VOLTAGE: true
   #  CS: 16 #pin6 / GPIO48 1C0
   #  IRQ: 23  #pin17 / GPIO55 1C7
   #  Busy: 22 #pin16 / GPIO54 1C6
