@@ -65,6 +65,22 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set Luckfox system config ***\e[0m\n"
 sudo hostname femtofox
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set hostname to femtofox ***\e[0m\n"
 
+#replace /etc/rc.local
+sudo cp /etc/rc.local /etc/rc.local.bak
+sudo cp ./rc.local /etc/rc.local
+sudo chmod +x /etc/rc.local
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/rc.local ***\e[0m\n"
+
+#replace /etc/issue
+sudo cp /etc/issue /etc/issue.bak
+sudo cp ./issue /etc/issue
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/issue ***\e[0m\n"
+
+#add daily reboot to cron
+echo -e "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`\n0 6 * * * /sbin/reboot\n\n# restart bbs server script every odd hour\n#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Scheduled daily reboot at 06:00 UTC ***\e[0m\n"
+
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuring networking... ***\e[0m\n"
 # Replace the existing configuration for eth0 in /etc/network/interfaces
 current_mac=$(cat /sys/class/net/eth0/address)
 config="# interfaces(5) file used by ifup(8) and ifdown(8)
@@ -81,27 +97,10 @@ hwaddress ether $current_mac
 
 allow-hotplug wlan0
 iface wlan0 inet dhcp
-    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-"
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf"
 sudo sed -i "/iface eth0 inet/d" /etc/network/interfaces
 echo "$config" | sudo tee /etc/network/interfaces > /dev/null
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/network/interfaces and made current ethernet MAC address ($current_mac) permanent ***\e[0m"
-
-
-#replace /etc/rc.local
-sudo cp /etc/rc.local /etc/rc.local.bak
-sudo cp ./rc.local /etc/rc.local
-sudo chmod +x /etc/rc.local
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/rc.local ***\e[0m\n"
-
-#replace /etc/issue
-sudo cp /etc/issue /etc/issue.bak
-sudo cp ./issue /etc/issue
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/issue ***\e[0m\n"
-
-#add daily reboot to cron
-echo -e "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`\n0 6 * * * /sbin/reboot\n\n# restart bbs server script every odd hour\n#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Scheduled daily reboot at 06:00 UTC ***\e[0m\n"
 
 #wifi support
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Adding wifi support... ***\e[0m\n"
@@ -115,7 +114,7 @@ sudo depmod -a 5.10.160
 sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null <<EOF
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
-country=US # Change to your country code
+country=$REGION # Change to your country code
 network={
     ssid="$SSID"
     psk="$PASSWORD"
