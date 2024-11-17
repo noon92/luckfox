@@ -114,7 +114,7 @@ sudo depmod -a 5.10.160
 sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null <<EOF
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
-country=$REGION # Change to your country code
+country=US # Change to your country code
 network={
     ssid="$SSID"
     psk="$PASSWORD"
