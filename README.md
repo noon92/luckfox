@@ -92,7 +92,7 @@
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
 <td>* <a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a><br> * <a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a><br>* <a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></td>
-<td>Any SPI LoRa radio that’s Meshtastic compatible</td>
+<td>* E22-900mm22s<br>* E22-900m22s<br>* RA-01SH<br>* HT-CT62<br>* Any SPI LoRa radio that’s Meshtastic compatible</td>
 <td>Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
