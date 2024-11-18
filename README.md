@@ -152,3 +152,18 @@
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
+## Pinout mapping
+
+| Pin   | Pin   | Function   |     | Pin   | Pin     | Function    |
+| ----- | ----- | ---------- | --- | ----- | ------- | ----------- |
+| 1     | VBus  | 5V in/out  |     | 22    | 1V8     | 1.8V out    |
+| 2     | GND   |            |     | 21    | GND     |             |
+| 3     | 3V3   | 3.3V out   |     | 20    | 4C1     | 1v8 io      |
+| 4/42  | 1B2   | UART2TX    |     | 19    | 4C0     | 1v8 io      |
+| 5/43  | 1B3   | UART2RX    |     | 18/4  | 0A4     | 3v3 io      |
+| 6/48  | 1C0   | CS0        |     | 17/55 | 1C7     | IRQ         |
+| 7/49  | 1C1   | CLK        |     | 16/54 | 1C6     | BUSY        |
+| 8/50  | 1C2   | MOSI       |     | 15/59 | 1D3     | i2c SCL     |
+| 9/51  | 1C3   | MISO       |     | 14/58 | 1D2     | i2c SDA     |
+| 10/52 | 1C4   | UART4TX    |     | 13/57 | 1D1     | NRST        |
+| 11/53 | 1C5   | UART4RX    |     | 12/56 | 1D0     | RXEN        |
