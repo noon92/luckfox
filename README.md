@@ -117,7 +117,7 @@
 </table><h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB</h3>
 <p><strong>Choosing a MicroSD card:</strong> Any reasonably fast MicroSD card of 32gb or higher should work, but ideally use a card that supports UHS-1 or higher, and is rated for high endurance.</p>
 <ol>
-<li>Uncompress the 7z file - will require ~29gb of space. In windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
+<li>Uncompress the 7z file - will require ~29gb of space. In Windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
 <li>Flash the image your MicroSD card using <a href="https://etcher.balena.io/">Balena Etcher</a> or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.</li>
 <li>Insert the microSD card into the Pico Mini.</li>
 <li>Connect Pico Mini to Meshtastic radio via pins or USB, depending on image flashed. If using pins - use pins 10 and 11 on the Luckfox board.</li>
