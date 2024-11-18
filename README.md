@@ -138,8 +138,7 @@
 </ul>
 </li>
 </ul>
-<ol start="6">
-<li>Rak19003 will require different pin numbers - probably <code>19,20</code> but this is untested.</li>
+<ol start="7">
 <li>Remember - connect TX on the Luckfox to RX on the Meshtastic board, and vice-versa.</li>
 <li>Power can be supplied to the RAK board via the 3.3v out pin on the Luckfox.</li>
 <li>If communications is via UART, you must bridge the grounds of the two boards.</li>
