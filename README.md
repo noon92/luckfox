@@ -146,24 +146,126 @@
 <li>It should Just Work.</li>
 <li>You can connect to the Luckfox via ethernet or UART serial as described <a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/">here</a>.</li>
 </ol>
+<h3 id="pinout-mapping">Pinout mapping</h3>
+
+<table>
+<thead>
+<tr>
+<th>Pin #</th>
+<th>Pin ID</th>
+<th>Function</th>
+<th></th>
+<th>Pin #</th>
+<th>Pin ID</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>VBus</td>
+<td>5V in/out</td>
+<td></td>
+<td>22</td>
+<td>1V8</td>
+<td>1.8V out</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GND</td>
+<td></td>
+<td></td>
+<td>21</td>
+<td>GND</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3V3</td>
+<td>3.3V out</td>
+<td></td>
+<td>20</td>
+<td>4C1</td>
+<td>1v8 IO, SARADC</td>
+</tr>
+<tr>
+<td>4/42</td>
+<td>1B2</td>
+<td>Debug UART2-TX</td>
+<td></td>
+<td>19</td>
+<td>4C0</td>
+<td>1v8 IO, SARADC</td>
+</tr>
+<tr>
+<td>5/43</td>
+<td>1B3</td>
+<td>Debug UART2-RX</td>
+<td></td>
+<td>18/4</td>
+<td>0A4</td>
+<td>3v3 IO</td>
+</tr>
+<tr>
+<td>6/48</td>
+<td>1C0</td>
+<td>CS0, IO</td>
+<td></td>
+<td>17/55</td>
+<td>1C7</td>
+<td>IRQ, IO</td>
+</tr>
+<tr>
+<td>7/49</td>
+<td>1C1</td>
+<td>CLK, IO</td>
+<td></td>
+<td>16/54</td>
+<td>1C6</td>
+<td>BUSY, IO</td>
+</tr>
+<tr>
+<td>8/50</td>
+<td>1C2</td>
+<td>MOSI, IO</td>
+<td></td>
+<td>15/59</td>
+<td>1D3</td>
+<td>i2c SCL</td>
+</tr>
+<tr>
+<td>9/51</td>
+<td>1C3</td>
+<td>MISO, IO</td>
+<td></td>
+<td>14/58</td>
+<td>1D2</td>
+<td>i2c SDA</td>
+</tr>
+<tr>
+<td>10/52</td>
+<td>1C4</td>
+<td>UART4-TX</td>
+<td></td>
+<td>13/57</td>
+<td>1D1</td>
+<td>UART3-RX, NRST</td>
+</tr>
+<tr>
+<td>11/53</td>
+<td>1C5</td>
+<td>UART4-RX</td>
+<td></td>
+<td>12/56</td>
+<td>1D0</td>
+<td>UART3-TX, RXEN</td>
+</tr>
+</tbody>
+</table><p>Pin ID explanation: <strong>1C6</strong> = GPIO bank <strong>1</strong>, group <strong>C</strong>, pin <strong>6</strong>.<br>
+In Meshtasticd’s config.yaml we use GPIO bank 1, and subtract 32 from the pin number.</p>
+<p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
+<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 <blockquote>
 <p>The information on this page is given without warranty or guarantee. Links to vendors of products are for informational purposes only.</p>
 </blockquote>
-<p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
-<img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 
-## Pinout mapping
-
-| Pin   | Pin   | Function   |     | Pin   | Pin     | Function    |
-| ----- | ----- | ---------- | --- | ----- | ------- | ----------- |
-| 1     | VBus  | 5V in/out  |     | 22    | 1V8     | 1.8V out    |
-| 2     | GND   |            |     | 21    | GND     |             |
-| 3     | 3V3   | 3.3V out   |     | 20    | 4C1     | 1v8 io      |
-| 4/42  | 1B2   | UART2TX    |     | 19    | 4C0     | 1v8 io      |
-| 5/43  | 1B3   | UART2RX    |     | 18/4  | 0A4     | 3v3 io      |
-| 6/48  | 1C0   | CS0        |     | 17/55 | 1C7     | IRQ         |
-| 7/49  | 1C1   | CLK        |     | 16/54 | 1C6     | BUSY        |
-| 8/50  | 1C2   | MOSI       |     | 15/59 | 1D3     | i2c SCL     |
-| 9/51  | 1C3   | MISO       |     | 14/58 | 1D2     | i2c SDA     |
-| 10/52 | 1C4   | UART4TX    |     | 13/57 | 1D1     | NRST        |
-| 11/53 | 1C5   | UART4RX    |     | 12/56 | 1D0     | RXEN        |
