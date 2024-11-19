@@ -3,7 +3,7 @@
 
 ---
 
-<p>To configure the Femtofox’s wifi settings, you can insert a USB drive containing a configuration file named <code>femtofox-config.txt</code></p>
+<p>To configure Femtofox wifi settings, you can insert a USB drive containing a configuration file named <code>femtofox-config.txt</code></p>
 <h4 id="boot-codes">Boot codes</h4>
 <p>When the Femtofox is finished booting, it will blink its USER LED in a pattern which can be used to gather info on its status or help diagnose issues.</p>
 
