@@ -3,8 +3,17 @@
 
 ---
 
-<p>To configure Femtofox wifi settings, you can insert a USB drive containing a configuration file named <code>femtofox-config.txt</code></p>
-<h4 id="boot-codes">Boot codes</h4>
+<h2 id="usb-configuration">USB configuration</h2>
+<p>To configure Femtofox wifi settings, you can insert a USB flash drive containing a configuration file named <code>femtofox-config.txt</code>.<br>
+The USB drive must be formatted with a single FAT32, exFAT or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
+<pre><code>ssid="Your SSID name"
+psk="wifipassword"
+country="US"
+</code></pre>
+<blockquote>
+<p>For country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
+</blockquote>
+<h3 id="boot-codes">Boot codes</h3>
 <p>When the Femtofox is finished booting, it will blink its USER LED in a pattern which can be used to gather info on its status or help diagnose issues.</p>
 
 <table>
@@ -48,5 +57,7 @@
 <td></td>
 </tr>
 </tbody>
-</table><p>Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.</p>
+</table><blockquote>
+<p>Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.</p>
+</blockquote>
 
