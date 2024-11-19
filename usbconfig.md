@@ -38,7 +38,7 @@
 <tr>
 <td>✅ 5 very fast blinks, each lasting 1/8th of a second</td>
 <td>USB drive mounted successfully, and femtofox-config.txt was found and contained valid configuration data which was deployed. System will now reboot. <strong>Unplug the USB drive or the system will continue to reboot repeatedly.</strong></td>
-<td></td>
+<td>Note that this does not mean that the information in the config file is correct - only that we were able to copy it to system configuration.</td>
 <td></td>
 </tr>
 <tr>
