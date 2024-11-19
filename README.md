@@ -42,6 +42,8 @@
 <li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, stop job on reboot</li>
 <li>Test power consumption with LoRa radio attached / figure out what size solar panel will be required</li>
 <li>Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
+<li>Allow editing of config files by plugging in thumb drive</li>
+<li>Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
