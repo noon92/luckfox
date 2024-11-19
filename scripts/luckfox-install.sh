@@ -5,7 +5,7 @@ echo -n "Enter wifi password: "
 stty -echo  # Disable terminal echo
 read PASSWORD
 stty echo  # Re-enable terminal echo
-echo "[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
+echo "\n[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
 
 
 sudo mount -t tmpfs tmpfs /run -o remount,size=32M,nosuid,noexec,relatime,mode=755   #Embiggen tmpfs - prevents problems.
