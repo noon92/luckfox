@@ -34,7 +34,7 @@
 </ul>
 <p><strong>Issues / to do / in progress:</strong></p>
 <ul>
-<li>WIFI over USB or UART (accomplished, unstable, optimizing)</li>
+<li>WIFI over USB or UART (accomplished, stable, optimizing)</li>
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
 <li>Custom carrier PCB with LoRa radio (in progress)</li>
 <li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
