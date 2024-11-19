@@ -15,7 +15,8 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Enlarged tmpfs ***\e[0m\n"
 sudo chmod +x buttonservice.sh
 sudo mv buttonservice.sh /usr/local/bin
 sudo mv button.service /etc/systemd/system
-sudo usermod -aG input $USER
+sudo usermod -aG input femto
+echo "femto ALL=(ALL) NOPASSWD: /sbin/reboot" | sudo tee -a /etc/sudoers
 sudo systemctl daemon-reload
 sudo systemctl enable button.service
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added reboot on BOOT button press ***\e[0m\n"
@@ -29,7 +30,7 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Updating and upgrading Ubuntu... ***\e[
 sudo DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y update && sudo DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Ubuntu upgrade / update complete ***\e[0m\n"
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installing necessary packages... ***\e[0m\n"
-sudo apt-get install linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev -y
+sudo apt-get install linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest -y
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Necessary packages installed ***\e[0m\n"
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installing pip packages... ***\e[0m\n"
 pip3 install pytap2 meshtastic pypubsub
@@ -39,6 +40,7 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Pip packages installed ***\e[0m\n"
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Getting latest Meshtasticd beta... ***\e[0m\n"
 URL=$(wget -qO- https://api.github.com/repos/meshtastic/firmware/releases/latest | grep -oP '"browser_download_url": "\K[^"]*armhf\.deb' | head -n 1); FILENAME=$(basename $URL); wget -O /tmp/$FILENAME $URL && sudo apt install /tmp/$FILENAME -y && sudo rm /tmp/$FILENAME
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installed latest Meshtasticd beta ***\e[0m\n"
+
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Getting custom FemtoFox files... ***\e[0m\n"
 sudo cp ../liborcania_2.3_armhf/* /usr/lib/arm-linux-gnueabihf/
 sudo mv /etc/meshtasticd/config.yaml /etc/meshtasticd/config.yaml.bak
@@ -49,6 +51,9 @@ sudo chmod +x /etc/update-motd.d/00-header
 sudo mv /etc/update-motd.d/10-help-text /etc/update-motd.d/10-help-text.bak
 sudo mv /etc/update-motd.d/60-unminimize /etc/update-motd.d/60-unminimize.bak
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Copied custom FemtoFox files ***\e[0m\n"
+
+sudo mv usbconfig.sh /usr/local/bin/
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added USB configuration tool ***\e[0m\n"
 
 #serial port permissions
 sudo usermod -a -G tty $USER
