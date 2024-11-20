@@ -269,6 +269,7 @@ In Meshtasticd’s config.yaml we use GPIO bank 1, and subtract 32 from the pin 
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 <blockquote>
-<p>The information on this page is given without warranty or guarantee. Links to vendors of products are for informational purposes only.</p>
+<p>The information on this page is given without warranty or guarantee. Links to vendors of products are for informational purposes only.<br>
+Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.</p>
 </blockquote>
 
