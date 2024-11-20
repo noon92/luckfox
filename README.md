@@ -112,7 +112,7 @@
 </tr>
 <tr>
 <td>Misc. hardware</td>
-<td><li>USB hubs (powered or not)</li><li>Thumb drives&lt;</li><li>SD card readers</li></td>
+<td><li>USB hubs (powered or not)</li><li>Thumb drives</li><li>SD card readers</li></td>
 <td></td>
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
