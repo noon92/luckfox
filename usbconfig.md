@@ -30,8 +30,8 @@ country="US"
 <tr>
 <td>⚠️ One very long blink, lasting 4 seconds</td>
 <td>Failed to mount USB drive. Ignoring.</td>
-<td>* Invalid filesystem<br>* Corrupted partition table</td>
-<td>* Use a supported partition (FAT32, exFAT, ext4)<br>* Repair partition table</td>
+<td>* Invalid filesystem<br>* Corrupted partition table<br>* Defective USB drive</td>
+<td>* Use a supported partition (FAT32, exFAT, ext4)<br>* Repair partition table<br>* Try another USB drive</td>
 </tr>
 <tr>
 <td>⚠️ 3 long blinks, each lasting 1.5 seconds</td>
@@ -52,7 +52,7 @@ country="US"
 <td></td>
 </tr>
 <tr>
-<td>✅ 5 medium blinks, each lasting 1/2 a second</td>
+<td>✅ 5 medium blinks, each lasting 0.5 seconds</td>
 <td>Boot complete. Always appears last.</td>
 <td></td>
 <td></td>
