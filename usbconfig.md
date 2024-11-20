@@ -14,9 +14,9 @@ country="US"
 <p>For country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
 </blockquote>
 <p>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</p>
-<p><img src="https://github.com/noon92/femtofox/blob/main/leds.png" alt="LEDs"></p>
 <h3 id="boot-codes">Boot codes</h3>
-<p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.</p>
+<p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.<br>
+<img src="https://github.com/noon92/femtofox/blob/main/leds.png" alt="LEDs"></p>
 
 <table>
 <thead>
