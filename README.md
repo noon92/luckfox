@@ -18,7 +18,7 @@
 <li>By default, no simple way to get online (no built in wifi/BLE/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
 <li>Annoying SDK for building firmware images</li>
 <li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
-<li>USB seems very power limited - highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash</li>
+<li>If the power draw of a USB peripheral exceeds what the Luckfox is able to provide, it will reboot, bootloop or even hard crash. This appears to be avoidable by simply using a sufficient power supply, though this requires more testing</li>
 </ul>
 <p><strong>Accomplished:</strong></p>
 <ul>
@@ -31,14 +31,15 @@
 <li>Real time clock (RTC) support (see <em>supported hardware</em> below)</li>
 <li>Activity LED disabled. User LED will blink for 5 seconds when boot is complete</li>
 <li>Pressing the “BOOT” button triggers reboot</li>
+<li>Ability to reconfigure wifi via USB flash drive</li>
 </ul>
 <p><strong>Issues / to do / in progress:</strong></p>
 <ul>
 <li>WIFI over USB or UART (accomplished, stable, optimizing)</li>
+<li>Ability to trigger GPIO to shut off USB via mesh</li>
 <li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
 <li>Custom carrier PCB with LoRa radio (in progress)</li>
-<li>Custom PCB for USB, with power injection and GPIO/i2c control (in progress)</li>
-<li>Ability to trigger GPIO to shut off USB via mesh</li>
+<li>Custom PCB for USB with GPIO/i2c control (in progress)</li>
 <li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, on reboot</li>
 <li>Test power consumption with LoRa radio attached / figure out what size solar panel will be required</li>
 <li>Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
@@ -105,15 +106,15 @@
 </tr>
 <tr>
 <td>USB wifi adapter chipsets</td>
-<td>* RTL8188EUS<br>* MT7601U<br>* AR9271 (does not show in iwconfig for some users but works)</td>
+<td>* RTL8188EUS<br>* MT7601U<br>* AR9271 (seems to be unstable, does not show in iwconfig for some users)</td>
 <td></td>
-<td>USB power limitations are causing many issues. Unreliable - WORK IN PROGRESS.</td>
+<td>WORK IN PROGRESS.</td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
 <td>* USB hubs (powered or not)<br>* Thumb drives<br>* SD card readers</td>
 <td></td>
-<td>Highest observed current is low - just 0.08a at 5v (0.4w). It seems that if power draw exceeds this limit, the device will bootloop or hard crash.</td>
+<td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
 </tbody>
 </table><h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB</h3>
