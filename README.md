@@ -88,13 +88,13 @@
 <tbody>
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
-<td>* <a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a><br> * <a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a><br>* <a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a><br>* RA-01SH<br>* HT-CT62</td>
-<td>* E22-900mm22s<br>* E22-900m22s<br>* Any SPI LoRa radio that’s Meshtastic compatible</td>
-<td>Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
+<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>RA-01SH</li><li>HT-CT62</li></td>
+<td><li>E22-900mm22s</li><li>E22-900m22s</li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
+<td>*Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
 <td>RTC (real time clock)</td>
-<td>* <a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231M</a><br>* <a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></td>
+<td><li><a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231M</a></li><li><a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></li></td>
 <td>DS1337, DS1338, DS1340, other DS3231 variants</td>
 <td>Some DS3231 modules are listed as have a supercapacitor - these are usually actually lithium coin cells.</td>
 </tr>
@@ -106,13 +106,13 @@
 </tr>
 <tr>
 <td>USB wifi adapter chipsets</td>
-<td>* RTL8188EUS<br>* MT7601U<br>* AR9271 (seems to be unstable, does not show in iwconfig for some users)</td>
+<td><li>RTL8188EUS</li><li>MT7601U</li><li>AR9271 (seems to be unstable, does not show in iwconfig for some users)</li></td>
 <td></td>
 <td>WORK IN PROGRESS.</td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
-<td>* USB hubs (powered or not)<br>* Thumb drives<br>* SD card readers</td>
+<td><li>USB hubs (powered or not)</li><li>Thumb drives&lt;</li><li>SD card readers</li></td>
 <td></td>
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
