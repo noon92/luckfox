@@ -15,7 +15,7 @@ country="US"
 </blockquote>
 <p>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</p>
 <h3 id="boot-codes">Boot codes</h3>
-<p>When the Femtofox is finished booting, it will blink its USER LED in a pattern which can be used to gather info on its status or help diagnose issues.</p>
+<p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.</p>
 
 <table>
 <thead>
@@ -61,4 +61,5 @@ country="US"
 </table><blockquote>
 <p>Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.</p>
 </blockquote>
+<p><img src="https://github.com/noon92/femtofox/blob/main/leds.png" alt="LEDs"></p>
 
