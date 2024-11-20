@@ -73,7 +73,7 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Disabled redundant services ***\e[0m\n"
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Changing Luckfox system config ***\e[0m\n"
 sudo mv luckfox.cfg /etc/
 sudo luckfox-config load
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set Luckfox system config ***\e[0m\n"
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set and loaded Luckfox system config ***\e[0m\n"
 
 sudo hostname femtofox
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set hostname to femtofox ***\e[0m\n"
