@@ -46,14 +46,14 @@ country="US"
 <td>Check configuration file contents as described above.</td>
 </tr>
 <tr>
-<td>✅ 5 very fast blinks, each lasting 1/8th of a second</td>
-<td>USB drive mounted successfully, and femtofox-config.txt was found and contained valid configuration data which was deployed. System will now reboot. <strong>Unplug the USB drive or the system will continue to reboot repeatedly.</strong></td>
+<td>✅ 10 very fast blinks, each lasting 1/8th of a second</td>
+<td>USB drive mounted successfully, and femtofox-config.txt was found and contained valid configuration data which was deployed. Wifi will now restart and boot will proceed. You can disconnect the USB drive.</td>
 <td>Note that this does not mean that the information in the config file is correct - only that we were able to copy it to system configuration.</td>
 <td></td>
 </tr>
 <tr>
 <td>✅ 5 medium blinks, each lasting 1/2 a second</td>
-<td>Boot complete. Always appears last unless rebooting.</td>
+<td>Boot complete. Always appears last.</td>
 <td></td>
 <td></td>
 </tr>
