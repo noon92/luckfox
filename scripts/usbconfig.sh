@@ -3,8 +3,6 @@
 # Set the mount point
 MOUNT_POINT="/mnt/usb"
 
-echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction
-
 # Function to log both to the screen and syslog
 log_message() {
   local msg="USB config: $1"

@@ -10,7 +10,7 @@ echo -n "Enter wifi password: "
 stty -echo  # Disable terminal echo
 read PASSWORD
 stty echo  # Re-enable terminal echo
-echo "\n[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
+printf "\n[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
 
 
 if ! grep -q "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" /etc/fstab; then
@@ -176,5 +176,5 @@ sudo rm -rf ~/femtofox
 
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Configuration complete... ***\e[0m\n"
 
-echo "\e[1;31mPress any key to reboot...\e[0m\n"
+printf "\e[1;31mPress any key to reboot...\e[0m\n"
 read -n 1 -s && sudo reboot
