@@ -1,4 +1,8 @@
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Starting Femtofox install script. \e[1;31mNETWORK CONNECTIVITY REQUIRED! ***\e[0m\n"
+echo "[1;32m*** Starting Femtofox install script. \e[1;31mNETWORK CONNECTIVITY REQUIRED! ***\e[0m\n"
+
+sudo timedatectl set-timezone UTC   #Set timezone to UTC.
+date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
+echo "[1;32m*** $(date "+%H:%M:%S %Z")  Changed timezone to UTC and got network time ***\e[0m\n"
 
 read -p "Enter wifi SSID: " SSID
 echo -n "Enter wifi password: "
@@ -15,10 +19,6 @@ if ! grep -q "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" /et
 else
 	echo "[1;32m*** $(date "+%H:%M:%S %Z"): tmpfs already enlarged, skipping ***\e[0m\n"
 fi
-
-sudo timedatectl set-timezone UTC   #Set timezone to UTC.
-date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
-echo "[1;32m*** $(date "+%H:%M:%S %Z")  Changed timezone to UTC and got network time ***\e[0m\n"
 
 #update system and install dependencies
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Updating and upgrading Ubuntu... ***\e[0m\n"
