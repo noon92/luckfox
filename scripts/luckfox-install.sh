@@ -24,17 +24,15 @@ fi
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Updating and upgrading Ubuntu... ***\e[0m\n"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y update && sudo DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Ubuntu upgrade / update complete ***\e[0m\n"
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Getting latest Meshtasticd beta... ***\e[0m\n"
+URL=$(wget -qO- https://api.github.com/repos/meshtastic/firmware/releases/latest | grep -oP '"browser_download_url": "\K[^"]*armhf\.deb' | head -n 1); FILENAME=$(basename $URL); wget -O /tmp/$FILENAME $URL
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installing necessary packages... ***\e[0m\n"
-sudo apt-get install linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest -y
+sudo apt-get install linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest /tmp/$FILENAME -y
+sudo rm /tmp/$FILENAME
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Necessary packages installed ***\e[0m\n"
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installing pip packages... ***\e[0m\n"
 pip3 install pytap2 meshtastic pypubsub
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Pip packages installed ***\e[0m\n"
-
-#get latest meshtasticd beta
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Getting latest Meshtasticd beta... ***\e[0m\n"
-URL=$(wget -qO- https://api.github.com/repos/meshtastic/firmware/releases/latest | grep -oP '"browser_download_url": "\K[^"]*armhf\.deb' | head -n 1); FILENAME=$(basename $URL); wget -O /tmp/$FILENAME $URL && sudo apt install /tmp/$FILENAME -y && sudo rm /tmp/$FILENAME
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installed latest Meshtasticd beta ***\e[0m\n"
 
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Getting custom FemtoFox files... ***\e[0m\n"
 sudo cp ../liborcania_2.3_armhf/* /usr/lib/arm-linux-gnueabihf/
@@ -47,6 +45,7 @@ sudo mv /etc/update-motd.d/10-help-text /etc/update-motd.d/10-help-text.bak
 sudo mv /etc/update-motd.d/60-unminimize /etc/update-motd.d/60-unminimize.bak
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Copied custom FemtoFox files ***\e[0m\n"
 
+sudo chmod +x sbconfig.sh
 sudo mv usbconfig.sh /usr/local/bin/
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added USB configuration tool ***\e[0m\n"
 
@@ -109,7 +108,11 @@ fi
 
 #add daily reboot to cron
 if ! sudo crontab -l | grep -q "/sbin/reboot"; then
-	echo -e "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`\n0 6 * * * /sbin/reboot\n\n# restart bbs server script every odd hour\n#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
+	echo "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`
+	0 6 * * * /sbin/reboot
+
+	# restart bbs server script every odd hour
+	#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
 	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Scheduled daily reboot at 06:00 UTC ***\e[0m\n"
 else
 	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Daily reboot already scheduled, skipping ***\e[0m\n"
@@ -145,8 +148,8 @@ sudo find /oem/usr/ko/ -name '*.ko' ! -name 'ipv6.ko' -exec cp {} /lib/modules/5
 sudo touch /lib/modules/5.10.160/modules.order
 sudo touch /lib/modules/5.10.160/modules.builtin
 sudo depmod -a 5.10.160
-# Append to wpa_supplicant.conf
-sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null <<EOF
+# replace wpa_supplicant.conf
+sudo tee /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null <<EOF
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=US # Change to your country code

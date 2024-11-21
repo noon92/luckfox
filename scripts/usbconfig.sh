@@ -118,9 +118,9 @@ if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
     for _ in {1..10}; do
       blink "0.125" && sleep 0.125
     done
-    log_message "wpa_supplicant.conf updated and restarted, proceeding with boot."
     sudo systemctl restart wpa_supplicant
     sudo wpa_cli -i wlan0 reconfigure
+    log_message "wpa_supplicant.conf updated and restarted, proceeding with boot."
 
   else
     log_message "femtofox-config.txt does not contain valid configuration info, ignoring."
