@@ -167,6 +167,8 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 sudo systemctl stop NetworkManager
 sudo systemctl disable NetworkManager
+sudo systemctl restart wpa_supplicant
+sudo wpa_cli -i wlan0 reconfigure
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added wifi support ***\e[0m\n"
 
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Cleaning up... ***\e[0m\n"
