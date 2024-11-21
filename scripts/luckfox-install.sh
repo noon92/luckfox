@@ -8,8 +8,10 @@ stty echo  # Re-enable terminal echo
 echo "\n[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
 
 
-sudo mount -t tmpfs tmpfs /run -o remount,size=32M,nosuid,noexec,relatime,mode=755   #Embiggen tmpfs - prevents problems.
-sudo sh -c 'echo "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" >> /etc/fstab'   #Embiggen tmpfs - for future boots.
+if ! grep -q "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" /etc/fstab; then
+	sudo mount -t tmpfs tmpfs /run -o remount,size=32M,nosuid,noexec,relatime,mode=755   #Embiggen tmpfs - prevents problems.
+  sudo sh -c 'echo "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" >> /etc/fstab'
+fi
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Enlarged tmpfs ***\e[0m\n"
 
 sudo timedatectl set-timezone UTC   #Set timezone to UTC.
@@ -34,9 +36,9 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Installed latest Meshtasticd beta ***\e
 
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Getting custom FemtoFox files... ***\e[0m\n"
 sudo cp ../liborcania_2.3_armhf/* /usr/lib/arm-linux-gnueabihf/
-sudo mv /etc/meshtasticd/config.yaml /etc/meshtasticd/config.yaml.bak
+sudo cp -n /etc/meshtasticd/config.yaml /etc/meshtasticd/config.yaml.bak
 sudo cp ../meshtasticd/config.yaml /etc/meshtasticd/
-sudo cp /etc/update-motd.d/00-header /etc/update-motd.d/00-header.bak
+sudo cp -n /etc/update-motd.d/00-header /etc/update-motd.d/00-header.bak
 sudo mv 00-header /etc/update-motd.d/
 sudo chmod +x /etc/update-motd.d/00-header
 sudo mv /etc/update-motd.d/10-help-text /etc/update-motd.d/10-help-text.bak
@@ -51,14 +53,18 @@ sudo usermod -a -G tty $USER
 sudo usermod -a -G dialout $USER
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set serial port permissions ***\e[0m\n"
 
-sudo chmod +x buttonservice.sh
-sudo mv buttonservice.sh /usr/local/bin
-sudo mv button.service /etc/systemd/system
-sudo usermod -aG input femto
-echo "femto ALL=(ALL) NOPASSWD: /sbin/reboot" | sudo tee -a /etc/sudoers
-sudo systemctl daemon-reload
-sudo systemctl enable button.service
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added reboot on BOOT button press ***\e[0m\n"
+if [ ! -f /etc/systemd/system/button.service ]; then
+	if ! sudo grep -q "femto ALL=(ALL) NOPASSWD: /sbin/reboot" /etc/sudoers; then
+			echo "femto ALL=(ALL) NOPASSWD: /sbin/reboot" | sudo tee -a /etc/sudoers
+	fi
+	sudo chmod +x buttonservice.sh
+	sudo mv buttonservice.sh /usr/local/bin
+	sudo mv button.service /etc/systemd/system
+	sudo usermod -aG input femto
+	sudo systemctl daemon-reload
+	sudo systemctl enable button.service
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added reboot on BOOT button press ***\e[0m\n"
+fi
 
 #disable redundant services
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Disabling redundant services... ***\e[0m\n"
@@ -79,19 +85,23 @@ sudo hostname femtofox
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set hostname to femtofox ***\e[0m\n"
 
 #replace /etc/rc.local
-sudo cp /etc/rc.local /etc/rc.local.bak
-sudo cp ./rc.local /etc/rc.local
-sudo chmod +x /etc/rc.local
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/rc.local ***\e[0m\n"
+if [ ! -f /etc/issue.bak ]; then
+	sudo cp -n /etc/rc.local /etc/rc.local.bak
+	sudo cp ./rc.local /etc/rc.local
+	sudo chmod +x /etc/rc.local
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/rc.local ***\e[0m\n"
+fi
 
 #replace /etc/issue
-sudo cp /etc/issue /etc/issue.bak
+sudo cp -n /etc/issue /etc/issue.bak
 sudo cp ./issue /etc/issue
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/issue ***\e[0m\n"
 
 #add daily reboot to cron
-echo -e "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`\n0 6 * * * /sbin/reboot\n\n# restart bbs server script every odd hour\n#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Scheduled daily reboot at 06:00 UTC ***\e[0m\n"
+if ! sudo crontab -l | grep -q "/sbin/reboot"; then
+	echo -e "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`\n0 6 * * * /sbin/reboot\n\n# restart bbs server script every odd hour\n#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Scheduled daily reboot at 06:00 UTC ***\e[0m\n"
+fi
 
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuring networking... ***\e[0m\n"
 # Replace the existing configuration for eth0 in /etc/network/interfaces
