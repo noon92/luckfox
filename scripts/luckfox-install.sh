@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "[1;32m*** Starting Femtofox install script. \e[1;31mNETWORK CONNECTIVITY REQUIRED! ***\e[0m\n"
 
 sudo timedatectl set-timezone UTC   #Set timezone to UTC.
