@@ -11,8 +11,10 @@ echo "\n[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
 if ! grep -q "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" /etc/fstab; then
 	sudo mount -t tmpfs tmpfs /run -o remount,size=32M,nosuid,noexec,relatime,mode=755   #Embiggen tmpfs - prevents problems.
   sudo sh -c 'echo "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" >> /etc/fstab'
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Enlarged tmpfs ***\e[0m\n"
+else
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): tmpfs already enlarged, skipping ***\e[0m\n"
 fi
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Enlarged tmpfs ***\e[0m\n"
 
 sudo timedatectl set-timezone UTC   #Set timezone to UTC.
 date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
@@ -64,6 +66,8 @@ if [ ! -f /etc/systemd/system/button.service ]; then
 	sudo systemctl daemon-reload
 	sudo systemctl enable button.service
 	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added reboot on BOOT button press ***\e[0m\n"
+else
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Reboot on BOOT button press already added, skipping ***\e[0m\n"
 fi
 
 #disable redundant services
@@ -90,17 +94,25 @@ if [ ! -f /etc/issue.bak ]; then
 	sudo cp ./rc.local /etc/rc.local
 	sudo chmod +x /etc/rc.local
 	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/rc.local ***\e[0m\n"
+else
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): /etc/rc.local already replaced, skipping ***\e[0m\n"
 fi
 
 #replace /etc/issue
-sudo cp -n /etc/issue /etc/issue.bak
-sudo cp ./issue /etc/issue
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/issue ***\e[0m\n"
+if [ ! -f /etc/issue.bak ]; then
+	sudo cp -n /etc/issue /etc/issue.bak
+	sudo cp ./issue /etc/issue
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Replaced /etc/issue ***\e[0m\n"
+else
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): /etc/issue already replaced, skipping ***\e[0m\n"
+fi
 
 #add daily reboot to cron
 if ! sudo crontab -l | grep -q "/sbin/reboot"; then
 	echo -e "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`\n0 6 * * * /sbin/reboot\n\n# restart bbs server script every odd hour\n#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
 	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Scheduled daily reboot at 06:00 UTC ***\e[0m\n"
+else
+	echo "[1;32m*** $(date "+%H:%M:%S %Z"): Daily reboot already scheduled, skipping ***\e[0m\n"
 fi
 
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuring networking... ***\e[0m\n"
