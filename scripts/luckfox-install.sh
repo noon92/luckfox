@@ -45,7 +45,7 @@ sudo mv /etc/update-motd.d/10-help-text /etc/update-motd.d/10-help-text.bak
 sudo mv /etc/update-motd.d/60-unminimize /etc/update-motd.d/60-unminimize.bak
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Copied custom FemtoFox files ***\e[0m\n"
 
-sudo chmod +x sbconfig.sh
+sudo chmod +x usbconfig.sh
 sudo mv usbconfig.sh /usr/local/bin/
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added USB configuration tool ***\e[0m\n"
 
@@ -174,5 +174,4 @@ sudo rm -rf ~/femtofox
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuration complete... ***\e[0m\n"
 
 echo "\e[1;31mPress any key to reboot...\e[0m\n"
-read -n 1 -s
-sudo reboot
+read -n 1 -s && sudo reboot
