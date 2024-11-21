@@ -12,15 +12,6 @@ sudo mount -t tmpfs tmpfs /run -o remount,size=32M,nosuid,noexec,relatime,mode=7
 sudo sh -c 'echo "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" >> /etc/fstab'   #Embiggen tmpfs - for future boots.
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Enlarged tmpfs ***\e[0m\n"
 
-sudo chmod +x buttonservice.sh
-sudo mv buttonservice.sh /usr/local/bin
-sudo mv button.service /etc/systemd/system
-sudo usermod -aG input femto
-echo "femto ALL=(ALL) NOPASSWD: /sbin/reboot" | sudo tee -a /etc/sudoers
-sudo systemctl daemon-reload
-sudo systemctl enable button.service
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added reboot on BOOT button press ***\e[0m\n"
-
 sudo timedatectl set-timezone UTC   #Set timezone to UTC.
 date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
 echo "[1;32m*** $(date "+%H:%M:%S %Z")  Changed timezone to UTC and got network time ***\e[0m\n"
@@ -59,6 +50,15 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added USB configuration tool ***\e[0m\n
 sudo usermod -a -G tty $USER
 sudo usermod -a -G dialout $USER
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Set serial port permissions ***\e[0m\n"
+
+sudo chmod +x buttonservice.sh
+sudo mv buttonservice.sh /usr/local/bin
+sudo mv button.service /etc/systemd/system
+sudo usermod -aG input femto
+echo "femto ALL=(ALL) NOPASSWD: /sbin/reboot" | sudo tee -a /etc/sudoers
+sudo systemctl daemon-reload
+sudo systemctl enable button.service
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added reboot on BOOT button press ***\e[0m\n"
 
 #disable redundant services
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Disabling redundant services... ***\e[0m\n"
