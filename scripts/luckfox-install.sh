@@ -171,6 +171,8 @@ echo "[1;32m*** $(date "+%H:%M:%S %Z"): Added wifi support ***\e[0m\n"
 echo "[1;32m*** $(date "+%H:%M:%S %Z"): Cleaning up... ***\e[0m\n"
 sudo rm -rf ~/femtofox
 
-echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuration complete, rebooting... ***\e[0m\n"
+echo "[1;32m*** $(date "+%H:%M:%S %Z"): Configuration complete... ***\e[0m\n"
 
-sudo sleep 5 && sudo reboot
+echo "\e[1;31mPress any key to reboot...\e[0m\n"
+read -n 1 -s
+sudo reboot
