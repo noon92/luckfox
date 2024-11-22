@@ -5,7 +5,7 @@
 
 <h2 id="usb-configuration">USB configuration</h2>
 <p>To configure Femtofox wifi settings, you can insert a USB flash drive containing a configuration file named <code>femtofox-config.txt</code>.<br>
-The USB drive must be formatted with a single FAT32, exFAT or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
+The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
 <pre><code>ssid="Your SSID name"
 psk="wifipassword"
 country="US"
@@ -32,7 +32,7 @@ country="US"
 <td>⚠️ One very long blink, lasting 4 seconds</td>
 <td>Failed to mount USB drive. Ignoring.</td>
 <td><li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive</li></td>
-<td><li>Use a supported partition (FAT32, exFAT, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
+<td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
 </tr>
 <tr>
 <td>⚠️ 3 long blinks, each lasting 1.5 seconds</td>
