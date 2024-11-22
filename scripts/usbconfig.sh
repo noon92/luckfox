@@ -80,13 +80,13 @@ if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
   FOUNDCONFIG="false"
 
   # Read the fields from the USB config file if they exist
-  if grep -q 'ssid=' "$USB_CONFIG"; then
+  if grep -qi 'ssid=' "$USB_CONFIG"; then
       SSID=$(grep 'ssid=' "$USB_CONFIG" | sed 's/ssid=//' | tr -d '"')
   fi
-  if grep -q 'psk=' "$USB_CONFIG"; then
+  if grep -qi 'psk=' "$USB_CONFIG"; then
       PSK=$(grep 'psk=' "$USB_CONFIG" | sed 's/psk=//' | tr -d '"')
   fi
-  if grep -q 'country=' "$USB_CONFIG"; then
+  if grep -qi 'country=' "$USB_CONFIG"; then
       COUNTRY=$(grep 'country=' "$USB_CONFIG" | sed 's/country=//' | tr -d '"')
   fi
 
