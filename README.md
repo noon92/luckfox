@@ -22,29 +22,28 @@
 </ul>
 <p><strong>Accomplished:</strong></p>
 <ul>
-<li>Ethernet over USB (see <em>supported hardware</em> below)</li>
-<li>Ethernet over pins (see <em>Networking</em> below and wiring diagram at bottom of page)</li>
-<li>UART communications with Meshtastic nodes (2 pin pairs)</li>
-<li>USB serial communications with Meshtastic nodes (see <em>supported hardware</em> below)</li>
-<li>Meshtastic native client controlling a LoRa radio (see <em>supported hardware</em> below)</li>
-<li>USB mass storage</li>
-<li>Real time clock (RTC) support (see <em>supported hardware</em> below)</li>
-<li>Activity LED disabled. User LED will blink for 5 seconds when boot is complete</li>
-<li>Pressing the “BOOT” button triggers reboot</li>
-<li>Ability to reconfigure wifi via USB flash drive</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ethernet over USB (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ethernet over pins (see <em>Networking</em> below and wiring diagram at bottom of page)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> UART communications with Meshtastic nodes (2 pin pairs)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> USB serial communications with Meshtastic nodes (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Meshtastic native client controlling a LoRa radio (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> USB mass storage</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Real time clock (RTC) support (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Activity LED disabled. User LED will blink for 5 seconds when boot is complete</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Pressing the “BOOT” button triggers reboot</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ability to reconfigure wifi via USB flash drive</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> WIFI over USB or UART (stable, optimizing)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Allow editing of config files by plugging in thumb drive</li>
 </ul>
 <p><strong>Issues / to do / in progress:</strong></p>
 <ul>
-<li>WIFI over USB or UART (accomplished, stable, optimizing)</li>
-<li>Ability to trigger GPIO to shut off USB via mesh</li>
-<li>Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
-<li>Custom carrier PCB with LoRa radio (in progress)</li>
-<li>Custom PCB for USB with GPIO/i2c control (in progress)</li>
-<li>Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, on reboot</li>
-<li>Test power consumption with LoRa radio attached / figure out what size solar panel will be required</li>
-<li>Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
-<li>Allow editing of config files by plugging in thumb drive</li>
-<li>Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom carrier PCB with LoRa radio (in progress)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom PCB for USB with GPIO/i2c control (in progress)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, on reboot</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test power consumption with LoRa radio attached / figure out what size solar panel will be required - preliminarily, 0.36-0.45w average</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
@@ -269,7 +268,8 @@ In Meshtasticd’s config.yaml we use GPIO bank 1, and subtract 32 from the pin 
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 <blockquote>
-<p>The information on this page is given without warranty or guarantee. Links to vendors of products are for informational purposes only.<br>
+<p>[!NOTE]<br>
+The information on this page is given without warranty or guarantee. Links to vendors of products are for informational purposes only.<br>
 Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.</p>
 </blockquote>
 
