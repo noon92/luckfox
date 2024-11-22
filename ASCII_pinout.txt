@@ -1,0 +1,15 @@
+                                           Luckfox Pico Mini
+                                              + - USB - +     
+      -         -          -        - VBUS 5V |         | 1V8 out -        -           -          -
+      -         -          -        -     GND |         | GND     -        -           -          -
+      -         -          -        - 3V3 out |         | GPIO20  - Bank 4 - SARADC M1 -          - 1V8
+ 3.3V -         - UART2 TX - Bank 1 -  GPIO42 |         | GPIO19  - Bank 4 - SARADC M0 -          - 1V8
+ 3.3V -         - UART2 RX - Bank 1 -  GPIO43 |         | GPIO4   - Bank 0 -           - PWM1 M0  - 3.3V
+ 3.3V - PWM2 M2 -  SPI CS0 - Bank 1 -  GPIO48 |         | GPIO55  - Bank 1 -           - PWM11 M1 - 3.3V
+ 3.3V - PWM4 M2 -  SPI CLK - Bank 1 -  GPIO49 |         | GPIO54  - Bank 1 -           - PWM10 M1 - 3.3V
+ 3.3V - PWM5 M2 - SPI MOSI - Bank 1 -  GPIO50 |         | GPIO59  - Bank 1 - I2C SCL   - PWM11 M2 - 3.3V
+ 3.3V - PWM6 M2 - SPI MISO - Bank 1 -  GPIO51 |         | GPIO58  - Bank 1 - I2C SDA   - PWM0 M1  - 3.3V
+ 3.3V - PWM8 M1 - UART4 RX - Bank 1 -  GPIO52 |         | GPIO57  - Bank 1 - UART3 RX  - PWM10 M2 - 3.3V
+ 3.3V - PWM9 M1 - UART4 TX - Bank 1 -  GPIO53 |         | GPIO56  - Bank 1 - UART3 TX  - PWM3 M2  - 3.3V
+                                              + -- + -- +
+                                                  ETH
