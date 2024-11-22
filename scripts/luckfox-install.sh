@@ -3,15 +3,21 @@ printf "[1;32m*** Starting Femtofox install script. \e[1;31mNETWORK CONNECTIVIT
 
 sudo timedatectl set-timezone UTC   #Set timezone to UTC.
 date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
-printf "[1;32m*** $(date "+%H:%M:%S %Z")  Changed timezone to UTC and got network time ***\e[0m\n"
+printf "[1;32m*** Got network time ***\e[0m\n"
+
+# Set the timezone
+printf "\n[1;32m*** Setting timezone ***\e[0m\n"
+timezone=$(tzselect)
+sudo ln -sf "/usr/share/zoneinfo/$timezone" /etc/localtime
+echo "$timezone" | sudo tee /etc/timezone
+echo "\n[1;32m*** $(date "+%H:%M:%S %Z"): Timezone set to $timezone ***\e[0m\n"
 
 read -p "Enter wifi SSID: " SSID
 echo -n "Enter wifi password: "
 stty -echo  # Disable terminal echo
 read PASSWORD
 stty echo  # Re-enable terminal echo
-printf "\n[1;32m*** SSID saved. Wifi requires adapter ***\e[0m\n"
-
+printf "\n[1;32m*** $(date "+%H:%M:%S %Z"): SSID saved. Wifi requires adapter ***\e[0m\n"
 
 if ! grep -q "tmpfs /run tmpfs size=32M,nosuid,noexec,relatime,mode=755 0 0" /etc/fstab; then
 	sudo mount -t tmpfs tmpfs /run -o remount,size=32M,nosuid,noexec,relatime,mode=755   #Embiggen tmpfs - prevents problems.
@@ -29,6 +35,7 @@ printf "[1;32m*** $(date "+%H:%M:%S %Z"): Getting latest Meshtasticd beta... **
 URL=$(wget -qO- https://api.github.com/repos/meshtastic/firmware/releases/latest | grep -oP '"browser_download_url": "\K[^"]*armhf\.deb' | head -n 1); FILENAME=$(basename $URL); wget -O /tmp/$FILENAME $URL
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Installing necessary packages... ***\e[0m\n"
 sudo apt-get install linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest /tmp/$FILENAME -y
+sudo dpkg --configure -a
 sudo rm /tmp/$FILENAME
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Necessary packages installed ***\e[0m\n"
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Installing pip packages... ***\e[0m\n"
@@ -109,8 +116,8 @@ fi
 
 #add daily reboot to cron
 if ! sudo crontab -l | grep -q "/sbin/reboot"; then
-	echo "# reboot pi every 7. Default timezone is GMT. To change timezone run \`sudo tzselect\`
-	0 6 * * * /sbin/reboot
+	echo "# reboot pi every 3am. Default timezone is GMT. To change timezone run \`sudo tzselect\`
+	0 3 * * * /sbin/reboot
 
 	# restart bbs server script every odd hour
 	#0 23/2 * * * sudo systemctl restart mesh-bbs.service" | sudo tee -a /var/spool/cron/crontabs/root > /dev/null
@@ -167,8 +174,8 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 sudo systemctl stop NetworkManager
 sudo systemctl disable NetworkManager
-sudo systemctl restart wpa_supplicant
-sudo wpa_cli -i wlan0 reconfigure
+#sudo systemctl restart wpa_supplicant
+#sudo wpa_cli -i wlan0 reconfigure
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Added wifi support ***\e[0m\n"
 
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Cleaning up... ***\e[0m\n"
