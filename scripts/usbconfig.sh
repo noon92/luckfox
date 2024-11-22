@@ -62,16 +62,15 @@ else
   fi
 fi
 
+  WPA_SUPPLICANT_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
+  USB_CONFIG="/tmp/femtofox-config.txt"
+
 # Check if the mounted USB drive contains a file femtofox-config.txt
 if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
   log_message "femtofox-config.txt found on USB drive."
 
   # Remove Windows-style carriage returns
-  tr -d '\r' < "$MOUNT_POINT/femtofox-config.txt" > "$MOUNT_POINT/femtofox-config.txt.tmp"
-  mv "$MOUNT_POINT/femtofox-config.txt.tmp" "$MOUNT_POINT/femtofox-config.txt"
-
-  WPA_SUPPLICANT_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
-  USB_CONFIG="$MOUNT_POINT/femtofox-config.txt"
+	tr -d '\r' < "$MOUNT_POINT/femtofox-config.txt" > $USB_CONFIG
 
   # Initialize variables
   SSID=""
@@ -126,6 +125,8 @@ if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
       blink "1.5" && sleep 0.5
     done
   fi
+
+  rm $USB_CONFIG
 
 else
   log_message "USB drive mounted but femtofox-config.txt not found, ignoring."
