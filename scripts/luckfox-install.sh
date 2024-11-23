@@ -78,13 +78,42 @@ else
 fi
 
 #disable redundant services
-printf "[1;32m*** $(date "+%H:%M:%S %Z"): Disabling redundant services... ***\e[0m\n"
-sudo systemctl disable vsftpd.service
-sudo systemctl disable ModemManager.service
-sudo systemctl disable polkit.service
-sudo systemctl disable getty@tty1.service
-sudo systemctl disable alsa-restore.service
-printf "[1;32m*** $(date "+%H:%M:%S %Z"): Disabled redundant services ***\e[0m\n"
+printf "[1;32m*** $(date "+%H:%M:%S %Z"): Disabling and masking redundant services... ***\e[0m\n"
+sudo systemctl disable vsftpd.service #we don't need this
+sudo systemctl mask vsftpd.service
+sudo systemctl disable ModemManager.service #or this
+sudo systemctl mask ModemManager.service
+sudo systemctl disable polkit.service #or this
+sudo systemctl mask polkit.service
+sudo systemctl disable getty@tty1.service #this is for direct console, not uart debug. We don't have one of those
+sudo systemctl mask getty@tty1.service
+sudo systemctl disable acpid #shutdown/sleep/hibernate: unused
+sudo systemctl mask acpid
+sudo systemctl disable acpid.socket
+sudo systemctl mask acpid.socket
+sudo systemctl disable acpid.service
+sudo systemctl mask acpid.service
+sudo systemctl disable alsa-restore.service #sound service
+sudo systemctl mask alsa-restore.service
+sudo systemctl disable alsa-state.service
+sudo systemctl mask alsa-state.service
+sudo mkdir -p /etc/systemd/system/sound.target.d
+sudo echo -e "[Unit]\nConditionPathExists=!/dev/snd" | sudo tee /etc/systemd/system/sound.target.d/override.conf > /dev/null
+sudo systemctl mask sound.target
+sudo systemctl disable remote-fs.target #remote filesystems over network
+sudo systemctl mask remote-fs.target
+sudo systemctl disable veritysetup.target #we don't use this
+sudo systemctl mask veritysetup.target
+sudo systemctl disable cryptsetup.target #we don't have any encrypted partitions
+sudo systemctl mask cryptsetup.target
+sudo systemctl disable ntp.service #we are not currently using ntp
+sudo systemctl mask ntp.service
+sudo systemctl disable ntp-systemd-netif.path
+sudo systemctl mask ntp-systemd-netif.path
+sudo systemctl disable systemd-pstore.service #kernel crashes, recovery/logging, state persistence, etc. Redundant
+sudo systemctl mask systemd-pstore.service
+sudo systemctl daemon-reload
+printf "[1;32m*** $(date "+%H:%M:%S %Z"): Disabled and masked redundant services ***\e[0m\n"
 
 #change luckfox system config
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Changing Luckfox system config ***\e[0m\n"
