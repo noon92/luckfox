@@ -65,7 +65,7 @@
 </ol>
 <p>Reboot timing is set in <code>crontab</code>. Time logic is in <code>/etc/rc.local</code>.</p>
 <h3 id="supported-hardware---click-here"><a href="supported_hardware.md">Supported hardware - click here</a></h3>
-<h3 id="networking">Networking</h3>
+<h3 id="networking">Networking:</h3>
 <p>There are four methods to get online:</p>
 <ol>
 <li>Ethernet over USB - most adapters should be supported, but I’ve only tested the RTL8152 chipset.</li>
@@ -73,7 +73,7 @@
 <li>USB wifi - still a work in progress, but working with a couple different chipsets so far. Note we’re using wpa_supplicant, as networkmanager (nmcli) caused hard crashes.</li>
 <li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>. This is not really recommended, but can be used in a pinch.</li>
 </ol>
-<h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB</h3>
+<h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB:</h3>
 <p><strong>Choosing a MicroSD card:</strong> Any reasonably fast MicroSD card of 32gb or higher should work, but ideally use a card that supports UHS-1 or higher, and is rated for high endurance.</p>
 <ol>
 <li>Uncompress the 7z file - will require ~29gb of space. In Windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
@@ -105,7 +105,7 @@
 <li>It should Just Work.</li>
 <li>You can connect to the Luckfox via ethernet or UART serial as described <a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/">here</a>.</li>
 </ol>
-<h3 id="pinout">Pinout</h3>
+<h3 id="pinout">Pinout:</h3>
 
 <table>
 <thead>
