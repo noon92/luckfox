@@ -63,11 +63,10 @@ fi
 # run USB automount and config tool
 /usr/local/bin/usbconfig.sh
 
-echo "Disabling ACT LED..."
-echo "none" > /sys/class/leds/work/trigger &
-
-#boot complete, blink USER LED 5 times in background
+#boot complete
 (
+  echo "Disabling ACT LED..."
+  echo "none" > /sys/class/leds/work/trigger &
   sleep 1
   for i in $(seq 1 5); do
     echo 1 > /sys/class/gpio/gpio34/value;
