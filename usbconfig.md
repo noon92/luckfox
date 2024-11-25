@@ -4,7 +4,7 @@
 ---
 
 <h2 id="usb-configuration">USB configuration</h2>
-<p>To configure Femtofox wifi settings, you can insert a USB flash drive containing a configuration file named <code>femtofox-config.txt</code>. The system will automatically recognize, mount and implement the settings you specify.<br>
+<p>To configure Femtofox wifi settings, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.<br>
 The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
 <pre><code>ssid="Your SSID name"
 psk="wifipassword"
