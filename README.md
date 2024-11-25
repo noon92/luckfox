@@ -105,7 +105,7 @@
 <li>It should Just Work.</li>
 <li>You can connect to the Luckfox via ethernet or UART serial as described <a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/">here</a>.</li>
 </ol>
-<h3 id="pinout-mapping">Pinout mapping</h3>
+<h3 id="pinout">Pinout</h3>
 
 <table>
 <thead>
