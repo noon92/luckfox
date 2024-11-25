@@ -39,11 +39,11 @@
 <p><strong>Issues / to do / in progress:</strong></p>
 <ul>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom carrier PCB with LoRa radio (in progress)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom PCB for USB with GPIO/i2c control (in progress)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Ability to activate or deactivate WIFI via Meshtastic admin (accomplished, refining)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, on reboot</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test power consumption with LoRa radio attached / figure out what size solar panel will be required - preliminarily, 0.36-0.45w average</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not make a difference</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
