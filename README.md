@@ -72,51 +72,8 @@
 <li>USB wifi - still a work in progress, but working with a couple different chipsets so far. Note we’re using wpa_supplicant, as networkmanager (nmcli) caused hard crashes.</li>
 <li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>. This is not really recommended, but can be used in a pinch.</li>
 </ol>
-<h3 id="supported-hardware">Supported hardware</h3>
-<p>The following hardware is confirmed working with the linked Ubuntu images. Links are to generally accepted “reliable vendors”.</p>
-
-<table>
-<thead>
-<tr>
-<th>Hardware</th>
-<th>Confirmed working</th>
-<th>Expected to work</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>LoRa radios (working with Meshtasticd)</td>
-<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>RA-01SH</li><li>HT-RA62</li></td>
-<td><li>E22-900mm22s</li><li>E22-900m22s</li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
-<td>*Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
-</tr>
-<tr>
-<td>RTC (real time clock)</td>
-<td><li><a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231M</a></li><li><a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></li></td>
-<td>DS1337, DS1338, DS1340, other DS3231 variants</td>
-<td>Some DS3231 modules are listed as have a supercapacitor - these are usually actually lithium coin cells.</td>
-</tr>
-<tr>
-<td>Meshtastic nodes</td>
-<td>USB+UART: <a href="https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit">RAK4631 with RAK19007 or RAK19003 base board</a></td>
-<td></td>
-<td>RAK4630 and 4631 are the same.</td>
-</tr>
-<tr>
-<td>USB wifi adapter chipsets</td>
-<td><li>RTL8188EUS</li><li>MT7601U</li><li>AR9271 (seems to be unstable, does not show in iwconfig for some users)</li></td>
-<td></td>
-<td>WORK IN PROGRESS.</td>
-</tr>
-<tr>
-<td>Misc. hardware</td>
-<td><li>USB hubs (powered or not)</li><li>Thumb drives</li><li>SD card readers</li></td>
-<td></td>
-<td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
-</tr>
-</tbody>
-</table><h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB</h3>
+<h3 id="supported-hardware"><a href="supported_hardware.md">Supported hardware</a></h3>
+<h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB</h3>
 <p><strong>Choosing a MicroSD card:</strong> Any reasonably fast MicroSD card of 32gb or higher should work, but ideally use a card that supports UHS-1 or higher, and is rated for high endurance.</p>
 <ol>
 <li>Uncompress the 7z file - will require ~29gb of space. In Windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
