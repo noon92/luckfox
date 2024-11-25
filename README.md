@@ -113,7 +113,7 @@
 <th>Pin #</th>
 <th>Pin ID</th>
 <th>Function</th>
-<th></th>
+<th>Luckfox</th>
 <th>Pin #</th>
 <th>Pin ID</th>
 <th>Function</th>
