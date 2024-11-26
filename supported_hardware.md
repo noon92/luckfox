@@ -100,10 +100,10 @@
 <td></td>
 </tr>
 <tr>
-<td>rtl8188eu</td>
+<td>rtl8188eu, rtl8188eus</td>
 <td><center><strong>x</strong></center></td>
 <td>Idle: 0.25w, txing: 0.4w, off: 0.05w</td>
-<td>working</td>
+<td>Working.<br>Tested: TP-LINK TL-WN725N <strong>V2</strong></td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
@@ -220,10 +220,10 @@
 <td></td>
 </tr>
 <tr>
-<td>mt7601u (confirmed)</td>
+<td>mt7601u</td>
 <td><center><strong>x</strong></center></td>
 <td></td>
-<td>working</td>
+<td>Working</td>
 </tr>
 <tr>
 <td>mt76x0u</td>
@@ -307,7 +307,7 @@
 <td>ar9271</td>
 <td><center><strong>x</strong></center></td>
 <td></td>
-<td>buggy</td>
+<td>Buggy</td>
 </tr>
 <tr>
 <td>ar9k</td>
