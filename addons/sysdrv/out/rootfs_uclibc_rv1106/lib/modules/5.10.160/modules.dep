@@ -1,0 +1,57 @@
+gcm.ko:
+ath9k_hw.ko: ath.ko cfg80211.ko
+ath6kl_usb.ko: ath6kl_core.ko cfg80211.ko
+rockit.ko: rga3.ko video_rkcif.ko mpp_vcodec.ko video_rkisp.ko rk_dvbm.ko
+ath10k_core.ko: ath.ko mac80211.ko libarc4.ko cfg80211.ko
+ccm.ko:
+mt76x0-common.ko: mt76x02-lib.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+rve.ko:
+ath9k.ko: ath9k_common.ko ath9k_hw.ko ath.ko mac80211.ko libarc4.ko cfg80211.ko
+rk_dvbm.ko:
+carl9170.ko: ath.ko mac80211.ko libarc4.ko cfg80211.ko
+ath9k_htc.ko: ath9k_common.ko ath9k_hw.ko ath.ko mac80211.ko libarc4.ko cfg80211.ko
+rga3.ko:
+mt7663s.ko: mt76-sdio.ko mt7663-usb-sdio-common.ko mt7615-common.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+libaes.ko:
+ghash-generic.ko: gf128mul.ko
+mpp_vcodec.ko: rk_dvbm.ko
+mt76x2u.ko: mt76x2-common.ko mt76x02-usb.ko mt76-usb.ko mt76x02-lib.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+video_rkisp.ko: rk_dvbm.ko
+ath10k_sdio.ko: ath10k_core.ko ath.ko mac80211.ko libarc4.ko cfg80211.ko
+rtl8xxxu.ko: mac80211.ko libarc4.ko cfg80211.ko
+mt76.ko: mac80211.ko libarc4.ko cfg80211.ko
+ath6kl_sdio.ko: ath6kl_core.ko cfg80211.ko
+mt76x02-lib.ko: mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+ipv6.ko:
+ath6kl_core.ko: cfg80211.ko
+mt7663-usb-sdio-common.ko: mt7615-common.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+ath9k_common.ko: ath9k_hw.ko ath.ko cfg80211.ko
+eeprom_93cx6.ko:
+libarc4.ko:
+aes_generic.ko: libaes.ko
+ath.ko: cfg80211.ko
+wcn36xx.ko: mac80211.ko libarc4.ko cfg80211.ko
+mt76x02-usb.ko: mt76-usb.ko mt76x02-lib.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+ath10k_usb.ko: ath10k_core.ko ath.ko mac80211.ko libarc4.ko cfg80211.ko
+mt76-usb.ko: mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+cfg80211.ko:
+rknpu.ko:
+mt76x2-common.ko: mt76x02-lib.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+libsha256.ko:
+gf128mul.ko:
+rtl8187.ko: eeprom_93cx6.ko mac80211.ko libarc4.ko cfg80211.ko
+ctr.ko:
+sha256_generic.ko: libsha256.ko
+gspca_main.ko:
+cmac.ko:
+phy-rockchip-csi2-dphy-hw.ko:
+mt76x0u.ko: mt76x0-common.ko mt76x02-usb.ko mt76-usb.ko mt76x02-lib.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+phy-rockchip-csi2-dphy.ko:
+mt7663u.ko: mt76-usb.ko mt7663-usb-sdio-common.ko mt7615-common.ko mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+mt7615-common.ko: mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+mt76-sdio.ko: mt76.ko mac80211.ko libarc4.ko cfg80211.ko
+video_rkcif.ko:
+ar5523.ko: mac80211.ko libarc4.ko cfg80211.ko
+mac80211.ko: libarc4.ko cfg80211.ko
+mt7601u.ko: mac80211.ko libarc4.ko cfg80211.ko
+sc3336.ko:
