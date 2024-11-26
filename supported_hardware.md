@@ -252,7 +252,7 @@
 <td>mt7601u</td>
 <td><center><strong>✔</strong></center></td>
 <td><center><strong>✔</strong></center></td>
-<td>Idle: 0.739w, txing</td>
+<td>Idle: 0.739w</td>
 <td></td>
 </tr>
 <tr>
