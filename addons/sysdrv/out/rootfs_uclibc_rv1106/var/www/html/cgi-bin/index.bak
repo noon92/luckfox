@@ -1,0 +1,47 @@
+#!/bin/sh
+echo "Content-type: text/html"
+echo ""
+
+# Check if the scan button was clicked
+if [ "$QUERY_STRING" = "action=scan" ]; then
+    # Run Wi-Fi scan with wpa_cli
+    wpa_cli scan > /dev/null 2>&1
+    sleep 2  # Give the scan some time to complete
+    SCAN_RESULTS=$(wpa_cli scan_results)
+fi
+
+# Generate the HTML page
+echo "<html><body>"
+
+# Wi-Fi Status
+echo "<h2>Wi-Fi Status</h2>"
+WIFI_STATUS=$(wpa_cli status)
+STATE=$(echo "$WIFI_STATUS" | grep 'wpa_state=' | cut -d= -f2)
+SSID=$(echo "$WIFI_STATUS" | grep '^ssid=' | cut -d= -f2)
+IP=$(echo "$WIFI_STATUS" | grep '^ip_address=' | cut -d= -f2)
+echo "<p><strong>Connection State:</strong> $STATE</p>"
+[ -n "$SSID" ] && echo "<p><strong>Connected SSID:</strong> $SSID</p>"
+[ -n "$IP" ] && echo "<p><strong>IP Address:</strong> $IP</p>"
+
+# Wi-Fi Scan Button
+echo "<h1>Wi-Fi Configuration</h1>"
+echo "<form method=\"GET\" action=\"/cgi-bin/index.cgi\">"
+echo "  <button type=\"submit\" name=\"action\" value=\"scan\">Scan Wi-Fi</button>"
+echo "</form>"
+
+# Display Scan Results, if available
+if [ -n "$SCAN_RESULTS" ]; then
+    echo "<h2>Available Networks</h2>"
+    echo "<pre>$SCAN_RESULTS</pre>"
+fi
+
+# Configuration form
+echo "<form method=\"POST\" action=\"/cgi-bin/configure-wifi.sh\">"
+echo "  <label for=\"ssid\">SSID:</label><br>"
+echo "  <input type=\"text\" id=\"ssid\" name=\"ssid\" required><br><br>"
+echo "  <label for=\"password\">Password:</label><br>"
+echo "  <input type=\"password\" id=\"password\" name=\"password\"><br><br>"
+echo "  <button type=\"submit\">Submit</button>"
+echo "</form>"
+
+echo "</body></html>"
