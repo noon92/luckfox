@@ -103,7 +103,7 @@
 <td>rtl8188eu, rtl8188eus</td>
 <td><center><strong>x</strong></center></td>
 <td>Idle: 0.25w, txing: 0.4w, off: 0.05w</td>
-<td>Working.<br>Tested: TP-LINK TL-WN725N <strong>V2</strong></td>
+<td>Working.<br>Tested: <a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
