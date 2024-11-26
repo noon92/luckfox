@@ -45,7 +45,8 @@
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
 </tbody>
-</table><p><br><br>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
+</table><h3 id="wifi-chipsets">Wifi chipsets</h3>
+<p>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
 
 <table>
 <thead>
