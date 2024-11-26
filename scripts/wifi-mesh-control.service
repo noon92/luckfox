@@ -1,0 +1,11 @@
+[Unit]
+Description=Automatically change wifi status to match config.proto
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/wifi-mesh-control.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
