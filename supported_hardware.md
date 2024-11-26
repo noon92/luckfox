@@ -54,7 +54,7 @@
 <th>Chipset:</th>
 <th>Tested?</th>
 <th>Recommended?</th>
-<th>Power consumption</th>
+<th>Power usage</th>
 <th>Notes</th>
 </tr>
 </thead>
@@ -110,9 +110,9 @@
 </tr>
 <tr>
 <td>rtl8188eu, rtl8188eus</td>
-<td><center><strong>✔</strong></center></td>
-<td><center><strong>✔</strong></center></td>
-<td>Idle: 0.25w, txing: 0.4w, off: 0.05w</td>
+<td><strong>✔</strong></td>
+<td><strong>✔</strong></td>
+<td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.025w</td>
 <td>Tested: <a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
 </tr>
 <tr>
@@ -250,8 +250,8 @@
 </tr>
 <tr>
 <td>mt7601u</td>
-<td><center><strong>✔</strong></center></td>
-<td><center><strong>✔</strong></center></td>
+<td><strong>✔</strong></td>
+<td><strong>✔</strong></td>
 <td>Idle: 0.739w</td>
 <td></td>
 </tr>
@@ -348,8 +348,8 @@
 </tr>
 <tr>
 <td>ar9271</td>
-<td><center><strong>✔</strong></center></td>
-<td><center><strong>X</strong></center></td>
+<td><strong>✔</strong></td>
+<td><strong>X</strong></td>
 <td></td>
 <td>Buggy</td>
 </tr>
