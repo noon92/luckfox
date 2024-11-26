@@ -45,13 +45,14 @@
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
 </tbody>
-</table><p><br><br>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested.</p>
+</table><p><br><br>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
 
 <table>
 <thead>
 <tr>
 <th>Chipset:</th>
 <th>Tested?</th>
+<th>Power consumption</th>
 <th>Notes</th>
 </tr>
 </thead>
@@ -60,9 +61,11 @@
 <td><strong><u>Realtek:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rl8188cu</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -70,9 +73,11 @@
 <td>rtl8187</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8187b</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -80,9 +85,11 @@
 <td>rtl8188[cr]u</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8188cu</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -90,14 +97,17 @@
 <td>rtl8188ee</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8188eu</td>
 <td><center><strong>x</strong></center></td>
+<td>Idle: 0.25w, txing: 0.4w, off: 0.05w</td>
 <td>working</td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -105,9 +115,11 @@
 <td>rtl819[12]cu</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8191cu</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -115,14 +127,17 @@
 <td>rtl8192ce</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8192cu</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8192cu</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -130,9 +145,11 @@
 <td>rtl8192de</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8192e</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -140,9 +157,11 @@
 <td>rtl8192ee</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8192se</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -150,9 +169,11 @@
 <td>rtl8273,8188,8191,8192</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8712u</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -160,9 +181,11 @@
 <td>rtl8723ae</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8723au</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -170,9 +193,11 @@
 <td>rtl8723be</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8821ae</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -180,8 +205,10 @@
 <td>other rtl8xxx</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -190,14 +217,17 @@
 <td><strong><u>Mediatek:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>mt7601u (confirmed)</td>
 <td><center><strong>x</strong></center></td>
-<td>Working</td>
+<td></td>
+<td>working</td>
 </tr>
 <tr>
 <td>mt76x0u</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -205,9 +235,11 @@
 <td>mt76x2u</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>mt7663s</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -215,8 +247,10 @@
 <td>mt7663u</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -225,9 +259,11 @@
 <td><strong><u>Atheros:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar5008</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -235,9 +271,11 @@
 <td>ar5523</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar6003</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -245,9 +283,11 @@
 <td>ar6004</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar9001</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -255,19 +295,23 @@
 <td>ar9002</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar9170</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>ar9271</td>
 <td><center><strong>x</strong></center></td>
+<td></td>
 <td>buggy</td>
 </tr>
 <tr>
 <td>ar9k</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -275,9 +319,11 @@
 <td>ath11k</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar10k</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -285,13 +331,16 @@
 <td>wcn3660</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>wcn3680</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -300,9 +349,11 @@
 <td><strong><u>Ralink:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2501/rt73</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -310,9 +361,11 @@
 <td>rt2571</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2571w</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -320,9 +373,11 @@
 <td>rt2572</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2573</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -330,9 +385,11 @@
 <td>rt25xx</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2671</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -340,9 +397,11 @@
 <td>rt27xx</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt28xx</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -350,9 +409,11 @@
 <td>rt28xx unknown</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt30xx</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -360,9 +421,11 @@
 <td>rt33xx</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt3573</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -370,9 +433,11 @@
 <td>rt35xx</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt53xx</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -380,8 +445,10 @@
 <td>rt55xx</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -390,9 +457,11 @@
 <td><strong><u>Atmel:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>at76c503</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -400,13 +469,16 @@
 <td>at76c505</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>at76c505a</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -415,13 +487,16 @@
 <td><strong><u>Microchip Atmel:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>wilc1000</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -430,9 +505,11 @@
 <td><strong><u>Zydas:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>zd1201</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -440,13 +517,16 @@
 <td>zd1211</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>zd1211b</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -455,9 +535,11 @@
 <td><strong><u>RNDIS USB:</u></strong></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Asus WL169gE</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -465,9 +547,11 @@
 <td>Belkin F5D7051</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>BT Voyager 1055</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -475,9 +559,11 @@
 <td>Buffalo WLI-U2-KG125S</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>BUFFALO WLI-USB-G54</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -485,9 +571,11 @@
 <td>Eminent EM4045</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Linksys WUSB54GSC</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -495,9 +583,11 @@
 <td>Linksys WUSB54GSv1</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Linksys WUSB54GSv2</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -505,9 +595,11 @@
 <td>U.S. Robotics USR5420</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>U.S. Robotics USR5421</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
