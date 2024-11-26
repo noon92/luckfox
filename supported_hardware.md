@@ -45,14 +45,16 @@
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
 </tbody>
-</table><p><br><br>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
+</table><h3 id="wifi-chipsets">Wifi chipsets</h3>
+<p>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
 
 <table>
 <thead>
 <tr>
 <th>Chipset:</th>
 <th>Tested?</th>
-<th>Power consumption</th>
+<th>Recommended?</th>
+<th>Power usage</th>
 <th>Notes</th>
 </tr>
 </thead>
@@ -62,9 +64,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rl8188cu</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -74,9 +78,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8187b</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -86,9 +92,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8188cu</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -98,15 +106,18 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8188eu, rtl8188eus</td>
-<td><center><strong>x</strong></center></td>
-<td>Idle: 0.25w, txing: 0.4w, off: 0.05w</td>
-<td>Working.<br>Tested: TP-LINK TL-WN725N <strong>V2</strong></td>
+<td><strong>✔</strong></td>
+<td><strong>✔</strong></td>
+<td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.025w</td>
+<td>Tested: <a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -116,9 +127,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8191cu</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -128,15 +141,18 @@
 <td></td>
 <td></td>
 <td></td>
-</tr>
-<tr>
-<td>rtl8192cu</td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>rtl8192cu</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rtl8192cu</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -146,9 +162,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8192e</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -158,9 +176,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8192se</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -170,9 +190,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8712u</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -182,9 +204,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8723au</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -194,20 +218,24 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rtl8821ae</td>
 <td></td>
 <td></td>
 <td></td>
-</tr>
-<tr>
-<td>other rtl8xxx</td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr>
+<td>rtl8xxx other</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -218,15 +246,18 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>mt7601u</td>
-<td><center><strong>x</strong></center></td>
+<td><strong>✔</strong></td>
+<td><strong>✔</strong></td>
+<td>Idle: 0.739w</td>
 <td></td>
-<td>Working</td>
 </tr>
 <tr>
 <td>mt76x0u</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -236,9 +267,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>mt7663s</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -248,8 +281,10 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -260,9 +295,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar5008</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -272,9 +309,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar6003</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -284,9 +323,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar9001</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -296,21 +337,25 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar9170</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar9271</td>
-<td><center><strong>x</strong></center></td>
+<td><strong>✔</strong></td>
+<td><strong>X</strong></td>
 <td></td>
 <td>Buggy</td>
 </tr>
 <tr>
 <td>ar9k</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -320,9 +365,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>ar10k</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -332,14 +379,17 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>wcn3680</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -350,9 +400,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2501/rt73</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -362,9 +414,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2571w</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -374,9 +428,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2573</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -386,9 +442,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt2671</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -398,9 +456,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt28xx</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -410,9 +470,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt30xx</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -422,9 +484,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt3573</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -434,9 +498,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>rt53xx</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -446,8 +512,10 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -458,9 +526,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>at76c503</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -470,14 +540,17 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>at76c505a</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -488,14 +561,17 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>wilc1000</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -506,9 +582,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>zd1201</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -518,14 +596,17 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>zd1211b</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -536,9 +617,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Asus WL169gE</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -548,9 +631,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>BT Voyager 1055</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -560,9 +645,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>BUFFALO WLI-USB-G54</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -572,9 +659,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Linksys WUSB54GSC</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -584,9 +673,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Linksys WUSB54GSv2</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -596,9 +687,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>U.S. Robotics USR5421</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>

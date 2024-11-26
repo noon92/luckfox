@@ -80,8 +80,7 @@
 <li>Flash the image your MicroSD card using <a href="https://etcher.balena.io/">Balena Etcher</a> or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.</li>
 <li>Insert the microSD card into the Pico Mini.</li>
 <li>Connect Pico Mini to Meshtastic radio via pins or USB, depending on image flashed. If using pins - use pins 10 and 11 on the Luckfox board.</li>
-<li>For the rak19007 or rak19003 (with the rak4631/rak4630 daughter board):</li>
-</ol>
+<li>For the rak19007 or rak19003 (with the rak4631/rak4630 daughter board):
 <ul>
 <li>In Position settings, set <code>GPS: NOT_PRESENT</code>. The Rak does not support GPS and UART simultaneously at this time.</li>
 <li>If using UART comms, Serial Module settings:
@@ -97,7 +96,7 @@
 </ul>
 </li>
 </ul>
-<ol start="7">
+</li>
 <li>Remember - connect TX on the Luckfox to RX on the Meshtastic board, and vice-versa.</li>
 <li>Power can be supplied to the RAK board via the 3.3v out pin on the Luckfox.</li>
 <li>If communications is via UART, you must bridge the grounds of the two boards.</li>
