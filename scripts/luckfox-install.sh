@@ -2,7 +2,7 @@
 printf "[1;32m*** Starting Femtofox install script. \e[1;31mNETWORK CONNECTIVITY REQUIRED! ***\e[0m\n"
 
 sudo timedatectl set-timezone UTC   #Set timezone to UTC.
-date -d "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
+sudo date --set="$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f4-10)"   #Set time/date.
 printf "[1;32m*** Got network time ***\e[0m\n"
 
 # Set the timezone
@@ -97,8 +97,8 @@ sudo systemctl disable alsa-restore.service #sound service
 sudo systemctl mask alsa-restore.service
 sudo systemctl disable alsa-state.service
 sudo systemctl mask alsa-state.service
-sudo mkdir -p /etc/systemd/system/sound.target.d
-sudo echo -e "[Unit]\nConditionPathExists=!/dev/snd" | sudo tee /etc/systemd/system/sound.target.d/override.conf > /dev/null
+#sudo mkdir -p /etc/systemd/system/sound.target.d
+#sudo echo -e "[Unit]\nConditionPathExists=!/dev/snd" | sudo tee /etc/systemd/system/sound.target.d/override.conf > /dev/null
 sudo systemctl mask sound.target
 sudo systemctl disable remote-fs.target #remote filesystems over network
 sudo systemctl mask remote-fs.target
@@ -203,6 +203,8 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 sudo systemctl stop NetworkManager
 sudo systemctl disable NetworkManager
+sudo systemctl disable NetworkManager-dispatcher
+sudo systemctl disable NetworkManager-wait-online
 #sudo systemctl restart wpa_supplicant
 #sudo wpa_cli -i wlan0 reconfigure
 printf "[1;32m*** $(date "+%H:%M:%S %Z"): Added wifi support ***\e[0m\n"
