@@ -76,7 +76,9 @@ if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
   SSID=""
   PSK=""
   COUNTRY=""
+  RADIO=""
   FOUNDCONFIG="false"
+  WIFI="false"
 
   # Read the fields from the USB config file if they exist
   if grep -qi 'ssid=' "$USB_CONFIG"; then
@@ -88,37 +90,84 @@ if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
   if grep -qi 'country=' "$USB_CONFIG"; then
       COUNTRY=$(grep 'country=' "$USB_CONFIG" | sed 's/country=//' | tr -d '"')
   fi
+  if grep -qi 'radio=' "$USB_CONFIG"; then
+      RADIO=$(grep 'radio=' "$USB_CONFIG" | sed 's/radio=//' | tr -d '"')
+  fi
+
 
   # Escape special characters for sed
   ESCAPED_SSID=$(escape_sed "$SSID")
   ESCAPED_PSK=$(escape_sed "$PSK")
   ESCAPED_COUNTRY=$(escape_sed "$COUNTRY")
+  ESCAPED_RADIO=$(escape_sed "$RADIO")
 
   # Update wpa_supplicant.conf with the new values if they exist
   if [[ -n "$COUNTRY" ]]; then
       sed -i "s/^\(country=\).*/\1$ESCAPED_COUNTRY/" "$WPA_SUPPLICANT_CONF"
       log_message "Updated country in wpa_supplicant.conf from femtofox-config.txt to $COUNTRY."
       FOUNDCONFIG="true"
+      WIFI="true"
   fi
   if [[ -n "$SSID" ]]; then
       sed -i "/ssid=/s/\".*\"/\"$ESCAPED_SSID\"/" "$WPA_SUPPLICANT_CONF"
       log_message "Updated SSID in wpa_supplicant.conf from femtofox-config.txt to $SSID."
       FOUNDCONFIG="true"
+      WIFI="true"
   fi
   if [[ -n "$PSK" ]]; then
       sed -i "/psk=/s/\".*\"/\"$ESCAPED_PSK\"/" "$WPA_SUPPLICANT_CONF"
       log_message "Updated PSK in wpa_supplicant.conf from femtofox-config.txt."
       FOUNDCONFIG="true"
+      WIFI="true"
   fi
+
+  if [[ -n "$RADIO" ]]; then
+    rm -f /etc/meshtasticd/config.d/femtofox*
+    FOUNDCONFIG="true"
+    ESCAPED_RADIO=$(echo "$ESCAPED_RADIO" | tr '[:upper:]' '[:lower:]')
+    case "$ESCAPED_RADIO" in
+      'ebyte-e22-900m30s')
+      cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900M30S_Ebyte-E22-900M22S.yaml /etc/meshtasticd/config.d
+        ;;
+      'ebyte-e22-900m22s')
+      cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900M30S_Ebyte-E22-900M22S.yaml /etc/meshtasticd/config.d
+        ;;
+      'e22-900mm22s')
+      cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900MM22S.yaml /etc/meshtasticd/config.d
+        ;;
+      'heltec-ht-ra62')
+      cp /etc/meshtasticd/available.d/femtofox_Heltec-HT-RA62_Seeed-WIO-SX1262.yaml /etc/meshtasticd/config.d
+        ;;
+      'seeed-wio-sx1262')
+      cp /etc/meshtasticd/available.d/femtofox_Heltec-HT-RA62_Seeed-WIO-SX1262.yaml /etc/meshtasticd/config.d
+        ;;
+      'waveshare-sx126x-xxxm')
+      cp /etc/meshtasticd/available.d/femtofox_Waveshare-SX126X-XXXM_AI-Thinker-RA-01SH.yaml /etc/meshtasticd/config.d
+        ;;
+      'ai-thinker-ra-01sh')
+      cp /etc/meshtasticd/available.d/femtofox_Waveshare-SX126X-XXXM_AI-Thinker-RA-01SH.yaml /etc/meshtasticd/config.d
+        ;;
+      *)
+        log_message 'Invalid radio name: $ESCAPED_RADIO'
+        FOUNDCONFIG="false"
+        ;;
+    esac
+    if [ "$FOUNDCONFIG" = "true" ]; then
+      systemctl restart meshtasticd
+      log_message "Set radio to $ESCAPED_RADIO, restarting Meshtasticd and proceeding with boot."
+    fi
+  fi
+
 
   if [ "$FOUNDCONFIG" = true ]; then
     for _ in {1..10}; do
       blink "0.125" && sleep 0.125
     done
-    sudo systemctl restart wpa_supplicant
-    sudo wpa_cli -i wlan0 reconfigure
-    log_message "wpa_supplicant.conf updated and restarted, proceeding with boot."
-
+    if [ "$WIFI" = true ]; then
+      sudo systemctl restart wpa_supplicant
+      sudo wpa_cli -i wlan0 reconfigure
+      log_message "wpa_supplicant.conf updated and wifi restarted, proceeding with boot."
+    fi
   else
     log_message "femtofox-config.txt does not contain valid configuration info, ignoring."
     for _ in {1..5}; do
