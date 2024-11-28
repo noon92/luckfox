@@ -221,7 +221,7 @@
 </tbody>
 </table><p>Pin ID explanation: <strong>1C6</strong> = GPIO bank <strong>1</strong>, group <strong>C</strong>, pin <strong>6</strong>.<br>
 In Meshtasticd’s config.yaml we use GPIO bank 1, and subtract 32 from the pin number.</p>
-<p><img src="https://github.com/noon92/luckfox/blob/main/luckfox-pico-mini_wiring-diagram.png" alt="pinout"><br>
+<p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pinout.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 <blockquote>
 <p>[!NOTE]<br>
