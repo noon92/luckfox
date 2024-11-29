@@ -34,9 +34,9 @@
 </tr>
 <tr>
 <td>USB wifi adapter chipsets</td>
-<td>See below.</td>
-<td>See below.</td>
-<td>WORK IN PROGRESS.</td>
+<td>See below</td>
+<td>See below</td>
+<td></td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
