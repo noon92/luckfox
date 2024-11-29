@@ -42,20 +42,10 @@
 <td>Misc. hardware</td>
 <td><li>USB hubs (powered or not)</li><li>Thumb drives</li><li>SD card readers</li></td>
 <td></td>
-<td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
+<td>If power draw exceeds supply, the device will reboot, bootloop or hard crash. Unpowered USB hubs seem to be notorious for causing reboots.</td>
 </tr>
 </tbody>
-</table><blockquote>
-<ul>
-<li>ebyte-e22-900m30sm</li>
-<li>ebyte-e22-900m22s</li>
-<li>e22-900mm22s</li>
-<li>heltec-ht-ra62</li>
-<li>seeed-wio-sx1262</li>
-<li>ai-thinker-ra-01sh</li>
-</ul>
-</blockquote>
-<h3 id="wifi-chipsets">Wifi chipsets</h3>
+</table><h3 id="wifi-chipsets">Wifi chipsets</h3>
 <p>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
 
 <table>
@@ -123,7 +113,7 @@
 <td><strong>✔</strong></td>
 <td><strong>✔</strong></td>
 <td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.025w</td>
-<td>Model tested: <a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
+<td>Model tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
