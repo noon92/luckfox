@@ -16,8 +16,8 @@
 <tbody>
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
-<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>RA-01SH</li><li>HT-RA62</li></td>
-<td><li>E22-900mm22s</li><li>E22-900m22s</li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
+<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>AI Thinker RA-01SH</li><li><a href="https://heltec.org/project/ht-ra62/">Heltec HT-RA62</a></li></td>
+<td><li><a href="https://www.aliexpress.com/item/1005006484442897.html">Ebyte E22-900mm22s</a></li><li><a href="https://www.aliexpress.com/item/1005006484442897.html">Ebyte E22-900m22s</a></li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
 <td>*Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
@@ -45,7 +45,17 @@
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash.</td>
 </tr>
 </tbody>
-</table><h3 id="wifi-chipsets">Wifi chipsets</h3>
+</table><blockquote>
+<ul>
+<li>ebyte-e22-900m30sm</li>
+<li>ebyte-e22-900m22s</li>
+<li>e22-900mm22s</li>
+<li>heltec-ht-ra62</li>
+<li>seeed-wio-sx1262</li>
+<li>ai-thinker-ra-01sh</li>
+</ul>
+</blockquote>
+<h3 id="wifi-chipsets">Wifi chipsets</h3>
 <p>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
 
 <table>
@@ -113,7 +123,7 @@
 <td><strong>✔</strong></td>
 <td><strong>✔</strong></td>
 <td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.025w</td>
-<td>Tested: <a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
+<td>Model tested: <a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
@@ -187,10 +197,10 @@
 </tr>
 <tr>
 <td>rtl8273,8188,8191,8192</td>
+<td><strong>✔</strong></td>
+<td><strong>X</strong></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>rtl8192eu: Buggy</td>
 </tr>
 <tr>
 <td>rtl8712u</td>
