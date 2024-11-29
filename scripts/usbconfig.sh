@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the mount point
-MOUNT_POINT="/mnt/usb"
+mount_point="/mnt/usb"
 
 # Function to log both to the screen and syslog
 log_message() {
@@ -22,39 +22,39 @@ escape_sed() {
 }
 
 # Check if the mount point exists and if a USB drive is plugged in
-USB_DEVICE=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|exfat" | grep -E "sd[a-z][0-9]" | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g' | head -n 1)
+usb_device=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|exfat" | grep -E "sd[a-z][0-9]" | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g' | head -n 1)
 
-if [ -d "$MOUNT_POINT" ]; then
-  sudo rmdir "$MOUNT_POINT"
+if [ -d "$mount_point" ]; then
+  sudo rmdir "$mount_point"
   log_message "/mnt/usb deleted."
 fi
 
 # If no USB device is found, exit
-if [ -z "$USB_DEVICE" ]; then
+if [ -z "$usb_device" ]; then
   log_message "No USB drive found."
   exit 0
 fi
 
 # Create the mount point if it doesn't exist
-if [ ! -d "$MOUNT_POINT" ]; then
-  sudo mkdir -p "$MOUNT_POINT"
+if [ ! -d "$mount_point" ]; then
+  sudo mkdir -p "$mount_point"
 fi
 
 # Construct the full device path
-USB_DEVICE="/dev/$USB_DEVICE"
+usb_device="/dev/$usb_device"
 
 
 # Debugging: Log and echo the extracted device name
-log_message "Extracted device name: $USB_DEVICE"
+log_message "Extracted device name: $usb_device"
 
 # Check if the USB drive is already mounted
-if mount | grep "$USB_DEVICE" > /dev/null; then
+if mount | grep "$usb_device" > /dev/null; then
   log_message "USB drive is already mounted."
 else
   # Mount the USB drive to the specified mount point
-  sudo mount "$USB_DEVICE" "$MOUNT_POINT"
+  sudo mount "$usb_device" "$mount_point"
   if [ $? -eq 0 ]; then
-    log_message "USB drive mounted successfully at $MOUNT_POINT."
+    log_message "USB drive mounted successfully at $mount_point."
   else
     log_message "Failed to mount USB drive."
     blink "4" && sleep "0.5"
@@ -62,70 +62,63 @@ else
   fi
 fi
 
-  WPA_SUPPLICANT_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
-  USB_CONFIG="/tmp/femtofox-config.txt"
+  wpa_supplicant_conf="/etc/wpa_supplicant/wpa_supplicant.conf"
+  usb_config="/tmp/femtofox-config.txt"
 
 # Check if the mounted USB drive contains a file femtofox-config.txt
-if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
+if [ -f "$mount_point/femtofox-config.txt" ]; then
   log_message "femtofox-config.txt found on USB drive."
 
-  # Remove Windows-style carriage returns
-	tr -d '\r' < "$MOUNT_POINT/femtofox-config.txt" > $USB_CONFIG
+  # Remove Windows-style carriage returns and save a temporary copy of femtofox-config.txt
+	tr -d '\r' < "$mount_point/femtofox-config.txt" > $usb_config
 
   # Initialize variables
-  SSID=""
-  PSK=""
-  COUNTRY=""
-  RADIO=""
-  FOUNDCONFIG="false"
-  WIFI="false"
+  wifi_ssid=""
+  wifi_psk=""
+  wifi_country=""
+  lora_radio=""
+  found_config="false"
+  update_wifi="false"
 
-  # Read the fields from the USB config file if they exist
-  if grep -qi 'ssid=' "$USB_CONFIG"; then
-      SSID=$(grep 'ssid=' "$USB_CONFIG" | sed 's/ssid=//' | tr -d '"')
-  fi
-  if grep -qi 'psk=' "$USB_CONFIG"; then
-      PSK=$(grep 'psk=' "$USB_CONFIG" | sed 's/psk=//' | tr -d '"')
-  fi
-  if grep -qi 'country=' "$USB_CONFIG"; then
-      COUNTRY=$(grep 'country=' "$USB_CONFIG" | sed 's/country=//' | tr -d '"')
-  fi
-  if grep -qi 'radio=' "$USB_CONFIG"; then
-      RADIO=$(grep 'radio=' "$USB_CONFIG" | sed 's/radio=//' | tr -d '"')
-  fi
+ # Escape and read the fields from the USB config file if they exist
+while IFS='=' read -r key value; do
+    value=$(echo "$value" | tr -d '"')
+    case "$key" in
+        wifi_ssid) wifi_ssid=$(escape_sed "$value") ;;
+        wifi_psk) wifi_psk=$(escape_sed "$value") ;;
+        wifi_country) wifi_country=$(escape_sed "$value") ;;
+        lora_radio) lora_radio=$(escape_sed "$value") ;;
+        timezone) timezone=$(escape_sed "$value") ;;
+    esac
+done < <(grep -E '^(wifi_ssid|wifi_psk|wifi_country|lora_radio|timezone)=' "$usb_config")
 
 
-  # Escape special characters for sed
-  ESCAPED_SSID=$(escape_sed "$SSID")
-  ESCAPED_PSK=$(escape_sed "$PSK")
-  ESCAPED_COUNTRY=$(escape_sed "$COUNTRY")
-  ESCAPED_RADIO=$(escape_sed "$RADIO")
-
-  # Update wpa_supplicant.conf with the new values if they exist
-  if [[ -n "$COUNTRY" ]]; then
-      sed -i "s/^\(country=\).*/\1$ESCAPED_COUNTRY/" "$WPA_SUPPLICANT_CONF"
-      log_message "Updated country in wpa_supplicant.conf from femtofox-config.txt to $COUNTRY."
-      FOUNDCONFIG="true"
-      WIFI="true"
+  # Update wpa_supplicant.conf with the new values, if specified
+  if [[ -n "$wifi_country" ]]; then
+      sed -i "s/^\(wifi_country=\).*/\1$wifi_country/" "$wpa_supplicant_conf"
+      log_message "Updated wifi country in wpa_supplicant.conf to $wifi_country."
+      found_config="true"
+      update_wifi="true"
   fi
-  if [[ -n "$SSID" ]]; then
-      sed -i "/ssid=/s/\".*\"/\"$ESCAPED_SSID\"/" "$WPA_SUPPLICANT_CONF"
-      log_message "Updated SSID in wpa_supplicant.conf from femtofox-config.txt to $SSID."
-      FOUNDCONFIG="true"
-      WIFI="true"
+  if [[ -n "$wifi_ssid" ]]; then
+      sed -i "/wifi_ssid=/s/\".*\"/\"$wifi_ssid\"/" "$wpa_supplicant_conf"
+      log_message "Updated wifi SSID in wpa_supplicant.conf to $wifi_ssid."
+      found_config="true"
+      update_wifi="true"
   fi
-  if [[ -n "$PSK" ]]; then
-      sed -i "/psk=/s/\".*\"/\"$ESCAPED_PSK\"/" "$WPA_SUPPLICANT_CONF"
-      log_message "Updated PSK in wpa_supplicant.conf from femtofox-config.txt."
-      FOUNDCONFIG="true"
-      WIFI="true"
+  if [[ -n "$wifi_psk" ]]; then
+      sed -i "/wifi_psk=/s/\".*\"/\"$wifi_psk\"/" "$wpa_supplicant_conf"
+      log_message "Updated wifi PSK in wpa_supplicant.conf from femtofox-config.txt."
+      found_config="true"
+      update_wifi="true"
   fi
 
-  if [[ -n "$RADIO" ]]; then
+  #get lora_radio model, if specified, and copy appropriate yaml to /etc/meshtasticd/config.d/
+  if [[ -n "$lora_radio" ]]; then
     rm -f /etc/meshtasticd/config.d/femtofox*
-    FOUNDCONFIG="true"
-    ESCAPED_RADIO=$(echo "$ESCAPED_RADIO" | tr '[:upper:]' '[:lower:]')
-    case "$ESCAPED_RADIO" in
+    found_config="true"
+    lora_radio=$(echo "$lora_radio" | tr '[:upper:]' '[:lower:]')
+    case "$lora_radio" in
       'ebyte-e22-900m30s')
       cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900M30S_Ebyte-E22-900M22S.yaml /etc/meshtasticd/config.d
         ;;
@@ -148,34 +141,44 @@ if [ -f "$MOUNT_POINT/femtofox-config.txt" ]; then
       cp /etc/meshtasticd/available.d/femtofox_Waveshare-SX126X-XXXM_AI-Thinker-RA-01SH.yaml /etc/meshtasticd/config.d
         ;;
       *)
-        log_message 'Invalid radio name: $ESCAPED_RADIO'
-        FOUNDCONFIG="false"
+        log_message "Invalid LoRa radio name: $lora_radio, ignoring."
+        found_config="false"
         ;;
     esac
-    if [ "$FOUNDCONFIG" = "true" ]; then
+    if [ "$found_config" = "true" ]; then
       systemctl restart meshtasticd
-      log_message "Set radio to $ESCAPED_RADIO, restarting Meshtasticd and proceeding with boot."
+      log_message "Set LoRa radio to $lora_radio, restarting Meshtasticd and proceeding."
     fi
   fi
 
+  if [[ -n "$timezone" ]]; then
+      #sed -i "/timezone=/s/\".*\"/\"$timezone\"/" "$wpa_supplicant_conf"
+      timezone=$(echo "$timezone" | sed 's/\\//g')
+      log_message "Updating system timezone to $timezone."
+      sudo timedatectl set-timezone $timezone
+      found_config="true"
+  fi
 
-  if [ "$FOUNDCONFIG" = true ]; then
-    for _ in {1..10}; do
+
+  if [ "$found_config" = true ]; then #if we found a config file containing valid data
+    for _ in {1..10}; do #do our successful config boot code
       blink "0.125" && sleep 0.125
     done
-    if [ "$WIFI" = true ]; then
+
+    if [ "$update_wifi" = true ]; then #if wifi config found, restart wifi
       sudo systemctl restart wpa_supplicant
       sudo wpa_cli -i wlan0 reconfigure
-      log_message "wpa_supplicant.conf updated and wifi restarted, proceeding with boot."
+      log_message "wpa_supplicant.conf updated and wifi restarted, proceeding."
     fi
-  else
+
+  else #if no valid data in config file
     log_message "femtofox-config.txt does not contain valid configuration info, ignoring."
     for _ in {1..5}; do
       blink "1.5" && sleep 0.5
     done
   fi
 
-  rm $USB_CONFIG
+  rm $usb_config #remove temporary copy of femtofox-config.txt
 
 else
   log_message "USB drive mounted but femtofox-config.txt not found, ignoring."
