@@ -4,15 +4,30 @@
 ---
 
 <h2 id="usb-configuration">USB configuration</h2>
-<p>To configure Femtofox wifi settings, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.<br>
+<p>To configure some Femtofox settings such as wifi, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.<br>
 The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
-<pre><code>ssid="Your SSID name"
-psk="wifipassword"
-country="US"
+<pre><code>wifi_ssid="Your SSID name"
+wifi_psk="wifipassword"
+wifi_country="US"
+lora_radio="ebyte-e22-900m30s"
+timezone="America/New_York"
 </code></pre>
 <blockquote>
 <p>[!NOTE]<br>
-For country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
+Enter as many or as few settings as you like.</p>
+<p>For wifi country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
+<p>For LoRa radio, choose your radio from the supported hardware list.<br>
+Options are:</p>
+<ul>
+<li>ebyte-e22-900m30sm</li>
+<li>ebyte-e22-900m22s</li>
+<li>e22-900mm22s</li>
+<li>heltec-ht-ra62</li>
+<li>seeed-wio-sx1262</li>
+<li>waveshare-sx126x-xxxm</li>
+<li>ai-thinker-ra-01sh</li>
+</ul>
+<p>For timezone, use a timezone as it appears in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">the tz database</a>.</p>
 </blockquote>
 <p>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</p>
 <h3 id="boot-codes">Boot codes</h3>
@@ -49,8 +64,8 @@ For country, insert your country’s two letter code (such as CA or IN) in capit
 </tr>
 <tr>
 <td>✅ 10 very fast blinks, each lasting 1/8th of a second</td>
-<td>USB drive mounted successfully, and femtofox-config.txt was found and contained valid configuration data which was deployed. Wifi will now restart and boot will proceed. You can disconnect the USB drive.</td>
-<td>Note that this does not mean that the information in the config file is correct - only that we were able to copy it to system configuration.</td>
+<td>USB drive mounted successfully, and femtofox-config.txt was found and contained valid configuration data which was deployed. Any affected services will now restart. You can disconnect the USB drive.</td>
+<td>This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the “success” boot code will flash if at least one setting is successfully read - even if some data was not read successfully.</td>
 <td></td>
 </tr>
 <tr>
