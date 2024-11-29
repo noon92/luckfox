@@ -5,12 +5,20 @@
 
 <h2 id="usb-configuration">USB configuration</h2>
 <p>To configure some Femtofox settings such as wifi, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.<br>
-The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
-<pre><code>wifi_ssid="Your SSID name"
-wifi_psk="wifipassword"
-wifi_country="US"
-lora_radio="ebyte-e22-900m30s"
-timezone="America/New_York"
+Configurable settings are:</p>
+<ul>
+<li>Wifi SSID</li>
+<li>Wifi PSK (password)</li>
+<li>Wifi country</li>
+<li>LoRa radio model for Meshtastic</li>
+<li>Timezone</li>
+</ul>
+<p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
+<pre><code>	wifi_ssid="Your SSID name"
+	wifi_psk="wifipassword"
+	wifi_country="US"
+	lora_radio="ebyte-e22-900m30s"
+	timezone="America/New_York"
 </code></pre>
 <blockquote>
 <p>[!NOTE]<br>
