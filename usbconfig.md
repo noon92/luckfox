@@ -11,8 +11,10 @@ Configurable settings are:</p>
 <li>Wifi PSK (password)</li>
 <li>Wifi country</li>
 <li>LoRa radio model for Meshtastic</li>
-<li>Timezone</li>
+<li>Timezone<br>
+<br></li>
 </ul>
+<h3 id="instructions">Instructions</h3>
 <p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
 <pre><code>	wifi_ssid="Your SSID name"
 	wifi_psk="wifipassword"
@@ -37,7 +39,8 @@ Options are:</p>
 </ul>
 <p>For timezone, use a timezone as it appears in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">the tz database</a>.</p>
 </blockquote>
-<p>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</p>
+<p>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.<br>
+<br></p>
 <h3 id="boot-codes">Boot codes</h3>
 <p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.<br>
 <img src="https://github.com/noon92/femtofox/blob/main/leds.png" alt="LEDs"></p>
