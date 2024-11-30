@@ -155,7 +155,8 @@ done < <(grep -E '^(wifi_ssid|wifi_psk|wifi_country|lora_radio|timezone)=' "$usb
       #sed -i "/timezone=/s/\".*\"/\"$timezone\"/" "$wpa_supplicant_conf"
       timezone=$(echo "$timezone" | sed 's/\\//g')
       log_message "Updating system timezone to $timezone."
-      sudo timedatectl set-timezone $timezone
+      rm /etc/localtime
+      ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
       found_config="true"
   fi
 
