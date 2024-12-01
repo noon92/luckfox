@@ -10,23 +10,36 @@ Configurable settings are:</p>
 <li>Wifi SSID</li>
 <li>Wifi PSK (password)</li>
 <li>Wifi country</li>
-<li>LoRa radio model for Meshtastic</li>
-<li>Timezone<br>
+<li>Timezone</li>
+<li>Meshtastic:
+<ul>
+<li>LoRa radio model</li>
+<li><a href="https://meshtastic.org/docs/software/python/cli/#--seturl-seturl">URL</a> (used to configure LoRa settings and channels)</li>
+<li>Security: Add Admin Key</li>
+<li>Security: Clear Admin Key List</li>
+<li>Security: <a href="https://meshtastic.org/docs/configuration/radio/security/#admin-channel-enabled">Legacy Admin Channel</a> enable/disable<br>
 <br></li>
 </ul>
+</li>
+</ul>
 <h3 id="instructions">Instructions</h3>
-<p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and add the following lines, keeping in mind this is CaSe sEnSiTiVe:</p>
+<p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and whichever of the the following lines you want to set, keeping in mind this is CaSe sEnSiTiVe:</p>
 <pre><code>	wifi_ssid="Your SSID name"
 	wifi_psk="wifipassword"
 	wifi_country="US"
-	lora_radio="ebyte-e22-900m30s"
 	timezone="America/New_York"
+	meshtastic_lora_radio="ebyte-e22-900m30s"
+	meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
+	meshtastic_admin_key="**base64:**T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
+	meshtastic_legacy_admin="true"
 </code></pre>
 <blockquote>
 <p>[!NOTE]<br>
 Enter as many or as few settings as you like.</p>
 <p>For wifi country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
-<p>For LoRa radio, choose your radio from the supported hardware list.<br>
+<p>Use a timezone as it appears in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">the tz database</a>.</p>
+<p><strong>Meshtastic</strong><br>
+For LoRa radio, choose your radio from the supported hardware list.<br>
 Options are:</p>
 <ul>
 <li>ebyte-e22-900m30sm</li>
@@ -36,10 +49,12 @@ Options are:</p>
 <li>seeed-wio-sx1262</li>
 <li>waveshare-sx126x-xxxm</li>
 <li>ai-thinker-ra-01sh</li>
+<li>none <em>(for simradio)</em></li>
 </ul>
-<p>For timezone, use a timezone as it appears in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">the tz database</a>.</p>
+<p>You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the femtofox-config.txt file on the USB drive to remove the URL and add in your security settings.</p>
+<p>Clearing the admin key list: The admin key list can contain up to three keys - if more are added they will be ignored. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation.</p>
 </blockquote>
-<p>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.<br>
+<p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
 <br></p>
 <h3 id="boot-codes">Boot codes</h3>
 <p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.<br>
