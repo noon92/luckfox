@@ -1,47 +1,53 @@
 #!/bin/bash
 
-#not really needed after first boot
-#/usr/bin/filesystem_resize.sh
+# not really needed after first boot
+/usr/bin/filesystem_resize.sh
 
-#supposedly needed for usb storage, but works anyway
+# supposedly needed for usb storage, but works anyway
 #/etc/init.d/S50usbdevice start
 
 luckfox-config load
 
-#try enable RTC
+# run once to prevent randomized mac address for eth0
+if ! grep -A 1 "iface eth0 inet dhcp" /etc/network/interfaces | grep -q "hwaddress ether"; then
+  sed -i "/iface eth0 inet dhcp/a\hwaddress ether $(cat /sys/class/net/eth0/address)" /etc/network/interfaces
+  echo "Making current eth0 MAC address permanent."
+fi
+
+# try enable RTC
 echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
 
 # activating USER LED
 echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction &
 
-# (
-# if ip addr show wlan0 | grep -q 'inet '; then
-  # echo "Wifi (wlan0) is online";
-# else
-	# echo "Wifi (wlan0) is offline";
-# fi
-# if ip addr show eth0 | grep -q 'inet '; then
-  # echo "Built-in ethernet (eth0) is online";
-# else
-	# echo "Built-in ethernet (eth0) is offline";
-# fi
-# ) &
+(
+  if ip addr show wlan0 | grep -q 'inet '; then
+    echo "Wifi (wlan0) is online.";
+  else
+    echo "Wifi (wlan0) is offline.";
+  fi
+  if ip addr show eth0 | grep -q 'inet '; then
+    echo "Onboard ethernet (eth0) is online.";
+  else
+    echo "Onboard ethernet (eth0) is offline.";
+  fi
+  ) &
 
-#if RTC recognized
+# if RTC recognized
 if ls /dev/rtc* 1> /dev/null 2>&1; then
-    rtc="true"
-    if sudo hwclock -s 2>&1 | grep -a failed > /dev/null 2>&1; then
-        echo "RTC device found but failed to get time."
-    else
-        hwclock -s > /dev/null 2>&1 &
-        echo "RTC device found, time is $(date +"%Y-%m-%d %H:%M:%S %Z")."
-    fi
+  rtc="true"
+  if sudo hwclock -s 2>&1 | grep -a failed > /dev/null 2>&1; then
+    echo "RTC device found but failed to get time."
+  else
+    hwclock -s > /dev/null 2>&1 &
+    echo "RTC device found! $(date +"%Y-%m-%d %H:%M:%S %Z")."
+  fi
 else
-    echo "RTC not found."
-    sudo date -s "1 JAN 2024 00:00:00" > /dev/null 2>&1 &
+  echo "RTC not found."
+  sudo date -s "1 JAN 2024 00:00:00" > /dev/null 2>&1 &
 fi
 
-#try get network time
+# try get network time
 date_str=$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')
 if [ -n "$date_str" ]; then
   sudo date -s "$date_str" > /dev/null 2>&1
@@ -55,19 +61,21 @@ else
 fi
 
 # necessary for internet over usb in otg mode (see https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/)
-# sleep 5 && route add default gw 172.32.0.100 && echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+#sleep 5 && route add default gw 172.32.0.100 && echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 
-#does not appear to lower power consumption, but needs more testing
+# does not appear to lower power consumption, but needs more testing
 #(sleep 5 && cpufreq-set -u 408000 && echo "Boot complete, setting CPU frequency to 408mhz.") &
 
 # run USB automount and config tool
 /usr/local/bin/usbconfig.sh
 
-#boot complete
+# boot complete
 (
   echo "Disabling ACT LED..."
   echo "none" > /sys/class/leds/work/trigger &
   sleep 1
+
+ # blink successful boot code
   for i in $(seq 1 5); do
     echo 1 > /sys/class/gpio/gpio34/value;
     sleep 0.5;

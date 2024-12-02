@@ -1,9 +1,9 @@
 #!/bin/bash
-
+ip link set wlan0 up
 sleep 60 #wait 60 seconds so networking will be available during boot
 
 # Initial value for comparison (start with an impossible value so it'll always implement the current value after boot)
-previous_value="2"
+previous_value=2
 
 while true; do
     # Run the command to fetch the value
