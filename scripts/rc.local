@@ -34,7 +34,7 @@ if ls /dev/rtc* 1> /dev/null 2>&1; then
         echo "RTC device found but failed to get time."
     else
         hwclock -s > /dev/null 2>&1 &
-        echo "RTC device found! $(date +"%Y-%m-%d %H:%M:%S %Z")."
+        echo "RTC device found, time is $(date +"%Y-%m-%d %H:%M:%S %Z")."
     fi
 else
     echo "RTC not found."
