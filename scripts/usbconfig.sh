@@ -211,6 +211,8 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     if [ "$update_wifi" = true ]; then #if wifi config found, restart wifi
       sudo systemctl restart wpa_supplicant
       sudo wpa_cli -i wlan0 reconfigure
+      sudo dhclient -r
+      sudo dhclient
       log_message "wpa_supplicant.conf updated and wifi restarted, proceeding."
     fi
 
