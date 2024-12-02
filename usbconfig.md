@@ -30,7 +30,7 @@ Configurable settings are:</p>
 	timezone="America/New_York"
 	meshtastic_lora_radio="ebyte-e22-900m30s"
 	meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
-	meshtastic_admin_key="**base64:**T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
+	meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
 	meshtastic_legacy_admin="true"
 </code></pre>
 <blockquote>
@@ -52,7 +52,8 @@ Options are:</p>
 <li>none <em>(for simradio)</em></li>
 </ul>
 <p>You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the femtofox-config.txt file on the USB drive to remove the URL and add in your security settings.</p>
-<p>Clearing the admin key list: The admin key list can contain up to three keys - if more are added they will be ignored. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation.</p>
+<p>To add an admin key, copy it from the app and add <code>base64:</code> to the beginning (<code>meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="</code>).</p>
+<p>Clearing the admin key list: The admin key list can contain up to three keys - <em>if more are added they will be ignored</em>. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter <code>meshtastic_admin_key="0"</code>, without <code>base64:</code>.</p>
 </blockquote>
 <p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
 <br></p>
