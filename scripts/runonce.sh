@@ -1,1 +1,0 @@
-sudo cp /femtofox/scripts/rc.local /etc/
