@@ -10,7 +10,6 @@
 <th>Hardware</th>
 <th>Confirmed working</th>
 <th>Expected to work</th>
-<th>Does not work</th>
 <th>Notes</th>
 </tr>
 </thead>
@@ -19,27 +18,23 @@
 <td>LoRa radios (working with Meshtasticd)</td>
 <td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>AI Thinker RA-01SH</li><li><a href="https://heltec.org/project/ht-ra62/">Heltec HT-RA62</a></li></td>
 <td><li><a href="https://www.aliexpress.com/item/1005006484442897.html">Ebyte E22-900mm22s</a></li><li><a href="https://www.aliexpress.com/item/1005006484442897.html">Ebyte E22-900m22s</a></li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
-<td></td>
 <td>*Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>
 <td>MicroSD cards</td>
 <td><li><a href="https://www.kingston.com/en/memory-cards/high-endurance-microsd-card">Kingston Endurance 32gb</a></li><li><a href="https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQUA4-032G-GN6MA">Sandisk Ultra UHS-I 32gb</a></li></td>
-<td>Any reasonably fast (UHS-1 or better) card with 8gb or more</td>
-<td></td>
+<td>Any reasonably fast (UHS-I or better) card with 8gb or more</td>
 <td>Stick with reputable manufacturers (Kingston, PNY Samsung, Sandisk, Transcend…)<br>The faster the better! Consider sticking with “endurance” cards, especially for remotely deployed nodes.</td>
 </tr>
 <tr>
 <td>RTC (real time clock)</td>
 <td><li><a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231M</a></li><li><a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></li></td>
 <td>DS1337, DS1338, DS1340, other DS3231 variants</td>
-<td></td>
 <td>Some DS3231 modules are listed as having a supercapacitor - these are usually actually lithium coin cells.</td>
 </tr>
 <tr>
 <td>Meshtastic nodes</td>
 <td>USB+UART: <a href="https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit">RAK4631 with RAK19007 or RAK19003 base board</a></td>
-<td></td>
 <td></td>
 <td>RAK4630 and 4631 are the same.</td>
 </tr>
@@ -47,13 +42,11 @@
 <td>USB wifi adapter chipsets</td>
 <td></td>
 <td></td>
-<td></td>
 <td>See below</td>
 </tr>
 <tr>
 <td>Misc. hardware</td>
 <td><li>USB hubs (powered or not)</li><li>Thumb drives</li><li>SD card readers</li></td>
-<td></td>
 <td></td>
 <td>If power draw exceeds supply, the device will reboot, bootloop or hard crash. Unpowered USB hubs seem to be notorious for causing reboots.</td>
 </tr>
