@@ -14,15 +14,6 @@ if ! grep -A 1 "iface eth0 inet dhcp" /etc/network/interfaces | grep -q "hwaddre
   echo "Making current eth0 MAC address permanent."
 fi
 
-#run once to set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
-if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
-  sed -i "/^ExecStart=/ s:$: --hwid $((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0xFFFFFFFF)):" /usr/lib/systemd/system/meshtasticd.service
-  echo "Used Luckfox CPU S/N to generate unique nodeid seed for Meshtastic."
-  systemctl daemon-reload
-  systemctl restart meshtasticd
-fi
-
-
 # try enable RTC
 echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
 
@@ -77,6 +68,14 @@ fi
 
 # run USB automount and config tool
 /usr/local/bin/usbconfig.sh
+
+#run once to set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
+if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
+  sed -i "/^ExecStart=/ s:$: --hwid $((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0xFFFFFFFF)):" /usr/lib/systemd/system/meshtasticd.service
+  echo "Used Luckfox CPU S/N to generate unique nodeid seed for Meshtastic."
+  systemctl daemon-reload
+  systemctl restart meshtasticd
+fi
 
 # boot complete
 (
