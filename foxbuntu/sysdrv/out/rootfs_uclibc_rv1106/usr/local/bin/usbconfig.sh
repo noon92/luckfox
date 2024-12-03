@@ -212,7 +212,6 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
       sudo systemctl restart wpa_supplicant
       sudo wpa_cli -i wlan0 reconfigure
       log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi."
-      sudo dhclient -r
       sudo dhclient
       meshtastic --host --set network.wifi_enabled true
     fi
