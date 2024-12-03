@@ -1,0 +1,11 @@
+[Unit]
+Description=Button Reboot Service
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/local/bin/buttonservice.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

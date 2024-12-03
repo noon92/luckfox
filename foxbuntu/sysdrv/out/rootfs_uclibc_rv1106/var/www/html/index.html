@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luckfox Pico Mini</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button.danger {
+            background-color: #dc3545;
+        }
+        button.danger:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+    <script>
+        function confirmAction(message, action) {
+            if (confirm(message)) {
+                fetch(action, { method: "POST" });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="/logo.png">
+        </div>
+
+        <!-- Title -->
+        <h1>Luckfox Pico Mini</h1>
+
+        <!-- Buttons -->
+        <button onclick="window.location.href='/cgi-bin/index.cgi'">WiFi Configuration</button>
+        <button onclick="confirmAction('Are you sure you want to update Meshtastic?', '/cgi-bin/update-meshtastic.cgi')">Update Meshtastic</button>
+        <button class="danger" onclick="confirmAction('Are you sure you want to reboot?', '/cgi-bin/reboot.cgi')">Reboot</button>
+        <button class="danger" onclick="confirmAction('Are you sure you want to disable the web menu?', '/cgi-bin/disable-webmenu.cgi')">Disable Web Menu</button>
+    </div>
+</body>
+</html>
+

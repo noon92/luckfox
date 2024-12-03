@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+#printf "\n"
+echo "\e[92m                             @+               .**                            
+                           -@@@@@            @@@@@#                          
+                          #@@@@@            @@@@@@@@                         
+                         @@@@@*           =@@@@@@@@@@:                       
+                       .@@@@@.           %@@@@@  @@@@@#                      
+                      *@@@@@            @@@@@@    %@@@@@                     
+                     @@@@@%           :@@@@@-      -@@@@@                    
+                    @@@@@-           #@@@@@          @@@@@+                  
+                  =@@@@@            @@@@@@            @@@@@@                 
+                 @@@@@@           .@@@@@=              *@@@@@                
+                @@@@@+           +@@@@@                 .@@@@@+              
+              :@@@@@            @@@@@@                    @@@@@@             
+             #@@@@@            @@@@@*       POWERED        #@@@@@            
+            @@@@@#           -@@@@@:                        :@@@@@-          
+          .@@@@@.           %@@@@@                            @@@@@%         
+            %@@               @@%                              @@@
+\033[0m"
+
+
+if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
+	# Fall back to using the very slow lsb_release utility
+	DISTRIB_DESCRIPTION=$(lsb_release -s -d)
+fi
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+#printf "\n"
+printf "                %s (%s %s %s)\n" "$DISTRIB_DESCRIPTION" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+printf "           Meshtastic   is a registered trademark of Meshtastic LLC.\n"
+printf "      Meshtastic software components are released under various licenses,\n"
+printf "    see GitHub for details. No warranty is provided - use at your own risk.\n"
+printf "  Luckfox: wiki.luckfox.com    This image built by github.com/noon92/femtofox\n"
+printf "    This system has been minimized.   To restore content, run 'unminimize'.\n\n"
+
+printf "IP address: $(hostname -I | sed 's/ / /g') Uptime:$(uptime -p | awk '{$1=""; print $0}' | sed -e 's/ day\b/d/g' -e 's/ hour\b/h/g' -e 's/ hours\b/h/g' -e 's/ minute\b/m/g' -e 's/ minutes\b/m/g' | sed 's/,//g')\n"

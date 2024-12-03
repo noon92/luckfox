@@ -1,0 +1,1 @@
+sudo rsync -aHAXv --progress --keep-dirlinks --itemize-changes ~/luckfox-pico-addons/sysdrv/ ~/luckfox-pico/sysdrv/

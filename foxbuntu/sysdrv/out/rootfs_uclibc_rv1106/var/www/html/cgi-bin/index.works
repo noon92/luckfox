@@ -1,0 +1,133 @@
+#!/bin/sh
+echo "Content-type: text/html"
+echo ""
+
+# Debug log file (optional for debugging)
+DEBUG_LOG="/tmp/debug.log"
+
+# Handle different actions
+if [ "$QUERY_STRING" = "action=client" ]; then
+    # Switch to Client Mode
+    systemctl stop hostapd
+    systemctl stop dnsmasq
+    systemctl start wpa_supplicant
+    echo "Switched to Client Mode" >> $DEBUG_LOG
+elif echo "$QUERY_STRING" | grep -q "action=ap_config"; then
+    # Configure Access Point Mode with the entered SSID
+    AP_SSID=$(echo "$QUERY_STRING" | sed 's/^.*ssid=//' | urldecode)
+    sed -i "s/^ssid=.*/ssid=$AP_SSID/" /etc/hostapd/hostapd.conf
+    systemctl stop wpa_supplicant
+    systemctl start hostapd
+    systemctl start dnsmasq
+    echo "Configured Access Point Mode with SSID: $AP_SSID" >> $DEBUG_LOG
+elif [ "$QUERY_STRING" = "action=ap" ]; then
+    # Display the form to set AP SSID
+    AP_SETUP="true"
+    echo "Preparing Access Point Setup Form" >> $DEBUG_LOG
+elif [ "$QUERY_STRING" = "action=scan" ]; then
+    # Scan for Wi-Fi networks
+    wpa_cli scan > /dev/null 2>&1
+    sleep 2  # Give the scan time to complete
+    SCAN_RESULTS=$(wpa_cli scan_results)
+    echo "SCAN_RESULTS: $SCAN_RESULTS" >> $DEBUG_LOG
+elif echo "$QUERY_STRING" | grep -q "connect="; then
+    # Extract the SSID to connect to
+    CONNECT_SSID=$(echo "$QUERY_STRING" | sed 's/^.*connect=//' | urldecode)
+    echo "Selected SSID for Connection: $CONNECT_SSID" >> $DEBUG_LOG
+fi
+
+# Generate the HTML page
+echo "<html><body>"
+
+# Display current mode
+if systemctl is-active --quiet hostapd; then
+    echo "<h2>Current Mode: Access Point</h2>"
+else
+    echo "<h2>Current Mode: Client</h2>"
+fi
+
+# Display Wi-Fi status
+WIFI_STATUS=$(wpa_cli status 2>/dev/null)
+STATE=$(echo "$WIFI_STATUS" | grep 'wpa_state=' | cut -d= -f2)
+SSID=$(echo "$WIFI_STATUS" | grep '^ssid=' | cut -d= -f2)
+IP=$(echo "$WIFI_STATUS" | grep '^ip_address=' | cut -d= -f2)
+echo "<h2>Wi-Fi Status</h2>"
+echo "<p><strong>Connection State:</strong> $STATE</p>"
+[ -n "$SSID" ] && echo "<p><strong>Connected SSID:</strong> $SSID</p>"
+[ -n "$IP" ] && echo "<p><strong>IP Address:</strong> $IP</p>"
+
+# Mode selection buttons
+echo "<h2>Select Wi-Fi Mode</h2>"
+echo "<form method=\"GET\" action=\"/cgi-bin/index.cgi\">"
+echo "  <button type=\"submit\" name=\"action\" value=\"client\">Client Mode</button>"
+echo "  <button type=\"submit\" name=\"action\" value=\"ap\">Access Point Mode</button>"
+echo "</form>"
+
+# Access Point Configuration Form
+if [ "$AP_SETUP" = "true" ]; then
+    echo "<h2>Configure Access Point</h2>"
+    echo "<form method=\"GET\" action=\"/cgi-bin/index.cgi\">"
+    echo "  <label for=\"ssid\">SSID:</label><br>"
+    echo "  <input type=\"text\" id=\"ssid\" name=\"ssid\" value=\"luckfox\" required><br><br>"
+    echo "  <button type=\"submit\" name=\"action\" value=\"ap_config\">Confirm</button>"
+    echo "  <button type=\"submit\">Cancel</button>"
+    echo "</form>"
+    echo "</body></html>"
+    exit
+fi
+
+# Manual Wi-Fi Configuration (always shown)
+echo "<h2>Manual Wi-Fi Configuration</h2>"
+echo "<form method=\"POST\" action=\"/cgi-bin/configure-wifi.sh\">"
+echo "  <label for=\"ssid\">SSID:</label><br>"
+echo "  <input type=\"text\" id=\"ssid\" name=\"ssid\" required><br><br>"
+echo "  <label for=\"password\">Password:</label><br>"
+echo "  <input type=\"password\" id=\"password\" name=\"password\"><br><br>"
+echo "  <button type=\"submit\">Connect</button>"
+echo "</form>"
+
+# Wi-Fi Scan Button (Client Mode Only)
+if systemctl is-active --quiet wpa_supplicant; then
+    echo "<h2>Wi-Fi Configuration</h2>"
+    echo "<form method=\"GET\" action=\"/cgi-bin/index.cgi\">"
+    echo "  <button type=\"submit\" name=\"action\" value=\"scan\">Scan Wi-Fi</button>"
+    echo "</form>"
+
+    # Display scan results and "Connect" buttons
+    if [ -n "$SCAN_RESULTS" ]; then
+        echo "<h2>Available Networks</h2>"
+        echo "<table border=\"1\">"
+        echo "<tr><th>SSID</th><th>Signal</th><th>Connect</th></tr>"
+        echo "$SCAN_RESULTS" | tail -n +3 | while read -r LINE; do
+            SSID=$(echo "$LINE" | awk '{print $5}')
+            SIGNAL=$(echo "$LINE" | awk '{print $3}')
+            if [ -n "$SSID" ]; then
+                # Display a row with the SSID, signal strength, and Connect button
+                echo "<tr>"
+                echo "<td>$SSID</td>"
+                echo "<td>$SIGNAL</td>"
+                echo "<td>"
+                echo "<form method=\"GET\" action=\"/cgi-bin/index.cgi\" style=\"display:inline;\">"
+                echo "  <button type=\"submit\" name=\"connect\" value=\"$SSID\">Connect</button>"
+                echo "</form>"
+                echo "</td>"
+                echo "</tr>"
+            fi
+        done
+        echo "</table>"
+    fi
+
+    # Display password entry form if a Connect button was clicked
+    if [ -n "$CONNECT_SSID" ]; then
+        echo "<h2>Connect to $CONNECT_SSID</h2>"
+        echo "<form method=\"POST\" action=\"/cgi-bin/configure-wifi.sh\">"
+        echo "  <input type=\"hidden\" name=\"ssid\" value=\"$CONNECT_SSID\">"
+        echo "  <label for=\"password\">Password:</label><br>"
+        echo "  <input type=\"password\" id=\"password\" name=\"password\" required><br><br>"
+        echo "  <button type=\"submit\">Connect</button>"
+        echo "</form>"
+    fi
+fi
+
+echo "</body></html>"
+
