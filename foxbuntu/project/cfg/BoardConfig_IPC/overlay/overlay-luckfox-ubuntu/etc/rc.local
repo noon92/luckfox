@@ -14,6 +14,12 @@ if ! grep -A 1 "iface eth0 inet dhcp" /etc/network/interfaces | grep -q "hwaddre
   echo "Making current eth0 MAC address permanent."
 fi
 
+#run once to set meshtastic nodeid to derivative of CPU serial number (unique to this board)
+if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
+  sed -i "/^ExecStart=/ s:$: --hwid $((16#$(cat /proc/cpuinfo | grep Serial | awk '{print $3}' | tail -c 8))):" /usr/lib/systemd/system/meshtasticd.service
+  echo "Used Luckfox CPU S/N to generate unique nodeid seed for Meshtastic."
+fi
+
 # try enable RTC
 echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
 
