@@ -54,6 +54,8 @@ Options are:</p>
 <p>You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the femtofox-config.txt file on the USB drive to remove the URL and add in your security settings.</p>
 <p>To add an admin key, copy it from the app and add <code>base64:</code> to the beginning (<code>meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="</code>).</p>
 <p>Clearing the admin key list: The admin key list can contain up to three keys - <em>if more are added they will be ignored</em>. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter <code>meshtastic_admin_key="0"</code>, without <code>base64:</code>.</p>
+</blockquote>
+<blockquote>
 <p>[!WARNING]<br>
 Attempting to set wifi settings via USB configuration tool without a USB adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
 </blockquote>
