@@ -70,8 +70,8 @@ fi
 if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
 	seed=$(printf "%d\n" 0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) | tail -c 10)
 	#seed=$((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0x3B9AC9FF))
-  sed -i "/^ExecStart=/ s:$: --hwid $(seed):" /usr/lib/systemd/system/meshtasticd.service
-  echo "Using Luckfox CPU S/N to generate nodeid for Meshtastic. Using seed $(seed)."
+  sed -i "/^ExecStart=/ s:$: --hwid $seed:" /usr/lib/systemd/system/meshtasticd.service
+  echo "Using Luckfox CPU S/N to generate nodeid for Meshtastic. Using seed $seed."
   systemctl daemon-reload
   systemctl enable meshtasticd
   systemctl start meshtasticd
