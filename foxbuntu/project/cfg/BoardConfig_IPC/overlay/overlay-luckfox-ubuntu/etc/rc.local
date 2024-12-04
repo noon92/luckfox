@@ -67,13 +67,13 @@ fi
 #(sleep 5 && cpufreq-set -u 408000 && echo "Boot complete, setting CPU frequency to 408mhz.") &
 
 #run once to set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
-if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
-  sed -i "/^ExecStart=/ s:$: --hwid $((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0xFFFFFFFF)):" /usr/lib/systemd/system/meshtasticd.service
-  echo "Using Luckfox CPU S/N to generate nodeid for Meshtastic."
-  systemctl daemon-reload
-  systemctl enable meshtasticd
-  systemctl start meshtasticd
-fi
+#if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
+#  sed -i "/^ExecStart=/ s:$: --hwid $((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0xFFFFFFFF)):" /usr/lib/systemd/system/meshtasticd.service
+#  echo "Using Luckfox CPU S/N to generate nodeid for Meshtastic."
+#  systemctl daemon-reload
+#  systemctl enable meshtasticd
+#  systemctl start meshtasticd
+#fi
 
 # run USB automount and config tool
 /usr/local/bin/usbconfig.sh
@@ -94,3 +94,5 @@ fi
 ) &
 
 exit 0
+
+	
