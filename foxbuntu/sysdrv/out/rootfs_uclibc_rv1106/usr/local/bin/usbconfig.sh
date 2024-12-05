@@ -12,11 +12,11 @@ log_message() {
 }
 
 exit_script() {
-  if ! df -T /mnt/usb | grep -q 'ntfs'; then
-	  log_message "Copying femtofox-config.log to USB drive."
+  if ! df -T /mnt/usb | grep -qw 'ntfs'; then
+	  log_message "USB configuration script complete. Copying femtofox-config.log to USB drive."
 	  cp ~/femtofox-config.log /mnt/usb/
 	else
-	  log_message "Unable to copy femtofox-config.log to USB drive with NTFS filesystem."
+	  log_message "USB configuration script complete. Unable to copy femtofox-config.log to USB drive with NTFS filesystem."
   fi
   exit $1
 }
