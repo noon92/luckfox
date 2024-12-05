@@ -8,6 +8,17 @@ log_message() {
   local msg="USB config: $1"
   echo "$msg"  # Echo to the screen
   logger "USB config: $msg"  # Log to the system log
+	echo "$(date '+%Y-%m-%d %H:%M:%S') $msg" >> ~/femtofox-config.log # Log to file
+}
+
+exit_script() {
+  if ! df -T /mnt/usb | grep -q 'ntfs'; then
+	  log_message "Copying femtofox-config.log to USB drive."
+	  cp ~/femtofox-config.log /mnt/usb/
+	else
+	  log_message "Unable to copy femtofox-config.log to USB drive with NTFS filesystem."
+  fi
+  exit $1
 }
 
 #Blink
@@ -32,7 +43,7 @@ fi
 # If no USB device is found, exit
 if [ -z "$usb_device" ]; then
   log_message "No USB drive found."
-  exit 0
+  exit_script 0
 fi
 
 # Create the mount point if it doesn't exist
@@ -58,7 +69,7 @@ else
   else
     log_message "Failed to mount USB drive."
     blink "4" && sleep "0.5"
-    exit 1
+    exit_script 1
   fi
 fi
 
@@ -164,7 +175,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     esac
     if [ "$found_config" = "true" ]; then
       systemctl restart meshtasticd
-      log_message "Set LoRa radio to $meshtastic_lora_radio, restarting Meshtasticd and proceeding."
+      log_message "Set LoRa radio to $meshtastic_lora_radio, restarting Meshtasticd."
     fi
   fi
 
@@ -211,7 +222,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     if [ "$update_wifi" = true ]; then #if wifi config found, restart wifi
       sudo systemctl restart wpa_supplicant
       sudo wpa_cli -i wlan0 reconfigure
-      log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi."
+      log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi setting."
       sudo dhclient
       meshtastic --host --set network.wifi_enabled true
     fi
@@ -230,7 +241,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     for _ in {1..5}; do
       blink "1.5" && sleep 0.5
     done
-    exit 1
+    exit_script1
   fi
 
 else
@@ -238,8 +249,8 @@ else
   for _ in {1..3}; do
     blink "1.5" && sleep 0.5
   done
-  exit 1
+  exit_script1
 fi
 
   rm $usb_config #remove temporary copy of femtofox-config.txt
-  exit 0
+  exit_script0
