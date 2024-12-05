@@ -95,13 +95,13 @@ Attempting to set wifi settings via USB configuration tool without a USB adapter
 </tr>
 <tr>
 <td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br><u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;</td>
-<td>Error while trying to implement Meshtastic setting. Some settings may have been implemented successfully.</td>
+<td>Error while trying to implement a Meshtastic setting after 3 attempts. Some settings may have been implemented successfully.</td>
 <td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
-<td><li>Try again.</li><li>Check configuration file contents as described above.<br><br>This pattern may flash before other patterns.</li></td>
+<td><li>Try again.</li><li>Check configuration file contents as described above.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
 </tr>
 <tr>
 <td>✅ 10 very fast blinks, each lasting 1/8th of a second<br><strong>. . . . . . . . . .</strong></td>
-<td>USB drive mounted successfully, and femtofox-config.txt was found and contained configuration data which was deployed. Any affected services will now restart. You can disconnect the USB drive.</td>
+<td>USB drive mounted successfully, and femtofox-config.txt was found and contained configuration data which was sent for deployment. Any affected services will now restart. You can disconnect the USB drive.</td>
 <td>This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the “success” boot code will flash if at least one setting is successfully read - even if the setting was not implemented successfully.</td>
 <td></td>
 </tr>
