@@ -59,19 +59,60 @@ Options are:</p>
 <p>[!WARNING]<br>
 Attempting to set wifi settings via USB configuration tool without a USB adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
 </blockquote>
-<h3 id="to-apply-your-configuration-reboot-the-femtofox-with-the-usb-drive-plugged-in.-no-other-usb-drives-can-be-plugged-in-at-the-same-time.">To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</h3>
-<br>
-### Boot codes
-When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.
-![LEDs](https://github.com/noon92/femtofox/blob/main/leds.png)
-| LED blink pattern | Meaning | Possible causes | Solutions |
-|--|--|--|--|
-|⚠️ One very long blink, lasting 4 seconds | Failed to mount USB drive. Ignoring. | <li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive | </li><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive |
-|⚠️ 3 long blinks, each lasting 1.5 seconds | USB drive mounted successfully but femtofox-config.txt was not found. Ignoring.| Config file missing. | Create configuration file as described above. |
-|⚠️ 5 long blinks, each lasting 1.5 seconds | USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.| Configuration file improperly formatted or contains no data. | Check configuration file contents as described above. |
-|✅ 10 very fast blinks, each lasting 1/8th of a second | USB drive mounted successfully, and femtofox-config.txt was found and contained valid configuration data which was deployed. Any affected services will now restart. You can disconnect the USB drive. | This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the "success" boot code will flash if at least one setting is successfully read - even if some data was not read successfully.|
-|✅ 5 medium blinks, each lasting 0.5 seconds | Boot complete. Always appears last.| | |
-</li><blockquote>
+<p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
+<br></p>
+<h3 id="boot-codes">Boot codes</h3>
+<p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.<br>
+<img src="https://github.com/noon92/femtofox/blob/main/leds.png" alt="LEDs"></p>
+
+<table>
+<thead>
+<tr>
+<th>LED blink pattern</th>
+<th>Meaning</th>
+<th>Possible causes</th>
+<th>Solutions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚠️ 1 very long blink, lasting 4 seconds<br><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></td>
+<td>Failed to mount USB drive. Ignoring.</td>
+<td><li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive</li></td>
+<td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
+</tr>
+<tr>
+<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br><u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;</td>
+<td>USB drive mounted successfully but femtofox-config.txt was not found. Ignoring.</td>
+<td>Config file missing.</td>
+<td>Create configuration file as described above.</td>
+</tr>
+<tr>
+<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br><u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;</td>
+<td>USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.</td>
+<td>Configuration file improperly formatted or contains no data.</td>
+<td>Check configuration file contents as described above.</td>
+</tr>
+<tr>
+<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br><u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;</td>
+<td>Error while trying to implement Meshtastic setting. Some settings may have been implemented successfully.</td>
+<td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
+<td><li>Try again.</li><li>Check configuration file contents as described above.<br><br>This pattern may flash before other patterns.</li></td>
+</tr>
+<tr>
+<td>✅ 10 very fast blinks, each lasting 1/8th of a second<br><strong>. . . . . . . . . .</strong></td>
+<td>USB drive mounted successfully, and femtofox-config.txt was found and contained configuration data which was deployed. Any affected services will now restart. You can disconnect the USB drive.</td>
+<td>This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the “success” boot code will flash if at least one setting is successfully read - even if the setting was not implemented successfully.</td>
+<td></td>
+</tr>
+<tr>
+<td>✅ 5 medium blinks, each lasting 0.5 seconds<br><u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;</td>
+<td>Boot complete. Always appears last.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><blockquote>
 <p>[!NOTE]<br>
 Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.</p>
 </blockquote>
