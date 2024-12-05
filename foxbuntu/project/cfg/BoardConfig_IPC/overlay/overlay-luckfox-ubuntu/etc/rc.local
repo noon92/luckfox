@@ -8,6 +8,16 @@
 
 luckfox-config load
 
+#run once to set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
+if ! grep -q "^ExecStart=.*-h" /usr/lib/systemd/system/meshtasticd.service; then
+  seed=$(printf "%d\n" 0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) | tail -c 9)
+  #seed=$((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0x3B9AC9FF))
+  sed -i "/^ExecStart=/ s:$: -h $seed:" /usr/lib/systemd/system/meshtasticd.service
+  echo "Using Luckfox CPU S/N to generate nodeid for Meshtastic."
+  systemctl daemon-reload
+  systemctl enable meshtasticd
+fi
+
 # run once to prevent randomized mac address for eth0
 if ! grep -A 1 "iface eth0 inet dhcp" /etc/network/interfaces | grep -q "hwaddress ether"; then
   echo "Setting eth0 MAC address to derivative of CPU s/n."
@@ -72,17 +82,6 @@ fi
 
 # does not appear to lower power consumption, but needs more testing
 #(sleep 5 && cpufreq-set -u 408000 && echo "Boot complete, setting CPU frequency to 408mhz.") &
-
-#run once to set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
-if ! grep -q "^ExecStart=.*--hwid" /usr/lib/systemd/system/meshtasticd.service; then
-  seed=$(printf "%d\n" 0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) | tail -c 9)
-  #seed=$((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0x3B9AC9FF))
-  sed -i "/^ExecStart=/ s:$: --hwid $seed:" /usr/lib/systemd/system/meshtasticd.service
-  echo "Using Luckfox CPU S/N to generate nodeid for Meshtastic."
-  systemctl daemon-reload
-  systemctl enable meshtasticd
-  systemctl start meshtasticd
-fi
 
 # run USB automount and config tool
 /usr/local/bin/usbconfig.sh
