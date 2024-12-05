@@ -27,7 +27,7 @@ echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/nul
 # activating USER LED
 echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction &
 
-(
+# (
   if ip addr show wlan0 | grep -q 'inet '; then
     echo "Wifi (wlan0) is online.";
   else
