@@ -10,8 +10,14 @@ luckfox-config load
 
 # run once to prevent randomized mac address for eth0
 if ! grep -A 1 "iface eth0 inet dhcp" /etc/network/interfaces | grep -q "hwaddress ether"; then
-  sed -i "/iface eth0 inet dhcp/a\hwaddress ether $(cat /sys/class/net/eth0/address)" /etc/network/interfaces
-  echo "Making current eth0 MAC address permanent."
+  echo "Setting eth0 MAC address to derivative of CPU s/n."
+  cat <<EOF >> /etc/network/interfaces
+# static mac address for onboard ethernet (castellated pins)
+allow-hotplug eth0
+iface eth0 inet dhcp
+hwaddress ether $(awk '/Serial/ {print $3}' /proc/cpuinfo | tail -c 11 | sed 's/^\(.*\)/a2\1/' | sed 's/\(..\)/\1:/g;s/:$//')
+EOF
+  ifup eth0
 fi
 
 # try enable RTC
@@ -96,5 +102,3 @@ fi
 ) &
 
 exit 0
-
-	
