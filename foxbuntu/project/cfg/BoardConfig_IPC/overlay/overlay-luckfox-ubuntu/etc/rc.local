@@ -28,17 +28,17 @@ echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/nul
 echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction &
 
 # (
-  if ip addr show wlan0 | grep -q 'inet '; then
-    echo "Wifi (wlan0) is online.";
-  else
-    echo "Wifi (wlan0) is offline.";
-  fi
-  if ip addr show eth0 | grep -q 'inet '; then
-    echo "Onboard ethernet (eth0) is online.";
-  else
-    echo "Onboard ethernet (eth0) is offline.";
-  fi
-  ) &
+#  if ip addr show wlan0 | grep -q 'inet '; then
+#    echo "Wifi (wlan0) is online.";
+#  else
+    # echo "Wifi (wlan0) is offline.";
+  # fi
+  # if ip addr show eth0 | grep -q 'inet '; then
+    # echo "Onboard ethernet (eth0) is online.";
+  # else
+    # echo "Onboard ethernet (eth0) is offline.";
+  # fi
+  # ) &
 
 # if RTC recognized
 if ls /dev/rtc* 1> /dev/null 2>&1; then
