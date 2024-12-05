@@ -36,10 +36,10 @@ Configurable settings are:</p>
 <blockquote>
 <p>[!NOTE]<br>
 Enter as many or as few settings as you like.</p>
-<p>For wifi country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
+<p>For wifi_country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
 <p>Use a timezone as it appears in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">the tz database</a>.</p>
 <p><strong>Meshtastic</strong><br>
-For LoRa radio, choose your radio from the supported hardware list.<br>
+For meshtastic_lora_radio, choose your radio from the supported hardware list.<br>
 Options are:</p>
 <ul>
 <li>ebyte-e22-900m30sm</li>
@@ -51,15 +51,16 @@ Options are:</p>
 <li>ai-thinker-ra-01sh</li>
 <li>none <em>(for simradio)</em></li>
 </ul>
-<p>You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the femtofox-config.txt file on the USB drive to remove the URL and add in your security settings.</p>
-<p>To add an admin key, copy it from the app and add <code>base64:</code> to the beginning (<code>meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="</code>).</p>
-<p>Clearing the admin key list: The admin key list can contain up to three keys - <em>if more are added they will be ignored</em>. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter <code>meshtastic_admin_key="0"</code>, without <code>base64:</code>.</p>
+<p><strong>Important:</strong> You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the femtofox-config.txt file on the USB drive to remove the URL and add in your security settings.</p>
+<p>To add a <code>meshtastic_admin_key</code>, copy it from the app and add <code>base64:</code> to the beginning (<code>meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="</code>).</p>
+<p>Clearing the <code>meshtastic_admin_key</code> list: The admin key list can contain up to three keys - <em>if more are added they will be ignored</em>. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter <code>meshtastic_admin_key="0"</code>, without <code>base64:</code>.</p>
 </blockquote>
 <blockquote>
 <p>[!WARNING]<br>
 Attempting to set wifi settings via USB configuration tool without a USB adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
 </blockquote>
 <p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
+A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> and the USB drive (for any filesystem except NTFS, which is read only).<br>
 <br></p>
 <h3 id="boot-codes">Boot codes</h3>
 <p>When the Femtofox is finished booting, it will blink its User LED (see below) in a pattern which can be used to gather info on its status or help diagnose issues.<br>
@@ -97,7 +98,7 @@ Attempting to set wifi settings via USB configuration tool without a USB adapter
 <td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br><u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;</td>
 <td>Error while trying to implement a Meshtastic setting after 3 attempts. Some settings may have been implemented successfully.</td>
 <td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
-<td><li>Try again.</li><li>Check configuration file contents as described above.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
+<td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
 </tr>
 <tr>
 <td>✅ 10 very fast blinks, each lasting 1/8th of a second<br><strong>. . . . . . . . . .</strong></td>
