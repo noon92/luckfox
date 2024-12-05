@@ -8,13 +8,13 @@ log_message() {
   local msg="USB config: $1"
   echo "$msg"  # Echo to the screen
   logger "USB config: $msg"  # Log to the system log
-	echo "$(date '+%Y-%m-%d %H:%M:%S') $msg" >> ~/femtofox-config.log # Log to file
+	echo "$(date) $msg" >> $(eval echo ~$SUDO_USER)/femtofox-config.log # Log to file
 }
 
 exit_script() {
   if ! df -T /mnt/usb | grep -qw 'ntfs'; then
 	  log_message "USB configuration script complete. Copying femtofox-config.log to USB drive."
-	  cp ~/femtofox-config.log /mnt/usb/
+	  cp $(eval echo ~$SUDO_USER)/femtofox-config.log /mnt/usb/
 	else
 	  log_message "USB configuration script complete. Unable to copy femtofox-config.log to USB drive with NTFS filesystem."
   fi
@@ -23,9 +23,9 @@ exit_script() {
 
 #Blink
 blink() {
-    echo 1 > /sys/class/gpio/gpio34/value;
-    sleep "$1";
-    echo 0 > /sys/class/gpio/gpio34/value;
+    echo 1 > /sys/class/gpio/gpio34/value; #LED on
+    sleep "$1"; #wait
+    echo 0 > /sys/class/gpio/gpio34/value; #LED off
 }
 
 escape_sed() {
@@ -174,7 +174,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
         ;;
     esac
     if [ "$found_config" = "true" ]; then
-      systemctl restart meshtasticd
+      #systemctl restart meshtasticd NAOMI
       log_message "Set LoRa radio to $meshtastic_lora_radio, restarting Meshtasticd."
     fi
   fi
@@ -184,13 +184,13 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
       timezone=$(echo "$timezone" | sed 's/\\//g')
       log_message "Updating system timezone to $timezone."
       rm /etc/localtime
-      ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
+      ln -sf /usr/share/zoneinfo/$timezone /etc/localtime >> $(eval echo ~$SUDO_USER)/femtofox-config.log 2>&1
       found_config="true"
   fi
 
   if [[ -n "$meshtastic_url" ]]; then
       meshtastic_url=$(echo "$meshtastic_url" | sed 's/\\//g')
-      log_message "Updating Meshtastic URL to $meshtastic_url."
+      log_message "Updating Meshtastic URL."
       found_config="true"
       update_meshtastic="--seturl $meshtastic_url"
   fi
@@ -220,16 +220,30 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
   if [ "$found_config" = true ]; then #if we found a config file containing valid data
 
     if [ "$update_wifi" = true ]; then #if wifi config found, restart wifi
-      sudo systemctl restart wpa_supplicant
-      sudo wpa_cli -i wlan0 reconfigure
+      sudo systemctl restart wpa_supplicant 2>&1 | sudo tee -a $(eval echo ~$SUDO_USER)/femtofox-config.log
+      sudo wpa_cli -i wlan0 reconfigure 2>&1 | sudo tee -a $(eval echo ~$SUDO_USER)/femtofox-config.log
       log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi setting."
-      sudo dhclient
-      meshtastic --host --set network.wifi_enabled true
+      sudo dhclient 2>&1 | sudo tee -a $(eval echo ~$SUDO_USER)/femtofox-config.log
+      meshtastic --host --set network.wifi_enabled true 2>&1 | sudo tee -a $(eval echo ~$SUDO_USER)/femtofox-config.log
+      if tail -n 1 "$(eval echo ~$SUDO_USER)/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then #meshtastic returns an error
+        log_message "Failed to update Meshtastic wifi setting to 'enabled'."
+        for _ in $(seq 1 2); do #do meshtastic error boot code
+            blink "1" && sleep 0.25 && blink "1" && sleep 0.25
+            blink "0.25" && sleep 0.25 && blink "0.25" && sleep 0.25
+        done
+      fi
     fi
 
     if [ "$update_meshtastic" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic"
-      meshtastic --host $update_meshtastic
+      meshtastic --host $update_meshtastic 2>&1 | sudo tee -a $(eval echo ~$SUDO_USER)/femtofox-config.log
+      if tail -n 1 "$(eval echo ~$SUDO_USER)/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then #meshtastic returns an error
+        log_message "Failed to update Meshtastic setting/s."
+        for _ in $(seq 1 2); do #do meshtastic error boot code
+            blink "1" && sleep 0.25 && blink "1" && sleep 0.25
+            blink "0.25" && sleep 0.25 && blink "0.25" && sleep 0.25
+        done
+      fi
     fi
 
     for _ in {1..10}; do #do our successful config boot code
@@ -241,7 +255,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     for _ in {1..5}; do
       blink "1.5" && sleep 0.5
     done
-    exit_script1
+    exit_script 1
   fi
 
 else
@@ -249,8 +263,8 @@ else
   for _ in {1..3}; do
     blink "1.5" && sleep 0.5
   done
-  exit_script1
+  exit_script 1
 fi
 
   rm $usb_config #remove temporary copy of femtofox-config.txt
-  exit_script0
+  exit_script 0
