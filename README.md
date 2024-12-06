@@ -4,7 +4,7 @@
 ---
 
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
-<h1 id="femtofox----subsubtiny-full-linux-meshtastic-node">Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>Tiny full Linux Meshtastic node</sub></sub></h1>
+<h1 id="femtofox----subsubthe-tiny-low-power-linux-meshtastic-node">Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>The tiny, low power Linux Meshtastic node</sub></sub></h1>
 <h4 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-linux-capable-board-capable-of-running-ubuntu.-femtofox-is-an-expansion-of-the-luckfoxs-capabilities-integrating-it-with-a-lora-radio-to-create-a-power-efficient-cheap-and-small-meshtastic-linux-node.">The Luckfox Pico Mini is a compact and power efficient Linux capable board, capable of running Ubuntu. Femtofox is an expansion of the Luckfox’s capabilities, integrating it with a LoRa radio to create a power efficient, cheap and small Meshtastic Linux node.</h4>
 <p><strong>Advantages:</strong></p>
 <ul>
