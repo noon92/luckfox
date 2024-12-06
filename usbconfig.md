@@ -55,7 +55,7 @@ Options are:</p>
 <p>Clearing the <code>meshtastic_admin_key</code> list: The admin key list can contain up to three keys - <em>if more are added they will be ignored</em>. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter <code>meshtastic_admin_key="0"</code>, without <code>base64:</code>.</p>
 </blockquote>
 <blockquote>
-<p>[!WARNING]<br>
+<p>[!CAUTION]<br>
 Attempting to set wifi settings via USB configuration tool without a wifi adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
 </blockquote>
 <p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
