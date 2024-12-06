@@ -83,7 +83,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
 </tr>
 <tr>
-<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;</td>
+<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br>___________<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;</td>
 <td>USB drive mounted successfully but femtofox-config.txt was not found. Ignoring.</td>
 <td>Config file missing.</td>
 <td>Create configuration file as described above.</td>
