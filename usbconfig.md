@@ -56,7 +56,7 @@ Options are:</p>
 </blockquote>
 <blockquote>
 <p>[!WARNING]<br>
-Attempting to set wifi settings via USB configuration tool without a USB adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
+Attempting to set wifi settings via USB configuration tool without a wifi adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
 </blockquote>
 <p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
 A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> and the USB drive (except on NTFS, which is read only).<br>
