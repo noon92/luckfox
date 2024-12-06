@@ -23,7 +23,7 @@ Configurable settings are:</p>
 </li>
 </ul>
 <h3 id="instructions">Instructions</h3>
-<p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and whichever of the the following lines you want to set, keeping in mind this is CaSe sEnSiTiVe:</p>
+<p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only - log will not be saved to drive) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and whichever of the the following lines you want to set, keeping in mind this is CaSe sEnSiTiVe:</p>
 <pre><code>	wifi_ssid="Your SSID name"
 	wifi_psk="wifipassword"
 	wifi_country="US"
