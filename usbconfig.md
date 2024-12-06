@@ -36,10 +36,10 @@ Configurable settings are:</p>
 <blockquote>
 <p>[!NOTE]<br>
 Enter as many or as few settings as you like.</p>
-<p>For wifi_country, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
+<p>For <code>wifi_country</code>, insert your country’s two letter code (such as CA or IN) in capital letters.</p>
 <p>Use a timezone as it appears in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">the tz database</a>.</p>
 <p><strong>Meshtastic</strong><br>
-For meshtastic_lora_radio, choose your radio from the supported hardware list.<br>
+For <code>meshtastic_lora_radio</code>, choose your radio from the supported hardware list.<br>
 Options are:</p>
 <ul>
 <li>ebyte-e22-900m30sm</li>
@@ -51,7 +51,7 @@ Options are:</p>
 <li>ai-thinker-ra-01sh</li>
 <li>none <em>(for simradio)</em></li>
 </ul>
-<p><strong>Important:</strong> You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the femtofox-config.txt file on the USB drive to remove the URL and add in your security settings.</p>
+<p><strong>Important:</strong> You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the <code>femtofox-config.txt</code> file on the USB drive to remove the URL and add in your security settings.</p>
 <p>To add a <code>meshtastic_admin_key</code>, copy it from the app and add <code>base64:</code> to the beginning (<code>meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="</code>).</p>
 <p>Clearing the <code>meshtastic_admin_key</code> list: The admin key list can contain up to three keys - <em>if more are added they will be ignored</em>. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter <code>meshtastic_admin_key="0"</code>, without <code>base64:</code>.</p>
 </blockquote>
@@ -89,13 +89,13 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td>Create configuration file as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</td>
+<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br>______&nbsp;&nbsp;______&nbsp;&nbsp;______&nbsp;&nbsp;______&nbsp;&nbsp;______</td>
 <td>USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.</td>
 <td>Configuration file improperly formatted or contains no data.</td>
 <td>Check configuration file contents as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br>___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_</td>
+<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br>____&nbsp;&nbsp;____&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;____&nbsp;&nbsp;____&nbsp;&nbsp;_&nbsp;&nbsp;_</td>
 <td>Error while trying to implement a Meshtastic setting after 3 attempts. Some settings may have been implemented successfully.</td>
 <td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
 <td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
