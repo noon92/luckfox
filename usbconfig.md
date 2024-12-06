@@ -77,7 +77,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 </thead>
 <tbody>
 <tr>
-<td>⚠️ 1 very long blink, lasting 4 seconds<br><u>_____________</u></td>
+<td>⚠️ 1 very long blink, lasting 4 seconds<br>_____________</td>
 <td>Failed to mount USB drive. Ignoring.</td>
 <td><li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive</li></td>
 <td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
