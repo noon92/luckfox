@@ -83,13 +83,13 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
 </tr>
 <tr>
-<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br><em><strong><strong>&nbsp;&nbsp;</strong></strong></em>&nbsp;&nbsp;_____</td>
+<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</td>
 <td>USB drive mounted successfully but femtofox-config.txt was not found. Ignoring.</td>
 <td>Config file missing.</td>
 <td>Create configuration file as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br><em><strong><strong>&nbsp;&nbsp;</strong></strong></em>&nbsp;&nbsp;<em><strong><strong>&nbsp;&nbsp;</strong></strong></em>&nbsp;&nbsp;_____</td>
+<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</td>
 <td>USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.</td>
 <td>Configuration file improperly formatted or contains no data.</td>
 <td>Check configuration file contents as described above.</td>
