@@ -107,7 +107,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 </tr>
 <tr>
 <td>✅ 5 medium blinks, each lasting 0.5 seconds<br>__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__</td>
-<td>Boot complete. Always appears last.</td>
+<td>Boot complete. Appears on every successful boot and always appears last.</td>
 <td></td>
 <td></td>
 </tr>
