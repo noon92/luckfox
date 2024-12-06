@@ -77,25 +77,25 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 </thead>
 <tbody>
 <tr>
-<td>⚠️ 1 very long blink, lasting 4 seconds<br><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></td>
+<td>⚠️ 1 very long blink, lasting 4 seconds<br><u>________________</u></td>
 <td>Failed to mount USB drive. Ignoring.</td>
 <td><li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive</li></td>
 <td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li></td>
 </tr>
 <tr>
-<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br>___________<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;</td>
+<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;<em><strong><strong>&nbsp;&nbsp;</strong></strong></em>_</td>
 <td>USB drive mounted successfully but femtofox-config.txt was not found. Ignoring.</td>
 <td>Config file missing.</td>
 <td>Create configuration file as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;</td>
+<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br><u><em><strong><strong></strong></strong></em></u>_<u></u><em><u>_____</u></em><u><em><strong><strong></strong></strong></em></u>_<u></u>_</td>
 <td>USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.</td>
 <td>Configuration file improperly formatted or contains no data.</td>
 <td>Check configuration file contents as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br><u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;<u>&nbsp;</u>&nbsp;</td>
+<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br><u><em><em><em></em></em></em></u><u><em><em><em></em></em></em></u><u></u><u></u><u><em><em><em></em></em></em></u><u><em><em><em></em></em></em></u><u></u><u></u></td>
 <td>Error while trying to implement a Meshtastic setting after 3 attempts. Some settings may have been implemented successfully.</td>
 <td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
 <td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
@@ -107,7 +107,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td></td>
 </tr>
 <tr>
-<td>✅ 5 medium blinks, each lasting 0.5 seconds<br><u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;<u>&nbsp;&nbsp;</u>&nbsp;</td>
+<td>✅ 5 medium blinks, each lasting 0.5 seconds<br><u><strong></strong></u>_<u></u><em><u>__</u></em><u><strong></strong></u>_<u></u>_</td>
 <td>Boot complete. Always appears last.</td>
 <td></td>
 <td></td>
