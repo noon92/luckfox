@@ -174,7 +174,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
         ;;
     esac
     if [ "$found_config" = "true" ]; then
-      #systemctl restart meshtasticd NAOMI
+      systemctl restart meshtasticd
       log_message "Set LoRa radio to $meshtastic_lora_radio, restarting Meshtasticd."
     fi
   fi
