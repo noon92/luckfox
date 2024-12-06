@@ -89,7 +89,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td>Create configuration file as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</td>
+<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br><b>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</b></td>
 <td>USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.</td>
 <td>Configuration file improperly formatted or contains no data.</td>
 <td>Check configuration file contents as described above.</td>
