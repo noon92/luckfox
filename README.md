@@ -4,21 +4,17 @@
 ---
 
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
-<h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
+<h1 id="femtofox----subsubtiny-full-linux-meshtastic-node">Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>Tiny full Linux Meshtastic node</sub></sub></h1>
+<h4 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-linux-capable-board-capable-of-running-ubuntu.-femtofox-is-an-expansion-of-the-luckfoxs-capabilities-integrating-it-with-a-lora-radio-to-create-a-power-efficient-cheap-and-small-meshtastic-linux-node.">The Luckfox Pico Mini is a compact and power efficient Linux capable board, capable of running Ubuntu. Femtofox is an expansion of the Luckfox’s capabilities, integrating it with a LoRa radio to create a power efficient, cheap and small Meshtastic Linux node.</h4>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li>Tiny size (~28x21mm)</li>
-<li>Power efficiency (~0.25w)</li>
-<li>Full Linux CLI (Ubuntu, Buildroot, Alpine)</li>
+<li>Tiny size (~28x21mm for the Kitchen Sink Edition, X for the Smol Edition)</li>
+<li>Power efficiency (~0.38w)</li>
+<li>Full Linux CLI (Ubuntu) via our pre-built Foxbuntu image.</li>
+<li>Meshtastic native client support via SPI</li>
 <li>USB host support</li>
-<li>Cheap - $7-8 on <a href="https://www.waveshare.com/luckfox-pico-min.htm">Waveshare</a> (also available on Amazon)! Get the A model - the B just has added flash storage that’s too small for our purposes.</li>
-</ul>
-<p><strong>Disadvantages:</strong></p>
-<ul>
-<li>By default, no simple way to get online (no built in wifi/BLE/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
-<li>Annoying SDK for building firmware images</li>
-<li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
-<li>If the power draw of a USB peripheral exceeds what the Luckfox is able to provide, it will reboot, bootloop or even hard crash. This appears to be avoidable by simply using a sufficient power supply, though this requires more testing</li>
+<li>Wifi over USB</li>
+<li>RTC support</li>
 </ul>
 <p><strong>Accomplished:</strong></p>
 <ul>
@@ -35,12 +31,11 @@
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> WIFI over USB or UART (stable, optimizing)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Allow editing of config files by plugging in thumb drive</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ability to activate or deactivate WIFI via Meshtastic admin</li>
 </ul>
 <p><strong>Issues / to do / in progress:</strong></p>
 <ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom carrier PCB with LoRa radio (in progress)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Ability to activate or deactivate WIFI via Meshtastic admin (accomplished, refining)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, on reboot</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom carrier PCB with LoRa radio (in progress, coming soon)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test power consumption with LoRa radio attached / figure out what size solar panel will be required - preliminarily, 0.36-0.45w average</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not make a difference</li>
