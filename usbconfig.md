@@ -95,7 +95,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td>Check configuration file contents as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br><u><em><em><em></em></em></em></u><u><em><em><em></em></em></em></u><u></u><u></u><u><em><em><em></em></em></em></u><u><em><em><em></em></em></em></u><u></u><u></u></td>
+<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br>___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_</td>
 <td>Error while trying to implement a Meshtastic setting after 3 attempts. Some settings may have been implemented successfully.</td>
 <td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
 <td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
@@ -107,7 +107,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td></td>
 </tr>
 <tr>
-<td>✅ 5 medium blinks, each lasting 0.5 seconds<br><u><strong></strong></u>_<u></u><em><u>__</u></em><u><strong></strong></u>_<u></u>_</td>
+<td>✅ 5 medium blinks, each lasting 0.5 seconds<br>__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__</td>
 <td>Boot complete. Always appears last.</td>
 <td></td>
 <td></td>
