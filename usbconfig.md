@@ -17,8 +17,7 @@ Configurable settings are:</p>
 <li><a href="https://meshtastic.org/docs/software/python/cli/#--seturl-seturl">URL</a> (used to configure LoRa settings and channels)</li>
 <li>Security: Add Admin Key</li>
 <li>Security: Clear Admin Key List</li>
-<li>Security: <a href="https://meshtastic.org/docs/configuration/radio/security/#admin-channel-enabled">Legacy Admin Channel</a> enable/disable<br>
-<br></li>
+<li>Security: <a href="https://meshtastic.org/docs/configuration/radio/security/#admin-channel-enabled">Legacy Admin Channel</a> enable/disable</li>
 </ul>
 </li>
 </ul>
