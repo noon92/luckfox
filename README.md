@@ -38,7 +38,7 @@
 <li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel / battery</li>
 <li>Wifi capabilities (with ability to disable/enable wifi via mesh for power savings)</li>
 </ul>
-<p>Login for the configured BBS images is <code>femto:fox</code>. Root is <code>root:root</code>.</p>
+<p>Login for the images is <code>femto:fox</code>. Root is <code>root:root</code>.</p>
 <p>The preconfigured images will reboot every 24 hours. If the internal clock is accurate, this will be at 3am. Reboot timing is set in <code>crontab</code>. To keep accurate time, an RTC module can be installed (see <a href="supported_hardware.md">supported hardware</a>) or internet connectivity can be maintained for NTP. If no authoritative time source is found, time will be set to 2024-01-01 00:00 on boot.</p>
 <h3 id="supported-hardware---click-here"><a href="supported_hardware.md">Supported hardware - click here</a></h3>
 <h3 id="networking">Networking:</h3>
