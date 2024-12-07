@@ -56,7 +56,7 @@ usb_device="/dev/$usb_device"
 
 
 # Debugging: Log and echo the extracted device name
-log_message "Extracted device name: $usb_device"
+log_message "Detected USB drive: $usb_device"
 
 # Check if the USB drive is already mounted
 if mount | grep "$usb_device" > /dev/null; then
@@ -73,8 +73,8 @@ else
   fi
 fi
 
-  wpa_supplicant_conf="/etc/wpa_supplicant/wpa_supplicant.conf"
-  usb_config="/tmp/femtofox-config.txt"
+wpa_supplicant_conf="/etc/wpa_supplicant/wpa_supplicant.conf"
+usb_config="/tmp/femtofox-config.txt"
 
 # Check if the mounted USB drive contains a file femtofox-config.txt
 if [ -f "$mount_point/femtofox-config.txt" ]; then
