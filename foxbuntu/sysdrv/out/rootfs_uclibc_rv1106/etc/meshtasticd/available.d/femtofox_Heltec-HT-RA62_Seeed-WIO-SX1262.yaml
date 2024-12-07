@@ -12,3 +12,6 @@ Lora:
   Busy: 22 #pin16 (GPIO pin 54 1C6)
   spidev: spidev0.0 #pins are (CS=6, CLK=7, MOSI=8, MISO=9)
   spiSpeed: 2000000
+  
+  General:
+    MACAddressSource: eth0

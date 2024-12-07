@@ -14,3 +14,6 @@ Lora:
   #TXen: bridge to DIO2 on E22 module
   spidev: spidev0.0
   spiSpeed: 2000000
+
+  General:
+    MACAddressSource: eth0
