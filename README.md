@@ -4,60 +4,42 @@
 ---
 
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
-<h3 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-0.25w-linux-capable-board-ideal-for-running-tc2-meshtastic-bbs-or-anything-else.">The Luckfox Pico Mini is a compact and power efficient (~0.25w) Linux capable board, ideal for running <a href="https://github.com/TheCommsChannel/TC2-BBS-mesh">TC2 Meshtastic BBS</a> (or anything else).</h3>
+<h1 id="femtofox----subsubthe-tiny-low-power-linux-meshtastic-node">Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>The tiny, low power Linux Meshtastic node</sub></sub></h1>
+<h4 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-linux-capable-board-capable-of-running-ubuntu.-femtofox-is-an-expansion-of-the-luckfoxs-capabilities-integrating-it-with-a-lora-radio-to-create-a-power-efficient-cheap-and-small-meshtastic-linux-node.">The Luckfox Pico Mini is a compact and power efficient Linux capable board, capable of running Ubuntu. Femtofox is an expansion of the Luckfox’s capabilities, integrating it with a LoRa radio to create a power efficient, cheap and small Meshtastic Linux node.</h4>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li>Tiny size (~28x21mm)</li>
-<li>Power efficiency (~0.25w)</li>
-<li>Full Linux CLI (Ubuntu, Buildroot, Alpine)</li>
+<li>Tiny size (~28x21mm for the Kitchen Sink Edition, X for the Smol Edition)</li>
+<li>Power efficiency (~0.38w)</li>
+<li>Full Linux CLI (Ubuntu) via our pre-built Foxbuntu image.</li>
+<li>Meshtastic native client support via SPI</li>
 <li>USB host support</li>
-<li>Cheap - $7-8 on <a href="https://www.waveshare.com/luckfox-pico-min.htm">Waveshare</a> (also available on Amazon)! Get the A model - the B just has added flash storage that’s too small for our purposes.</li>
-</ul>
-<p><strong>Disadvantages:</strong></p>
-<ul>
-<li>By default, no simple way to get online (no built in wifi/BLE/ethernet). Ethernet can be easily added - wifi still work in progress - see <em>Networking</em> below)</li>
-<li>Annoying SDK for building firmware images</li>
-<li>No simple way to compile drivers (no available Linux headers - if anyone manages to compile the headers, please let me know)</li>
-<li>If the power draw of a USB peripheral exceeds what the Luckfox is able to provide, it will reboot, bootloop or even hard crash. This appears to be avoidable by simply using a sufficient power supply, though this requires more testing</li>
+<li>Wifi over USB</li>
+<li>RTC support</li>
 </ul>
 <p><strong>Accomplished:</strong></p>
 <ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ethernet over USB (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Meshtastic native client controlling a LoRa radio (see <a href="supported_hardware.md">supported hardware</a>)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> WIFI over USB (see <a href="supported_hardware.md">supported hardware</a>)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ethernet over USB (see <a href="supported_hardware.md">supported hardware</a>)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ethernet over pins (see <em>Networking</em> below and wiring diagram at bottom of page)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> UART communications with Meshtastic nodes (2 pin pairs)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> USB serial communications with Meshtastic nodes (see <em>supported hardware</em> below)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Meshtastic native client controlling a LoRa radio (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> UART communications with Meshtastic nodes (2 pin pairs) such as RAK Wisblock</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> USB serial communications with Meshtastic nodes (see <a href="supported_hardware.md">supported hardware</a>)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> USB mass storage</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Real time clock (RTC) support (see <em>supported hardware</em> below)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Real time clock (RTC) support (see <a href="supported_hardware.md">supported hardware</a>)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Activity LED disabled. User LED will blink for 5 seconds when boot is complete</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Pressing the “BOOT” button triggers reboot</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ability to reconfigure wifi via USB flash drive</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> WIFI over USB or UART (stable, optimizing)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Meshtasticd to run LoRa radio over SPI (accomplished, updated image and instructions coming soon)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Allow editing of config files by plugging in thumb drive</li>
-</ul>
-<p><strong>Issues / to do / in progress:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Custom carrier PCB with LoRa radio (in progress)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Ability to activate or deactivate WIFI via Meshtastic admin (accomplished, refining)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Prevent hanging on boot when no network ("[   ***] A start job is running for Raise network interfaces (2min 10s / 5min 6s"). Also, on reboot</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test power consumption with LoRa radio attached / figure out what size solar panel will be required - preliminarily, 0.36-0.45w average</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Work out i2c sharing between OS and Meshtasticd - allow mesh to access sensors while RTC is accessible to OS</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Test lowering CPU frequency - see if reduces total power consumption. Presumption is that it will not make a difference</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Ability to activate or deactivate WIFI via Meshtastic admin</li>
 </ul>
 <p><strong>Project goals:</strong></p>
 <ul>
 <li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel / battery</li>
 <li>Wifi capabilities (with ability to disable/enable wifi via mesh for power savings)</li>
 </ul>
-<h3 id="ive-built-three-ubuntu-22.04.5-lts-images-with-luckfoxs-sdk">I’ve built three Ubuntu 22.04.5 LTS images with Luckfox’s SDK:</h3>
-<ol>
-<li><a href="https://drive.google.com/file/d/17ofd-bt6IVE3EDBe9cu1_IK2BuYEeg_a/view?usp=sharing">A ‘fresh’ image with no changes but with the added drivers for usb ethernet, wifi, serial, RTC and mass storage.</a></li>
-<li><a href="https://drive.google.com/file/d/1YSlR-At4rCv29A_f9hgME6Z_D2mZ1WO3/view?usp=drive_link">An image preconfigured with the TC2-BBS for comms over UART4.</a></li>
-<li><a href="https://drive.google.com/file/d/1iXApWAXAhl-iirATAJVD0Ilr2K8OdY3i/view?usp=sharing">An image preconfigured with the TC2-BBS for comms over USB.</a> This assumes the USB device is recognized as /dev/ttyACM0.</li>
-</ol>
 <p>Login for the “fresh” image is <code>root:root</code> or <code>pico:luckfox</code>.  Login for the configured BBS images is <code>root:root</code>,  <code>bbs:mesh</code> or <code>femto:fox</code>.</p>
-<p>The preconfigured images will reboot every 24 hours, and restart the BBS every other hour. In theory, this should happen at 7am UTC (because both the US and Europe are generally inactive at that time). Time is set on boot with the following logic:</p>
+<p>The preconfigured images will reboot every 24 hours. In theory, this should happen at 3am, if the internal clock is accurate. Time is set on boot with the following logic:</p>
 <ol>
 <li>If the system recognizes an RTC module connected via i2c, it will use that.</li>
 <li>If no RTC module is recognized, time will be set to midnight 2024-1-1 midnight.</li>
@@ -74,35 +56,10 @@
 <li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>. This is not really recommended, but can be used in a pinch.</li>
 </ol>
 <h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB:</h3>
-<p><strong>Choosing a MicroSD card:</strong> Any reasonably fast MicroSD card of 32gb or higher should work, but ideally use a card that supports UHS-1 or higher, and is rated for high endurance.</p>
 <ol>
-<li>Uncompress the 7z file - will require ~29gb of space. In Windows, use <a href="https://www.7-zip.org/">7-zip</a>.</li>
 <li>Flash the image your MicroSD card using <a href="https://etcher.balena.io/">Balena Etcher</a> or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.</li>
-<li>Insert the microSD card into the Pico Mini.</li>
-<li>Connect Pico Mini to Meshtastic radio via pins or USB, depending on image flashed. If using pins - use pins 10 and 11 on the Luckfox board.</li>
-<li>For the rak19007 or rak19003 (with the rak4631/rak4630 daughter board):
-<ul>
-<li>In Position settings, set <code>GPS: NOT_PRESENT</code>. The Rak does not support GPS and UART simultaneously at this time.</li>
-<li>If using UART comms, Serial Module settings:
-<ul>
-<li><code>Serial: Enabled</code></li>
-<li><code>Echo: off</code></li>
-<li><code>RX: 15</code> (rak19007 and rak19003 with TX1/RX1), <code>19</code> (rak19003 with TX0/RX0)</li>
-<li><code>TX: 16</code> (rak19007 and rak19003 with TX1/RX1), <code>20</code> (rak19003 with TX0/RX0)</li>
-<li><code>Serial baud rate: 115200</code></li>
-<li><code>Timeout: 0</code></li>
-<li><code>Serial mode: PROTO</code></li>
-<li><code>Override console serial port: off</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Remember - connect TX on the Luckfox to RX on the Meshtastic board, and vice-versa.</li>
-<li>Power can be supplied to the RAK board via the 3.3v out pin on the Luckfox.</li>
-<li>If communications is via UART, you must bridge the grounds of the two boards.</li>
-<li>Supply power to the Luckfox via pins or USB.</li>
-<li>It should Just Work.</li>
-<li>You can connect to the Luckfox via ethernet or UART serial as described <a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1103/Luckfox-Pico-Login-UART/">here</a>.</li>
+<li>Insert the microSD card into the Luckfox Pico Mini.</li>
+<li>Configure the system with a USB drive as described in <a href="usb_config.md">USB Configuration Tool</a>.</li>
 </ol>
 <h3 id="pinout">Pinout:</h3>
 

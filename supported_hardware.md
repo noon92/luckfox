@@ -3,6 +3,7 @@
 
 ---
 
+<h2 id="supported-hardware">Supported Hardware</h2>
 
 <table>
 <thead>
@@ -16,8 +17,8 @@
 <tbody>
 <tr>
 <td>LoRa radios (working with Meshtasticd)</td>
-<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>AI Thinker RA-01SH</li><li><a href="https://heltec.org/project/ht-ra62/">Heltec HT-RA62</a></li></td>
-<td><li><a href="https://www.aliexpress.com/item/1005006484442897.html">Ebyte E22-900mm22s</a></li><li><a href="https://www.aliexpress.com/item/1005006484442897.html">Ebyte E22-900m22s</a></li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
+<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>AI Thinker RA-01SH</li><li><a href="https://www.aliexpress.com/item/1005005445349105.html">Heltec HT-RA62</a></li></td>
+<td><li>Ebyte E22-900mm22s</li><li><a href="https://www.aliexpress.com/item/1005001808069127.html">Ebyte E22-900m22s</a></li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
 <td>*Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
 </tr>
 <tr>

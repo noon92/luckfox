@@ -3,7 +3,7 @@
 
 ---
 
-<h2 id="usb-configuration">USB configuration</h2>
+<h2 id="usb-configuration-tool">USB Configuration Tool</h2>
 <p>To configure some Femtofox settings such as wifi, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.<br>
 Configurable settings are:</p>
 <ul>
