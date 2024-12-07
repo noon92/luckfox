@@ -5,12 +5,12 @@
 
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 <h1 id="femtofox----subsubthe-tiny-low-power-linux-meshtastic-node">Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>The tiny, low power Linux Meshtastic node</sub></sub></h1>
-<h4 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-linux-capable-board-capable-of-running-ubuntu.-femtofox-is-an-expansion-of-the-luckfoxs-capabilities-integrating-it-with-a-lora-radio-to-create-a-power-efficient-cheap-and-small-meshtastic-linux-node.">The Luckfox Pico Mini is a compact and power efficient Linux capable board, capable of running Ubuntu. Femtofox is an expansion of the Luckfox’s capabilities, integrating it with a LoRa radio to create a power efficient, cheap and small Meshtastic Linux node.</h4>
-<p><strong>Advantages:</strong></p>
+<h4 id="the-luckfox-pico-mini-is-a-compact-and-power-efficient-linux-capable-board-capable-of-running-ubuntu.-femtofox-is-an-expansion-of-the-luckfoxs-capabilities-combining-a-customized-ubuntu-image-with-a-custom-pcb-integrating-it-with-a-lora-radio-to-create-a-power-efficient-cheap-and-small-meshtastic-linux-node.">The Luckfox Pico Mini is a compact and power efficient Linux capable board, capable of running Ubuntu. Femtofox is an expansion of the Luckfox’s capabilities, combining a customized Ubuntu image with a custom PCB, integrating it with a LoRa radio to create a power efficient, cheap and small Meshtastic Linux node.</h4>
+<p><strong>Features:</strong></p>
 <ul>
-<li>Tiny size (~28x21mm for the Kitchen Sink Edition, X for the Smol Edition)</li>
+<li>Tiny size (63x54mm for the Kitchen Sink Edition, 65x30mm for the Smol Edition). Roughly equivalent to a Raspberry Pi and Pi Zero.</li>
 <li>Power efficiency (~0.38w)</li>
-<li>Full Linux CLI (Ubuntu) via our pre-built Foxbuntu image.</li>
+<li>Full Linux CLI (Ubuntu) via our pre-built Foxbuntu image</li>
 <li>Meshtastic native client support via SPI</li>
 <li>USB host support</li>
 <li>Wifi over USB</li>
@@ -38,25 +38,20 @@
 <li>A solar-deployable Meshtastic node running Linux, without needing a giant solar panel / battery</li>
 <li>Wifi capabilities (with ability to disable/enable wifi via mesh for power savings)</li>
 </ul>
-<p>Login for the “fresh” image is <code>root:root</code> or <code>pico:luckfox</code>.  Login for the configured BBS images is <code>root:root</code>,  <code>bbs:mesh</code> or <code>femto:fox</code>.</p>
-<p>The preconfigured images will reboot every 24 hours. In theory, this should happen at 3am, if the internal clock is accurate. Time is set on boot with the following logic:</p>
-<ol>
-<li>If the system recognizes an RTC module connected via i2c, it will use that.</li>
-<li>If no RTC module is recognized, time will be set to midnight 2024-1-1 midnight.</li>
-<li>If network is available, time will be retrieved from google and system time (and RTC time if present) will be set from that.</li>
-</ol>
-<p>Reboot timing is set in <code>crontab</code>. Time logic is in <code>/etc/rc.local</code>.</p>
+<p>Login for the configured BBS images is <code>femto:fox</code>. Root is <code>root:root</code>.</p>
+<p>The preconfigured images will reboot every 24 hours. If the internal clock is accurate, this will be at 3am. Reboot timing is set in <code>crontab</code>. To keep accurate time, an RTC module can be installed (see <a href="supported_hardware.md">supported hardware</a>) or internet connectivity can be maintained for NTP. If no authoritative time source is found, time will be set to 2024-01-01 00:00 on boot.</p>
 <h3 id="supported-hardware---click-here"><a href="supported_hardware.md">Supported hardware - click here</a></h3>
 <h3 id="networking">Networking:</h3>
 <p>There are four methods to get online:</p>
 <ol>
 <li>Ethernet over USB - most adapters should be supported, but I’ve only tested the RTL8152 chipset.</li>
-<li>Preconfigured Ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme. Note that the MAC address for onboard ethernet is hardcoded to 1a:cf:50:33:5f:92 - if you need to change this, <code>sudo nano /etc/network/interfaces</code>.</li>
-<li>USB wifi - still a work in progress, but working with a couple different chipsets so far. Note we’re using wpa_supplicant, as networkmanager (nmcli) caused hard crashes.</li>
+<li>USB wifi  (see <a href="supported_hardware.md">supported hardware</a>).</li>
+<li>Preconfigured Ubuntu images: ethernet via the castellated pins at the bottom of the board. See pinout at the bottom of this readme.</li>
 <li>RDNIS via usb - <a href="https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/">see this guide</a>. Note that in the preconfigured images USB is set to host mode, so you’ll have to switch back to peripheral with <code>sudo luckfox-config</code>. This is not really recommended, but can be used in a pinch.</li>
 </ol>
 <h3 id="installation---connection-to-meshtastic-node-via-uart-or-usb">Installation - connection to Meshtastic node via UART or USB:</h3>
 <ol>
+<li>Download the most recent OS image in <a href="https://github.com/noon92/femtofox/releases">releases</a>.</li>
 <li>Flash the image your MicroSD card using <a href="https://etcher.balena.io/">Balena Etcher</a> or your favorite flashing program. You will likely get a warning that the image appears to be invalid or has no partition table. This is normal.</li>
 <li>Insert the microSD card into the Luckfox Pico Mini.</li>
 <li>Configure the system with a USB drive as described in <a href="usb_config.md">USB Configuration Tool</a>.</li>
