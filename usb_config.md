@@ -56,7 +56,7 @@ Options are:</p>
 </blockquote>
 <blockquote>
 <p>[!CAUTION]<br>
-Attempting to set wifi settings via USB configuration tool without a wifi adapter connected will lead to a hard crash - you will need to disconnect and reconnect power to recover.</p>
+Attempting to set wifi settings via USB configuration tool without a wifi adapter connected will lead to a 5 minute hang at boot - either disconnect and reconnect power or wait the full 5 minutes to to recover.</p>
 </blockquote>
 <p><strong>To apply your configuration, reboot the Femtofox with the USB drive plugged in. No other USB drives can be plugged in at the same time.</strong><br>
 A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> and the USB drive (except on NTFS, which is read only).<br>
@@ -76,37 +76,37 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 </thead>
 <tbody>
 <tr>
-<td>⚠️ 1 very long blink, lasting 4 seconds<br>_____________</td>
+<td><center>⚠️<br>_____________<br>1 very long blink, lasting 4 seconds</center></td>
 <td>Failed to mount USB drive. Ignoring.</td>
 <td><li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive</li><li>Defective USB OTG adapter</li></td>
 <td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li><li>Try another USB OTG adapter</li></td>
 </tr>
 <tr>
-<td>⚠️ 3 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</td>
+<td><center>⚠️<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____<br>3 long blinks, each lasting 1.5 seconds</center></td>
 <td>USB drive mounted successfully but femtofox-config.txt was not found. Ignoring.</td>
 <td>Config file missing.</td>
 <td>Create configuration file as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 5 long blinks, each lasting 1.5 seconds<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____</td>
+<td><center>⚠️<br>_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____&nbsp;&nbsp;_____<br>5 long blinks, each lasting 1.5 seconds</center></td>
 <td>USB drive mounted successfully and femtofox-config.txt was found but did not contain readable configuration data. Ignoring.</td>
 <td>Configuration file improperly formatted or contains no data.</td>
 <td>Check configuration file contents as described above.</td>
 </tr>
 <tr>
-<td>⚠️ 2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice<br>___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_</td>
+<td><center>⚠️<br>___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;___&nbsp;&nbsp;___&nbsp;&nbsp;_&nbsp;&nbsp;_<br>2 long blinks, each lasting 1 seconds, then 2 short blinks, each lasting 1/4 of a second. Repeats twice</center></td>
 <td>Error while trying to implement a Meshtastic setting after 3 attempts. Some settings may have been implemented successfully.</td>
 <td><li>The error may be transient.</li><li>Configuration file may contain improper data.</li></td>
 <td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
 </tr>
 <tr>
-<td>✅ 10 very fast blinks, each lasting 1/8th of a second<br><strong>. . . . . . . . . .</strong></td>
+<td><center>✅<br><strong>. . . . . . . . . .</strong><br>10 very fast blinks, each lasting 1/8th of a second</center></td>
 <td>USB drive mounted successfully, and femtofox-config.txt was found and contained configuration data which was sent for deployment. Any affected services will now restart. You can disconnect the USB drive.</td>
 <td>This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the “success” boot code will flash if at least one setting is successfully read - even if the setting was not implemented successfully.</td>
 <td></td>
 </tr>
 <tr>
-<td>✅ 5 medium blinks, each lasting 0.5 seconds<br>__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__</td>
+<td><center>✅<br>__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__&nbsp;&nbsp;__<br>5 medium blinks, each lasting 0.5 seconds</center></td>
 <td>Boot complete. Appears on every successful boot and always appears last.</td>
 <td></td>
 <td></td>
