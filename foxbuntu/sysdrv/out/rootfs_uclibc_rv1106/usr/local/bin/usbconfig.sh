@@ -33,7 +33,7 @@ escape_sed() {
 }
 
 # Check if the mount point exists and if a USB drive is plugged in
-usb_device=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|exfat" | grep -E "sd[a-z][0-9]" | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g' | head -n 1)
+usb_device=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|exfat" | grep -E "sd[a-z]([0-9]*)" | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g' | head -n )
 
 if [ -d "$mount_point" ]; then
   sudo rmdir "$mount_point"
