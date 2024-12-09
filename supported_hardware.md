@@ -74,13 +74,6 @@
 <td></td>
 </tr>
 <tr>
-<td>rl8188cu</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>rtl8187</td>
 <td></td>
 <td></td>
