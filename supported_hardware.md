@@ -74,13 +74,6 @@
 <td></td>
 </tr>
 <tr>
-<td>rl8188cu</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>rtl8187</td>
 <td></td>
 <td></td>
@@ -363,9 +356,9 @@
 <tr>
 <td>ar9271</td>
 <td>✔️</td>
-<td>❌</td>
+<td>❔</td>
 <td></td>
-<td>Buggy</td>
+<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V1</strong></a>: working<br><a href="https://www.aliexpress.com/item/1005007556237899.html">Generic AR9271 w/SMA antenna</a>: buggy<br>Work in progress</td>
 </tr>
 <tr>
 <td>ar9k</td>
