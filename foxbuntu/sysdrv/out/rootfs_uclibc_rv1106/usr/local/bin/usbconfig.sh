@@ -198,7 +198,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
   if [[ -n "$meshtastic_admin_key" ]]; then
       if [ "$update_meshtastic" = "" ]; then
         meshtastic_admin_key=$(echo "$meshtastic_admin_key" | sed 's/\\//g')
-        log_message "Updating Meshtastic admin key to $meshtastic_admin_key."
+        log_message "Updating Meshtastic admin key."
         found_config="true"
         update_meshtastic=" --set security.admin_key $meshtastic_admin_key"
       else
@@ -209,7 +209,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
   if [[ -n "$meshtastic_legacy_admin" ]]; then
       if [ "$update_meshtastic" = "" ] || [[ "$update_meshtastic" == *security* ]]; then
         meshtastic_legacy_admin=$(echo "$meshtastic_legacy_admin" | sed 's/\\//g')
-        log_message "Updating Meshtastic legacy admin to $meshtastic_legacy_admin."
+        log_message "Updating Meshtastic legacy admin."
         found_config="true"
         update_meshtastic+=" --set security.admin_channel_enabled $meshtastic_legacy_admin"
       else
