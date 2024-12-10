@@ -21,7 +21,7 @@ exit_script() {
   exit $1
 }
 
-#Blink
+#Blink/boot code function
 blink() {
     echo 1 > /sys/class/gpio/gpio34/value; #LED on
     sleep "$1"; #wait
@@ -68,7 +68,7 @@ else
     log_message "USB drive mounted successfully at $mount_point."
   else
     log_message "Failed to mount USB drive."
-    blink "5" && sleep "0.5"
+    blink "5" && sleep "0.5" #boot code
     exit_script 1
   fi
 fi
@@ -273,7 +273,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
 
   else #if no valid data in config file
     log_message "femtofox-config.txt does not contain valid configuration info, ignoring."
-    for _ in {1..5}; do
+    for _ in {1..5}; do #boot code
       blink "1.5" && sleep 0.5
     done
     exit_script 1
@@ -281,7 +281,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
 
 else
   log_message "USB drive mounted but femtofox-config.txt not found, ignoring."
-  for _ in {1..3}; do
+  for _ in {1..3}; do #boot code
     blink "1.5" && sleep 0.5
   done
   exit_script 1
