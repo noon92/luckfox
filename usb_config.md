@@ -23,14 +23,14 @@ Configurable settings are:</p>
 </ul>
 <h3 id="instructions">Instructions</h3>
 <p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only - log will not be saved to drive) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and whichever of the the following lines you want to set, keeping in mind this is CaSe sEnSiTiVe:</p>
-<pre><code>	wifi_ssid="Your SSID name"
-	wifi_psk="wifipassword"
-	wifi_country="US"
-	timezone="America/New_York"
-	meshtastic_lora_radio="ebyte-e22-900m30s"
-	meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
-	meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
-	meshtastic_legacy_admin="true"
+<pre><code>wifi_ssid="Your SSID name"
+wifi_psk="wifipassword"
+wifi_country="US"
+timezone="America/New_York"
+meshtastic_lora_radio="ebyte-e22-900m30s"
+meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
+meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
+meshtastic_legacy_admin="true"
 </code></pre>
 <blockquote>
 <p>[!NOTE]<br>
@@ -76,7 +76,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 </thead>
 <tbody>
 <tr>
-<td><center>⚠️<br>_____________<br>1 very long blink, lasting 4 seconds</center></td>
+<td><center>⚠️<br>________________<br>1 very long blink, lasting 5 seconds</center></td>
 <td>Failed to mount USB drive. Ignoring.</td>
 <td><li>Invalid filesystem</li><li>Corrupted partition table</li><li>Defective USB drive</li><li>Defective USB OTG adapter</li></td>
 <td><li>Use a supported partition (FAT32, exFAT, NTFS, ext4)</li><li>Repair partition table</li><li>Try another USB drive</li><li>Try another USB OTG adapter</li></td>
