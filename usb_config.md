@@ -23,14 +23,14 @@ Configurable settings are:</p>
 </ul>
 <h3 id="instructions">Instructions</h3>
 <p>The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only - log will not be saved to drive) or ext4 partition. Add a file named <code>femtofox-config.txt</code> and whichever of the the following lines you want to set, keeping in mind this is CaSe sEnSiTiVe:</p>
-<pre><code>	wifi_ssid="Your SSID name"
-	wifi_psk="wifipassword"
-	wifi_country="US"
-	timezone="America/New_York"
-	meshtastic_lora_radio="ebyte-e22-900m30s"
-	meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
-	meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
-	meshtastic_legacy_admin="true"
+<pre><code>wifi_ssid="Your SSID name"
+wifi_psk="wifipassword"
+wifi_country="US"
+timezone="America/New_York"
+meshtastic_lora_radio="ebyte-e22-900m30s"
+meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
+meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
+meshtastic_legacy_admin="true"
 </code></pre>
 <blockquote>
 <p>[!NOTE]<br>
