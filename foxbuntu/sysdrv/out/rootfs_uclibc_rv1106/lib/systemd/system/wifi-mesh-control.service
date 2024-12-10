@@ -1,5 +1,5 @@
 [Unit]
-Description=Automatically change wifi status to match config.proto
+Description=Meshtastic control of wifi
 After=network.target
 
 [Service]
