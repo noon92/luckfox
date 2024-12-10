@@ -112,7 +112,7 @@
 <td>rtl8188eu, rtl8188eus</td>
 <td>✔️</td>
 <td>✔️</td>
-<td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.025w</td>
+<td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.026w</td>
 <td>Model tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a>: working<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V4</strong></a>: working (v2, v3 <em>should</em> be identical)</td>
 </tr>
 <tr>
@@ -233,6 +233,13 @@
 <td></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>rtl8821au</td>
+<td>✔️</td>
+<td>❌</td>
+<td></td>
+<td>Tested:<br><a href="https://www.tp-link.com/us/home-networking/usb-adapter/archer-t2u-plus/">TP-Link Archer T2U Plus</a>: <strong>NOT</strong> working</td>
 </tr>
 <tr>
 <td>rtl8xxx other</td>

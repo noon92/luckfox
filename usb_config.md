@@ -41,14 +41,14 @@ Enter as many or as few settings as you like.</p>
 For <code>meshtastic_lora_radio</code>, choose your radio from the supported hardware list.<br>
 Options are:</p>
 <ul>
-<li>ebyte-e22-900m30sm</li>
-<li>ebyte-e22-900m22s</li>
-<li>e22-900mm22s</li>
-<li>heltec-ht-ra62</li>
-<li>seeed-wio-sx1262</li>
-<li>waveshare-sx126x-xxxm</li>
-<li>ai-thinker-ra-01sh</li>
-<li>none <em>(for simradio)</em></li>
+<li><code>ebyte-e22-900m30sm</code></li>
+<li><code>ebyte-e22-900m22s</code></li>
+<li><code>e22-900mm22s</code></li>
+<li><code>heltec-ht-ra62</code></li>
+<li><code>seeed-wio-sx1262</code></li>
+<li><code>waveshare-sx126x-xxxm</code></li>
+<li><code>ai-thinker-ra-01sh</code></li>
+<li><code>none</code> <em>(for simradio)</em></li>
 </ul>
 <p><strong>Important:</strong> You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the <code>femtofox-config.txt</code> file on the USB drive to remove the URL and add in your security settings.</p>
 <p>To add a <code>meshtastic_admin_key</code>, copy it from the app and add <code>base64:</code> to the beginning (<code>meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="</code>).</p>
@@ -100,7 +100,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
 </tr>
 <tr>
-<td><center>✅<br><strong>. . . . . . . . . .</strong><br>10 very fast blinks, each lasting 1/8th of a second</center></td>
+<td><center>✅<br>. . . . . . . . . .<br>10 very fast blinks, each lasting 1/8th of a second</center></td>
 <td>USB drive mounted successfully, and femtofox-config.txt was found and contained configuration data which was sent for deployment. Any affected services will now restart. You can disconnect the USB drive.</td>
 <td>This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the “success” boot code will flash if at least one setting is successfully read - even if the setting was not implemented successfully.</td>
 <td></td>
