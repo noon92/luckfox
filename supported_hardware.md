@@ -235,6 +235,13 @@
 <td></td>
 </tr>
 <tr>
+<td>rtl8821au</td>
+<td>✔️</td>
+<td>❌</td>
+<td></td>
+<td>Tested:<br><a href="https://www.tp-link.com/us/home-networking/usb-adapter/archer-t2u-plus/">TP-Link Archer T2U Plus</a>: <strong>NOT</strong> working</td>
+</tr>
+<tr>
 <td>rtl8xxx other</td>
 <td></td>
 <td></td>
