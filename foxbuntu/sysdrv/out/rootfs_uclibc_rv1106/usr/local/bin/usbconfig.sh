@@ -68,7 +68,7 @@ else
     log_message "USB drive mounted successfully at $mount_point."
   else
     log_message "Failed to mount USB drive."
-    blink "4" && sleep "0.5"
+    blink "5" && sleep "0.5"
     exit_script 1
   fi
 fi
