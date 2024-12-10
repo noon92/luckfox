@@ -20,13 +20,14 @@ sudo vim sysdrv/source/kernel/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dts
 sudo ./build.sh
 
 # Get Debian rootfs from DietPi
-# download dietpi image for RPi0W
-sudo mount -o loop dietpi.img #loop0
+# download dietpi image for RPi1/zero: https://dietpi.com (direct link: https://dietpi.com/downloads/images/DietPi_RPi-ARMv6-Bookworm.img.xz)
+unxz DietPi_RPi-ARMv6-Bookworm.img.xz
+sudo mount -o loop DietPi_RPi-ARMv6-Bookworm.img #loop0
 sudo dd if=/dev/loop0p2 of=rootfs.img bs=4M status=progress
 sudo mkdir /mnt/rootfs
 sudo mount -o loop,rw rootfs.img /mnt/rootfs
 sudo e2fsck /mnt/rootfs #(unmount when it whines, remount when fixed)
-sudo vim /mnt/rootfs/etc/fstab (get uuid of rootfs with blkid and replace, and remove call to /boot)
+sudo vim /mnt/rootfs/etc/fstab # (get uuid of rootfs with blkid and replace, and remove line for /boot)
 sudo umount /mnt/rootfs
 sudo cp -f rootfs.img output/image/
 
