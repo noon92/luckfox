@@ -1,0 +1,35 @@
+#  Steps to get Debian 12 from DietPi running on LuckFox Pico Mini
+
+# Install prerequisites
+sudo apt update
+sudo apt-get install -y git ssh make gcc gcc-multilib g++-multilib module-assistant expect g++ gawk texinfo libssl-dev bison flex fakeroot cmake unzip gperf autoconf device-tree-compiler libncurses5-dev pkg-config bc python-is-python3 passwd openssl openssh-server openssh-client vim file cpio rsync
+git clone https://github.com/LuckfoxTECH/luckfox-pico.git
+cd luckfox-pico
+git submodule update --init
+
+# Build default image from LuckFox
+sudo ./build.sh lunch
+sudo ./build.sh kernelconfig
+sudo vim sysdrv/source/kernel/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dts
+#    • ETH status = okay
+#    • USB status = host
+#    • SPI status = okay
+#    • SPI speed = 2000000
+#    • I2c status = okay
+#    • UART status  = okay (UART3 & UART4)
+sudo ./build.sh
+
+# Get Debian rootfs from DietPi
+# download dietpi image for RPi0W
+sudo mount -o loop dietpi.img #loop0
+sudo dd if=/dev/loop0p2 of=rootfs.img bs=4M status=progress
+sudo mkdir /mnt/rootfs
+sudo mount -o loop,rw rootfs.img /mnt/rootfs
+sudo e2fsck /mnt/rootfs #(unmount when it whines, remount when fixed)
+sudo vim /mnt/rootfs/etc/fstab (get uuid of rootfs with blkid and replace, and remove call to /boot)
+sudo umount /mnt/rootfs
+sudo cp -f rootfs.img output/image/
+
+# Bundle and write final image to sdcard
+# copy blkenvflash to output/image/
+cd output/image && sudo ./blkenvflash ../../luckfox-debian.img
