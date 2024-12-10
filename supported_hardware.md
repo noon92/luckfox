@@ -113,7 +113,7 @@
 <td>✔️</td>
 <td>✔️</td>
 <td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.025w</td>
-<td>Model tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a></td>
+<td>Model tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a>: working<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V4</strong></a>: working (v2, v3 <em>should</em> be identical)</td>
 </tr>
 <tr>
 <td>rtl8188ru</td>
@@ -260,7 +260,7 @@
 <td>✔️</td>
 <td>✔️</td>
 <td>Idle: 0.739w</td>
-<td></td>
+<td>Tested:<br><a href="https://www.amazon.com/dp/B0BNFKJPXS">Genbasic RF 2A4M1</a>: working</td>
 </tr>
 <tr>
 <td>mt76x0u</td>
