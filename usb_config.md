@@ -100,7 +100,7 @@ A log (<code>femtofox-config.log</code>) is saved to <code>/home/femto</code> an
 <td><li>Try again.</li><li>Check configuration file contents as described above.</li><li>Check the log.<br><br>This pattern may flash before other patterns. The pattern will repeat once for each failed setting.</li></td>
 </tr>
 <tr>
-<td><center>✅<br><strong>. . . . . . . . . .</strong><br>10 very fast blinks, each lasting 1/8th of a second</center></td>
+<td><center>✅<br>. . . . . . . . . .<br>10 very fast blinks, each lasting 1/8th of a second</center></td>
 <td>USB drive mounted successfully, and femtofox-config.txt was found and contained configuration data which was sent for deployment. Any affected services will now restart. You can disconnect the USB drive.</td>
 <td>This does not mean that the information in the config file is correct - only that it was readable.<br>Note that the “success” boot code will flash if at least one setting is successfully read - even if the setting was not implemented successfully.</td>
 <td></td>
