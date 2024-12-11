@@ -19,15 +19,19 @@ sudo vim sysdrv/source/kernel/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dts
 #    • UART status  = okay (UART3 & UART4)
 sudo ./build.sh
 
-# Get Debian rootfs from DietPi
-# download dietpi image for RPi1/zero: https://dietpi.com (direct link: https://dietpi.com/downloads/images/DietPi_RPi-ARMv6-Bookworm.img.xz)
-unxz DietPi_RPi-ARMv6-Bookworm.img.xz
-sudo mount -o loop DietPi_RPi-ARMv6-Bookworm.img #loop0
+# Get Debian rootfs from Raspi
+# download Raspi Lite image: https://www.raspberrypi.com/software/operating-systems/
+unxz 2024-11-19-raspios-bookworm-armhf-lite.img.xz
+sudo mount -o loop 2024-11-19-raspios-bookworm-armhf-lite.img #loop0
 sudo dd if=/dev/loop0p2 of=rootfs.img bs=4M status=progress
 sudo mkdir /mnt/rootfs
 sudo mount -o loop,rw rootfs.img /mnt/rootfs
 sudo e2fsck /mnt/rootfs #(unmount when it whines, remount when fixed)
-sudo vim /mnt/rootfs/etc/fstab # (get uuid of rootfs with blkid and replace, and remove line for /boot)
+sudo vim /mnt/rootfs/etc/fstab # (get uuid of rootfs with blkid and replace, and add the following to give space for /run:)
+# tmpfs      /dev/shm      tmpfs   defaults,size=2g   0   0
+# you will also need to set a password for root due to raspi not making a default user without gui, run the following and then copy paste into /etc/shadow on rootfs, replace the * for root user
+mkpasswd --method=SHA-512 --stdin
+sudo vim /mnt/rootfs/etc/shadow
 sudo umount /mnt/rootfs
 sudo cp -f rootfs.img output/image/
 
