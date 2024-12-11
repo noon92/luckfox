@@ -6,6 +6,7 @@ sleep 60 #wait 60 seconds so networking will be available during boot
 previous_value=2
 
 while true; do
+  if systemctl is-active --quiet meshtasticd; then
     # Run the command to fetch the value
     current_value=$(cat /root/.portduino/default/prefs/config.proto | protoc --decode_raw | awk '/4 {/, /}/ {if ($1 == "1:") print $2}')
 
@@ -39,6 +40,13 @@ while true; do
         ip link set wlan0 down
     fi
 
-    # Wait for 30 seconds before checking again
-    sleep 30
+  else
+    if ip link show wlan0 | grep -q 'state DOWN'; then
+      ip link set wlan0 up
+      logger "Wifi mesh control: Meshtasticd service is offline, turning wifi on."
+    fi
+  fi
+
+  # wait 30 secs before checking again
+  sleep 30
 done
