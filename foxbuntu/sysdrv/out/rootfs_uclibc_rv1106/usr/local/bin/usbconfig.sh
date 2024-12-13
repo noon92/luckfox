@@ -5,23 +5,26 @@ mount_point="/mnt/usb"
 
 # Function to log both to the screen and syslog
 log_message() {
-  local msg="USB config: $1"
-  echo "$msg"  # Echo to the screen
-  logger "USB config: $msg"  # Log to the system log
-	echo "$(date) $msg" >> /home/femto/femtofox-config.log # Log to file
+  echo "USB config: $1"  # Echo to the screen
+  logger "USB config: $1"  # Log to the system log
+  echo "$(date +"%Y:%m:%d %H:%M:%S") $1" >> /tmp/femtofox-config.log # Log to file
 }
 
 exit_script() {
-  if ! df -T /mnt/usb | grep -qw 'ntfs'; then
-	  log_message "USB configuration script complete. Copying femtofox-config.log to USB drive."
-	  cp /home/femto/femtofox-config.log /mnt/usb/
-	else
-	  log_message "USB configuration script complete. Unable to copy femtofox-config.log to USB drive with NTFS filesystem."
+  if [ ! -z "$usb_path" ]; then #if usb path is populated
+    if ! df -T /mnt/usb 2>/dev/null | grep -qw 'ntfs'; then
+      log_message "USB configuration script complete. Copying femtofox-config.log to USB drive."
+      cat /tmp/femtofox-config.log >> /mnt/usb/femtofox-config.log
+      rm /tmp/femtofox-config.log #maybe replace this with logrotate to preserve a local log, though that would be a duplicate of logger
+    else
+      log_message "USB configuration script complete. Unable to copy femtofox-config.log to USB drive with NTFS filesystem."
+      rm /tmp/femtofox-config.log #maybe replace this with logrotate to preserve a local log, though that would be a duplicate of logger
+    fi
   fi
   exit $1
 }
 
-#Blink/boot code function
+#Blink
 blink() {
     echo 1 > /sys/class/gpio/gpio34/value; #LED on
     sleep "$1"; #wait
@@ -33,16 +36,19 @@ escape_sed() {
 }
 
 # Check if the mount point exists and if a USB drive is plugged in
-usb_device=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|exfat" | grep -E "sd[a-z]([0-9]*)" | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g' | head -n )
+usb_path=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|exfat" | grep -E "sd[a-z]([0-9]*)" | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g' | head -n 1)
+full_device_path="/dev/$usb_path" # Construct the full device path
 
-if [ -d "$mount_point" ]; then
-  sudo rmdir "$mount_point"
-  log_message "/mnt/usb deleted."
-fi
+#if [ -d "$mount_point" ]; then
+#  sudo rmdir "$mount_point"
+#  log_message "/mnt/usb deleted."
+#fi
 
 # If no USB device is found, exit
-if [ -z "$usb_device" ]; then
-  log_message "No USB drive found."
+if [ -z "$usb_path" ]; then
+  message="No USB drive found."
+  echo "USB config: $message"
+  logger "USB config: $message"
   exit_script 0
 fi
 
@@ -51,19 +57,15 @@ if [ ! -d "$mount_point" ]; then
   sudo mkdir -p "$mount_point"
 fi
 
-# Construct the full device path
-usb_device="/dev/$usb_device"
-
-
 # Debugging: Log and echo the extracted device name
-log_message "Detected USB drive: $usb_device"
+log_message "USB device found: $full_device_path"
 
 # Check if the USB drive is already mounted
-if mount | grep "$usb_device" > /dev/null; then
+if mount | grep "$full_device_path" > /dev/null; then
   log_message "USB drive is already mounted."
 else
   # Mount the USB drive to the specified mount point
-  sudo mount "$usb_device" "$mount_point"
+  sudo mount "$full_device_path" "$mount_point"
   if [ $? -eq 0 ]; then
     log_message "USB drive mounted successfully at $mount_point."
   else
@@ -73,8 +75,8 @@ else
   fi
 fi
 
-wpa_supplicant_conf="/etc/wpa_supplicant/wpa_supplicant.conf"
-usb_config="/tmp/femtofox-config.txt"
+  wpa_supplicant_conf="/etc/wpa_supplicant/wpa_supplicant.conf"
+  usb_config="/tmp/femtofox-config.txt"
 
 # Check if the mounted USB drive contains a file femtofox-config.txt
 if [ -f "$mount_point/femtofox-config.txt" ]; then
@@ -184,7 +186,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
       timezone=$(echo "$timezone" | sed 's/\\//g')
       log_message "Updating system timezone to $timezone."
       rm /etc/localtime
-      ln -sf /usr/share/zoneinfo/$timezone /etc/localtime >> /home/femto/femtofox-config.log 2>&1
+      ln -sf /usr/share/zoneinfo/$timezone /etc/localtime >> /tmp/femtofox-config.log 2>&1
       found_config="true"
   fi
 
@@ -220,14 +222,14 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
   if [ "$found_config" = true ]; then #if we found a config file containing valid data
 
     if [ "$update_wifi" = true ]; then #if wifi config found, restart wifi
-      sudo systemctl restart wpa_supplicant 2>&1 | sudo tee -a /home/femto/femtofox-config.log
-      sudo wpa_cli -i wlan0 reconfigure 2>&1 | sudo tee -a /home/femto/femtofox-config.log
+      sudo systemctl restart wpa_supplicant 2>&1 | sudo tee -a /tmp/femtofox-config.log
+      sudo wpa_cli -i wlan0 reconfigure 2>&1 | sudo tee -a /tmp/femtofox-config.log
       log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi setting."
-      sudo dhclient 2>&1 | sudo tee -a /home/femto/femtofox-config.log
+      sudo dhclient 2>&1 | sudo tee -a /tmp/femtofox-config.log
 
       for retries in $(seq 1 3); do
-        meshtastic --host --set network.wifi_enabled true 2>&1 | sudo tee -a /home/femto/femtofox-config.log
-        if tail -n 1 "/home/femto/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
+        meshtastic --host --set network.wifi_enabled true 2>&1 | sudo tee -a /tmp/femtofox-config.log
+        if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
           if [ "$retries" -lt 3 ]; then
             log_message "Meshtastic update failed, retrying ($(($retries + 1))/3)..."
             sleep 2 # Add a small delay before retrying
@@ -236,7 +238,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
           break
         fi
       done
-      if tail -n 1 "/home/femto/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
+      if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
         log_message "Failed to update Meshtastic wifi setting to 'enabled' after 3 attempts."
         for _ in $(seq 1 2); do # do meshtastic error boot code
           blink "1" && sleep 0.25 && blink "1" && sleep 0.25
@@ -248,8 +250,8 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     if [ "$update_meshtastic" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic"
       for retries in $(seq 1 3); do
-        meshtastic --host $update_meshtastic 2>&1 | sudo tee -a /home/femto/femtofox-config.log
-        if tail -n 1 "/home/femto/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
+        meshtastic --host $update_meshtastic 2>&1 | sudo tee -a /tmp/femtofox-config.log
+        if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
           if [ "$retries" -lt 3 ]; then
             log_message "Meshtastic update failed, retrying ($(($retries + 1))/3)..."
             sleep 2 # Add a small delay before retrying
@@ -258,7 +260,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
           break
         fi
       done
-      if tail -n 1 "/home/femto/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
+      if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
         log_message "Failed to update Meshtastic after 3 attempts."
         for _ in $(seq 1 2); do # do meshtastic error boot code
           blink "1" && sleep 0.25 && blink "1" && sleep 0.25
