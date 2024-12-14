@@ -109,7 +109,7 @@
 <td></td>
 </tr>
 <tr>
-<td>rtl8188eu, rtl8188eus</td>
+<td>rtl8188eu<br>rtl8188eus<br>rtl8188cus</td>
 <td>✔️</td>
 <td>✔️</td>
 <td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.026w</td>
@@ -145,17 +145,10 @@
 </tr>
 <tr>
 <td>rtl8192cu</td>
+<td>✔️</td>
+<td>❔</td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8192cu</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/Edimax_EW-7811Un">Edimax EW-7811Un</a>: working</td>
 </tr>
 <tr>
 <td>rtl8192de</td>
@@ -181,7 +174,7 @@
 <tr>
 <td>rtl8192eu</td>
 <td>✔️</td>
-<td>❔</td>
+<td>❌</td>
 <td></td>
 <td>Buggy</td>
 </tr>
@@ -492,6 +485,13 @@
 <td></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>rt3070</td>
+<td>✔️</td>
+<td>❔</td>
+<td></td>
+<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/ALFA_Network_AWUS036NEH">Alfa AWUS036NEH</a>: buggy</td>
 </tr>
 <tr>
 <td>rt33xx</td>
