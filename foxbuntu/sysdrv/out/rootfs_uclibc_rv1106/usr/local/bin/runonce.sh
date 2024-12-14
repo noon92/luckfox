@@ -20,8 +20,9 @@ echo "$msg"
 logger "$msg"
 systemctl daemon-reload
 systemctl enable meshtasticd
+systemctl start meshtasticd
 
-# enable wifi in meshtastic settings. Because this is very important, we'll try 5 times.
+# enable wifi in meshtastic settings. Because this is very important, we'll try 10 times.
 msg="First boot: Enabling wifi setting in Meshtasticd."
 echo "$msg"
 logger "$msg"
@@ -29,7 +30,7 @@ for retries in $(seq 1 10); do
   output=$(meshtastic --host --set network.wifi_enabled true 2>&1)
   echo "$output"
   if echo "$output" | grep -qiE "Abort|invalid|Error"; then
-    if [ "$retries" -lt 3 ]; then
+    if [ "$retries" -lt 10 ]; then
       msg="First boot: Meshtastic update failed, retrying ($(($retries + 1))/10)..."
       echo "$msg"
       logger "$msg"
