@@ -365,7 +365,7 @@
 <td>✔️</td>
 <td>❔</td>
 <td></td>
-<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V1</strong></a>: working<br><a href="https://www.aliexpress.com/item/1005007556237899.html">Generic AR9271 w/SMA antenna</a>: buggy<br>Work in progress</td>
+<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V1</strong></a>: working<br><a href="https://www.thinkpenguin.com/gnu-linux/penguin-wireless-n-usb-adapter-gnu-linux-tpe-n150usb">Penguin Wireless TPE-N150USB</a>: working<br><a href="https://www.aliexpress.com/item/1005007556237899.html">Generic AR9271 w/SMA antenna</a>: buggy<br>Work in progress</td>
 </tr>
 <tr>
 <td>ar9k</td>
