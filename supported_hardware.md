@@ -181,7 +181,7 @@
 <tr>
 <td>rtl8192eu</td>
 <td>✔️</td>
-<td>❌</td>
+<td>❔</td>
 <td></td>
 <td>Buggy</td>
 </tr>
