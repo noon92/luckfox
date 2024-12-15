@@ -29,20 +29,8 @@ systemctl start meshtasticd
 msg="First boot: Enabling wifi setting in Meshtasticd."
 echo "$msg"
 logger "$msg"
-for retries in $(seq 1 10); do
-  output=$(meshtastic --host --set network.wifi_enabled true 2>&1)
-  echo "$output"
-  if echo "$output" | grep -qiE "Abort|invalid|Error"; then
-    if [ "$retries" -lt 10 ]; then
-      msg="First boot: Meshtastic update failed, retrying ($(($retries + 1))/10)..."
-      echo "$msg"
-      logger "$msg"
-      sleep 2 # Add a small delay before retrying
-    fi
-  else
-    break
-  fi
-done
+/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
+/usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
 
 rm /usr/local/bin/.firstboot
 msg="First boot: Removing first boot flag and rebooting..."

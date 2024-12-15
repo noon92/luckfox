@@ -227,45 +227,21 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
       log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi setting."
       sudo dhclient 2>&1 | sudo tee -a /tmp/femtofox-config.log
 
-      for retries in $(seq 1 3); do
-        meshtastic --host --set network.wifi_enabled true 2>&1 | sudo tee -a /tmp/femtofox-config.log
-        if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
-          if [ "$retries" -lt 3 ]; then
-            log_message "Meshtastic update failed, retrying ($(($retries + 1))/3)..."
-            sleep 2 # Add a small delay before retrying
-          fi
-        else
-          break
-        fi
-      done
-      if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
-        log_message "Failed to update Meshtastic wifi setting to 'enabled' after 3 attempts."
-        for _ in $(seq 1 2); do # do meshtastic error boot code
-          blink "1" && sleep 0.25 && blink "1" && sleep 0.25
-          blink "0.25" && sleep 0.25 && blink "0.25" && sleep 0.25
-        done
+      /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 3 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      if [ $? -eq 1 ]; then
+        log_message "Update of Meshtastic FAILED."
+      else
+        log_message "Updated Meshtastic successfully."
       fi
     fi
 
     if [ "$update_meshtastic" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic"
-      for retries in $(seq 1 3); do
-        meshtastic --host $update_meshtastic 2>&1 | sudo tee -a /tmp/femtofox-config.log
-        if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
-          if [ "$retries" -lt 3 ]; then
-            log_message "Meshtastic update failed, retrying ($(($retries + 1))/3)..."
-            sleep 2 # Add a small delay before retrying
-          fi
-        else
-          break
-        fi
-      done
-      if tail -n 1 "/tmp/femtofox-config.log" | grep -qiE "Abort|invalid|Error"; then
-        log_message "Failed to update Meshtastic after 3 attempts."
-        for _ in $(seq 1 2); do # do meshtastic error boot code
-          blink "1" && sleep 0.25 && blink "1" && sleep 0.25
-          blink "0.25" && sleep 0.25 && blink "0.25" && sleep 0.25
-        done
+      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic" 3 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      if [ $? -eq 1 ]; then
+        log_message "Update of Meshtastic FAILED."
+      else
+        log_message "Updated Meshtastic successfully."
       fi
     fi
 
