@@ -67,7 +67,7 @@ There are four methods to get online:
 |10/52|1C4    |UART4-TX      |  |13/57|1D1    |UART3-RX, NRST|
 |11/53|1C5    |UART4-RX      |  |12/56|1D0    |UART3-TX, RXEN|
 
-- [Pin ID explanation](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Login-UART/): **1C6** = GPIO bank **1**, group **C**, pin **6**.
+- [Pin ID explanation](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-GPIO): **1C6** = GPIO bank **1**, group **C**, pin **6**.
 - In Meshtasticd's config.yaml we use GPIO bank 1, and subtract 32 from the pin number.
 - [UART](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Login-UART/) at 3.3v for console access, can use a rPi(GPIO14/15) and minicom or [tio](https://github.com/tio/tio)
 
