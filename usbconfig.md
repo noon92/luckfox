@@ -7,7 +7,7 @@ Configurable settings are:
  - Wifi PSK (password)
  - Wifi country
  - Timezone
- - Meshtastic:
+ - Meshtastic: 
      - LoRa radio model
 	 - [URL](https://meshtastic.org/docs/software/python/cli/#--seturl-seturl) (used to configure LoRa settings and channels)
 	 - Security: Add Admin Key
@@ -72,5 +72,5 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDkzMDI2MTM1XX0=
+eyJoaXN0b3J5IjpbLTExMzQxOTk3NDMsNDkzMDI2MTM1XX0=
 -->
