@@ -56,16 +56,16 @@
 <li>Insert the microSD card into the Luckfox Pico Mini.</li>
 <li>Configure the system with a USB drive as described in <a href="usb_config.md">USB Configuration Tool</a>.</li>
 </ol>
-<h3 id="pinout">Pinout:</h3>
+<h3 id="pinout">LuckFox Pinout:</h3>
 
 <table>
 <thead>
 <tr>
-<th>Pin #</th>
+<th>LuckFoxPin #</th>
 <th>Pin ID</th>
 <th>Function</th>
-<th>Luckfox</th>
-<th>Pin #</th>
+<th>    </th>
+<th>LuckFoxPin #</th>
 <th>Pin ID</th>
 <th>Function</th>
 </tr>
@@ -171,8 +171,10 @@
 <td>UART3-TX, RXEN</td>
 </tr>
 </tbody>
-</table><p>Pin ID explanation: <strong>1C6</strong> = GPIO bank <strong>1</strong>, group <strong>C</strong>, pin <strong>6</strong>.<br>
+</table>
+<p><a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-GPIO">Pin ID explanation</a>: <strong>1C6</strong> = GPIO bank <strong>1</strong>, group <strong>C</strong>, pin <strong>6</strong>.<br>
 In Meshtasticd’s config.yaml we use GPIO bank 1, and subtract 32 from the pin number.</p>
+<p><a href="https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Login-UART/">UART</a>@3.3v for console access, can use a rPi(GPIO14/15) and minicom or <a href"https://github.com/tio/tio">tio</a></p>
 <p><img src="https://github.com/noon92/luckfox/blob/main/luckfox_pinout.png" alt="pinout"><br>
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg" alt="pinout"></p>
 <blockquote>
