@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#resize filesystem to fill partition
+/usr/bin/filesystem_resize.sh
+
 # prevent randomized mac address for eth0
 msg="First boot: Setting eth0 MAC address to derivative of CPU s/n."
 echo "$msg"
