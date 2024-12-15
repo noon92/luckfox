@@ -1,6 +1,6 @@
 <img src="https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_tiny_linux_board.jpg" width="400">
 
-# Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>The tiny, low power Linux Meshtastic node
+# Femtofox: Linux embedded Meshtastic node
 #### The Luckfox Pico Mini is a compact and power efficient Linux capable board, capable of running Ubuntu. Femtofox is an expansion of the Luckfox's capabilities, combining a customized Ubuntu image with a custom PCB, integrating it with a LoRa radio to create a power efficient, cheap and small Meshtastic Linux node.
 
 **Features:**
@@ -52,23 +52,24 @@ There are four methods to get online:
 3. Insert the microSD card into the Luckfox Pico Mini.
 4. Configure the system with a USB drive as described in [USB Configuration Tool](usb_config.md).
 
-### Pinout:
-|Pin #|Pin ID |Function      |Luckfox |Pin #|Pin ID |Function      |
-|-----|-------|--------------|--------|-----|-------|--------------|
-|1    |VBus   |5V in/out     |        |22   |1V8    |1.8V out      |
-|2    |GND    |              |        |21   |GND    |              |
-|3    |3V3    |3.3V out      |        |20   |4C1    |1v8 IO, SARADC|
-|4/42 |1B2    |Debug UART2-TX|        |19   |4C0    |1v8 IO, SARADC|
-|5/43 |1B3    |Debug UART2-RX|        |18/4 |0A4    |3v3 IO        |
-|6/48 |1C0    |CS0, IO       |        |17/55|1C7    |IRQ, IO       |
-|7/49 |1C1    |CLK, IO       |        |16/54|1C6    |BUSY, IO      |
-|8/50 |1C2    |MOSI, IO      |        |15/59|1D3    |i2c SCL       |
-|9/51 |1C3    |MISO, IO      |        |14/58|1D2    |i2c SDA       |
-|10/52|1C4    |UART4-TX      |        |13/57|1D1    |UART3-RX, NRST|
-|11/53|1C5    |UART4-RX      |        |12/56|1D0    |UART3-TX, RXEN|
+### LuckFox Pinout:
+|Pin #|Pin ID |Function      |  |Pin #|Pin ID |Function      |
+|-----|-------|--------------|--|-----|-------|--------------|
+|1    |VBus   |5V in/out     |  |22   |1V8    |1.8V out      |
+|2    |GND    |              |  |21   |GND    |              |
+|3    |3V3    |3.3V out      |  |20   |4C1    |1v8 IO, SARADC|
+|4/42 |1B2    |Debug UART2-TX|  |19   |4C0    |1v8 IO, SARADC|
+|5/43 |1B3    |Debug UART2-RX|  |18/4 |0A4    |3v3 IO        |
+|6/48 |1C0    |CS0, IO       |  |17/55|1C7    |IRQ, IO       |
+|7/49 |1C1    |CLK, IO       |  |16/54|1C6    |BUSY, IO      |
+|8/50 |1C2    |MOSI, IO      |  |15/59|1D3    |i2c SCL       |
+|9/51 |1C3    |MISO, IO      |  |14/58|1D2    |i2c SDA       |
+|10/52|1C4    |UART4-TX      |  |13/57|1D1    |UART3-RX, NRST|
+|11/53|1C5    |UART4-RX      |  |12/56|1D0    |UART3-TX, RXEN|
 
-Pin ID explanation: **1C6** = GPIO bank **1**, group **C**, pin **6**.
-In Meshtasticd's config.yaml we use GPIO bank 1, and subtract 32 from the pin number.
+- [Pin ID explanation](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Login-UART/): **1C6** = GPIO bank **1**, group **C**, pin **6**.
+- In Meshtasticd's config.yaml we use GPIO bank 1, and subtract 32 from the pin number.
+- [UART](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Login-UART/) at 3.3v for console access, can use a rPi(GPIO14/15) and minicom or [tio](https://github.com/tio/tio)
 
 ![pinout](https://github.com/noon92/luckfox/blob/main/luckfox_pinout.png)
 ![pinout](https://github.com/noon92/luckfox/blob/main/luckfox_pico_mini_original_wiring_diagram.jpg)
