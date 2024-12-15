@@ -1,714 +1,107 @@
----
+## Supported Hardware
+| Hardware | Confirmed working | Expected to work | Notes |
+|-|-|-|--|
+|LoRa radios (working with Meshtasticd)|<li>[Waveshare RPi LoRa hat without GNSS](https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002)*<li>[Seeed Wio SX1262](https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html)<li>[Ebyte E220900M30S](https://aliexpress.com/item/4000543921245.html)<li>AI Thinker RA-01SH<li>[Heltec HT-RA62](https://www.aliexpress.com/item/1005005445349105.html)|<li>Ebyte E22-900mm22s<li>[Ebyte E22-900m22s](https://www.aliexpress.com/item/1005001808069127.html)<li>Any SPI LoRa radio that's Meshtastic compatible|*Waveshare RPi hat is not recommended as it has issues with sending longer messages.|  |
+|MicroSD cards|<li>[Kingston Endurance 32gb](https://www.kingston.com/en/memory-cards/high-endurance-microsd-card)<li>[Sandisk Ultra UHS-I 32gb](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQUA4-032G-GN6MA)|Any reasonably fast (UHS-I or better) card with 8gb or more|Stick with reputable manufacturers (Kingston, PNY Samsung, Sandisk, Transcend...)<br>The faster the better! Consider sticking with "endurance" cards, especially for remotely deployed nodes.|  |
+|RTC (real time clock)|<li>[DS3231M](https://vi.aliexpress.com/item/1005007143842437.html)<li>[DS1307](https://vi.aliexpress.com/item/1005007143542894.html)|DS1337, DS1338, DS1340, other DS3231 variants                                                                                                          |Some DS3231 modules are listed as having a supercapacitor - these are usually actually lithium coin cells.|  |
+|Meshtastic nodes|USB+UART: [RAK4631 with RAK19007 or RAK19003 base board](https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit)|                                                                                                                                                       |RAK4630 and 4631 are the same.|  |
+|USB wifi adapter chipsets|||See below                                                                                                                                                                                    |  |
+|Misc. hardware|<li>USB hubs (powered or not)<li>Thumb drives<li>SD card readers||If power draw exceeds supply, the device will reboot, bootloop or hard crash. Unpowered USB hubs seem to be notorious for causing reboots.|  |
 
+### Wifi chipsets
+The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.
 
----
-
-<h2 id="supported-hardware">Supported Hardware</h2>
-
-<table>
-<thead>
-<tr>
-<th>Hardware</th>
-<th>Confirmed working</th>
-<th>Expected to work</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>LoRa radios (working with Meshtasticd)</td>
-<td><li><a href="https://www.waveshare.com/sx1262-lorawan-hat.htm?sku=22002">Waveshare RPi LoRa hat without GNSS</a>*</li><li><a href="https://www.seeedstudio.com/Wio-SX1262-Wireless-Module-p-5981.html">Seeed Wio SX1262</a></li><li><a href="https://aliexpress.com/item/4000543921245.html">Ebyte E220900M30S</a></li><li>AI Thinker RA-01SH</li><li><a href="https://www.aliexpress.com/item/1005005445349105.html">Heltec HT-RA62</a></li></td>
-<td><li>Ebyte E22-900mm22s</li><li><a href="https://www.aliexpress.com/item/1005001808069127.html">Ebyte E22-900m22s</a></li><li>Any SPI LoRa radio that’s Meshtastic compatible</li></td>
-<td>*Waveshare RPi hat is not recommended as it has issues with sending longer messages.</td>
-</tr>
-<tr>
-<td>MicroSD cards</td>
-<td><li><a href="https://www.kingston.com/en/memory-cards/high-endurance-microsd-card">Kingston Endurance 32gb</a></li><li><a href="https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQUA4-032G-GN6MA">Sandisk Ultra UHS-I 32gb</a></li></td>
-<td>Any reasonably fast (UHS-I or better) card with 8gb or more</td>
-<td>Stick with reputable manufacturers (Kingston, PNY Samsung, Sandisk, Transcend…)<br>The faster the better! Consider sticking with “endurance” cards, especially for remotely deployed nodes.</td>
-</tr>
-<tr>
-<td>RTC (real time clock)</td>
-<td><li><a href="https://vi.aliexpress.com/item/1005007143842437.html">DS3231M</a></li><li><a href="https://vi.aliexpress.com/item/1005007143542894.html">DS1307</a></li></td>
-<td>DS1337, DS1338, DS1340, other DS3231 variants</td>
-<td>Some DS3231 modules are listed as having a supercapacitor - these are usually actually lithium coin cells.</td>
-</tr>
-<tr>
-<td>Meshtastic nodes</td>
-<td>USB+UART: <a href="https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit">RAK4631 with RAK19007 or RAK19003 base board</a></td>
-<td></td>
-<td>RAK4630 and 4631 are the same.</td>
-</tr>
-<tr>
-<td>USB wifi adapter chipsets</td>
-<td></td>
-<td></td>
-<td>See below</td>
-</tr>
-<tr>
-<td>Misc. hardware</td>
-<td><li>USB hubs (powered or not)</li><li>Thumb drives</li><li>SD card readers</li></td>
-<td></td>
-<td>If power draw exceeds supply, the device will reboot, bootloop or hard crash. Unpowered USB hubs seem to be notorious for causing reboots.</td>
-</tr>
-</tbody>
-</table><h3 id="wifi-chipsets">Wifi chipsets</h3>
-<p>The following wifi chipsets/devices have their drivers included in the OS images. Most of these have not been tested. Note that power consumption metrics are for a specific version of a chipset and may not apply to all implementations.</p>
-
-<table>
-<thead>
-<tr>
-<th>Chipset:</th>
-<th>Tested?</th>
-<th>Recommended?</th>
-<th>Power usage</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong><u>Realtek:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8187</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8187b</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8188[cr]u</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8188cu</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8188ee</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8188eu<br>rtl8188eus<br>rtl8188cus</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.026w</td>
-<td>Model tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2">TP-LINK TL-WN725N <strong>V2</strong></a>: working<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V4</strong></a>: working (v2, v3 <em>should</em> be identical)</td>
-</tr>
-<tr>
-<td>rtl8188ru</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl819[12]cu</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8191cu</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8192ce</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8192cu</td>
-<td>✔️</td>
-<td>❔</td>
-<td></td>
-<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/Edimax_EW-7811Un">Edimax EW-7811Un</a>: working</td>
-</tr>
-<tr>
-<td>rtl8192de</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8192e</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8192ee</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8192eu</td>
-<td>✔️</td>
-<td>❌</td>
-<td></td>
-<td>Buggy</td>
-</tr>
-<tr>
-<td>rtl8192se</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8273,8188,8191,8192</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8712u</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8723ae</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8723au</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8723be</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8821ae</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rtl8821au</td>
-<td>✔️</td>
-<td>❌</td>
-<td></td>
-<td>Tested:<br><a href="https://www.tp-link.com/us/home-networking/usb-adapter/archer-t2u-plus/">TP-Link Archer T2U Plus</a>: <strong>NOT</strong> working</td>
-</tr>
-<tr>
-<td>rtl8xxx other</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>Mediatek:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mt7601u</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>Idle: 0.739w</td>
-<td>Tested:<br><a href="https://www.amazon.com/dp/B0BNFKJPXS">Genbasic RF 2A4M1</a>: working</td>
-</tr>
-<tr>
-<td>mt76x0u</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mt76x2u</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mt7663s</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mt7663u</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>Atheros:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar5008</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar5523</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar6003</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar6004</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar9001</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar9002</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar9170</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar9271</td>
-<td>✔️</td>
-<td>❔</td>
-<td></td>
-<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x">TP-Link TL-WR722N <strong>V1</strong></a>: working<br><a href="https://www.thinkpenguin.com/gnu-linux/penguin-wireless-n-usb-adapter-gnu-linux-tpe-n150usb">Penguin Wireless TPE-N150USB</a>: buggy<br><a href="https://www.aliexpress.com/item/1005007556237899.html">Generic AR9271 w/SMA antenna</a>: buggy<br>Work in progress</td>
-</tr>
-<tr>
-<td>ar9k</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ath11k</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ar10k</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>wcn3660</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>wcn3680</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>Ralink:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt2501/rt73</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt2571</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt2571w</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt2572</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt2573</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt25xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt2671</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt27xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt28xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt28xx unknown</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt30xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt3070</td>
-<td>✔️</td>
-<td>❔</td>
-<td></td>
-<td>Tested:<br><a href="https://techinfodepot.shoutwiki.com/wiki/ALFA_Network_AWUS036NEH">Alfa AWUS036NEH</a>: buggy</td>
-</tr>
-<tr>
-<td>rt33xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt3573</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt35xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt53xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rt55xx</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>Atmel:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>at76c503</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>at76c505</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>at76c505a</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>Microchip Atmel:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>wilc1000</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>Zydas:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>zd1201</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>zd1211</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>zd1211b</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><u>RNDIS USB:</u></strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Asus WL169gE</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Belkin F5D7051</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>BT Voyager 1055</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Buffalo WLI-U2-KG125S</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>BUFFALO WLI-USB-G54</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Eminent EM4045</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Linksys WUSB54GSC</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Linksys WUSB54GSv1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Linksys WUSB54GSv2</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>U.S. Robotics USR5420</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>U.S. Robotics USR5421</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+|Chipset:               |Tested?|Recommended?|Power usage |Notes|
+|-----------------------|-------|------------|------------|-----|
+|**<u>Realtek:**        |       |            |            |     |
+|rtl8187                |       |            |            |     |
+|rtl8187b               |       |            |            |     |
+|rtl8188[cr]u           |       |            |            |     |
+|rtl8188cu              |       |            |            |     |
+|rtl8188ee              |       |            |            |     |
+|rtl8188eu<br>rtl8188eus<br>rtl8188cus|✔️|✔️|Idle: 0.25w<br>TXing: 0.4w<br>Off: 0.026w|Model tested:<br>[TP-LINK TL-WN725N **V2**](https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN725N_v2): working<br>[TP-Link TL-WR722N **V4**](https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x): working (v2, v3 *should* be identical)|
+|rtl8188ru              |       |            |            |     |
+|rtl819[12]cu           |       |            |            |     |
+|rtl8191cu              |       |            |            |     |
+|rtl8192ce              |       |            |            |     |
+|rtl8192cu              |✔️     |❔          |            |Tested:<br>[Edimax EW-7811Un](https://techinfodepot.shoutwiki.com/wiki/Edimax_EW-7811Un): working|
+|rtl8192de              |       |            |            |     |
+|rtl8192e               |       |            |            |     |
+|rtl8192ee              |       |            |            |     |
+|rtl8192eu              |✔️     |❌          |            |Buggy|
+|rtl8192se              |       |            |            |     |
+|rtl8273,8188,8191,8192 |       |            |            |     |
+|rtl8712u               |       |            |            |     |
+|rtl8723ae              |       |            |            |     |
+|rtl8723au              |       |            |            |     |
+|rtl8723be              |       |            |            |     |
+|rtl8821ae              |       |            |            |     |
+|rtl8821au              |✔️     |❌          |            |Tested:<br>[TP-Link Archer T2U Plus](https://www.tp-link.com/us/home-networking/usb-adapter/archer-t2u-plus/): **NOT** working|
+|rtl8xxx other          |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>Mediatek:**       |       |            |            |     |
+|mt7601u                |✔️     |✔️          |Idle: 0.739w|Tested:<br>[Genbasic RF 2A4M1](https://www.amazon.com/dp/B0BNFKJPXS): working|
+|mt76x0u                |       |            |            |     |
+|mt76x2u                |       |            |            |     |
+|mt7663s                |       |            |            |     |
+|mt7663u                |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>Atheros:**        |       |            |            |     |
+|ar5008                 |       |            |            |     |
+|ar5523                 |       |            |            |     |
+|ar6003                 |       |            |            |     |
+|ar6004                 |       |            |            |     |
+|ar9001                 |       |            |            |     |
+|ar9002                 |       |            |            |     |
+|ar9170                 |       |            |            |     |
+|ar9271                 |✔️     |❔          |            |Tested:<br>[TP-Link TL-WR722N **V1**](https://techinfodepot.shoutwiki.com/wiki/TP-LINK_TL-WN722N_v1.x): working<br>[Penguin Wireless TPE-N150USB](https://www.thinkpenguin.com/gnu-linux/penguin-wireless-n-usb-adapter-gnu-linux-tpe-n150usb): buggy<br>[Generic AR9271 w/SMA antenna](https://www.aliexpress.com/item/1005007556237899.html): buggy<br>Work in progress|
+|ar9k                   |       |            |            |     |
+|ath11k                 |       |            |            |     |
+|ar10k                  |       |            |            |     |
+|wcn3660                |       |            |            |     |
+|wcn3680                |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>Ralink:**         |       |            |            |     |
+|rt2501/rt73            |       |            |            |     |
+|rt2571                 |       |            |            |     |
+|rt2571w                |       |            |            |     |
+|rt2572                 |       |            |            |     |
+|rt2573                 |       |            |            |     |
+|rt25xx                 |       |            |            |     |
+|rt2671                 |       |            |            |     |
+|rt27xx                 |       |            |            |     |
+|rt28xx                 |       |            |            |     |
+|rt28xx unknown         |       |            |            |     |
+|rt30xx                 |       |            |            |     |
+|rt3070                 |✔️     |❔          |            |Tested:<br>[Alfa AWUS036NEH](https://techinfodepot.shoutwiki.com/wiki/ALFA_Network_AWUS036NEH): buggy|
+|rt33xx                 |       |            |            |     |
+|rt3573                 |       |            |            |     |
+|rt35xx                 |       |            |            |     |
+|rt53xx                 |       |            |            |     |
+|rt55xx                 |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>Atmel:**          |       |            |            |     |
+|at76c503               |       |            |            |     |
+|at76c505               |       |            |            |     |
+|at76c505a              |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>Microchip Atmel:**|       |            |            |     |
+|wilc1000               |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>Zydas:**          |       |            |            |     |
+|zd1201                 |       |            |            |     |
+|zd1211                 |       |            |            |     |
+|zd1211b                |       |            |            |     |
+|                       |       |            |            |     |
+|**<u>RNDIS USB:**      |       |            |            |     |
+|Asus WL169gE           |       |            |            |     |
+|Belkin F5D7051         |       |            |            |     |
+|BT Voyager 1055        |       |            |            |     |
+|Buffalo WLI-U2-KG125S  |       |            |            |     |
+|BUFFALO WLI-USB-G54    |       |            |            |     |
+|Eminent EM4045         |       |            |            |     |
+|Linksys WUSB54GSC      |       |            |            |     |
+|Linksys WUSB54GSv1     |       |            |            |     |
+|Linksys WUSB54GSv2     |       |            |            |     |
+|U.S. Robotics USR5420  |       |            |            |     |
+|U.S. Robotics USR5421  |       |            |            |     |
