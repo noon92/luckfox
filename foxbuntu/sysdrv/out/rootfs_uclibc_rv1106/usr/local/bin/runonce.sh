@@ -29,8 +29,8 @@ systemctl start meshtasticd
 msg="First boot: Enabling wifi setting in Meshtasticd."
 echo "$msg"
 logger "$msg"
-#/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
-#/usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
+/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
+/usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
 
 rm /usr/local/bin/.firstboot
 msg="First boot: Removing first boot flag and rebooting..."
