@@ -34,32 +34,7 @@ echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction 
   # fi
   # ) &
 
-# if RTC recognized
-if ls /dev/rtc* 1> /dev/null 2>&1; then
-  rtc="true"
-  if sudo hwclock -s 2>&1 | grep -a failed > /dev/null 2>&1; then
-    echo "RTC device found but failed to get time."
-  else
-    hwclock -s > /dev/null 2>&1 &
-    echo "RTC device found! $(date +"%Y-%m-%d %H:%M:%S %Z")."
-  fi
-else
-  echo "RTC not found."
-  sudo date -s "1 JAN 2024 00:00:00" > /dev/null 2>&1 &
-fi
 
-# try get network time
-date_str=$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')
-if [ -n "$date_str" ]; then
-  sudo date -s "$date_str" > /dev/null 2>&1
-  sudo echo "Got network time: $(date +"%Y-%m-%d %H:%M:%S %Z")."
-  if [ "$rtc" = "true" ]; then
-    echo "Setting RTC to network time."
-    sudo hwclock -w &
-  fi
-else
-  echo "Failed to fetch network time, using $(date +"%Y-%m-%d %H:%M:%S %Z") instead."
-fi
 
 # necessary for internet over usb in otg mode (see https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/)
 #sleep 5 && route add default gw 172.32.0.100 && echo "nameserver 8.8.8.8" >> /etc/resolv.conf
@@ -67,8 +42,6 @@ fi
 # does not appear to lower power consumption, but needs more testing
 #(sleep 5 && cpufreq-set -u 408000 && echo "Boot complete, setting CPU frequency to 408mhz.") &
 
-(
-  sleep 5
   # run USB automount and config tool
   /usr/local/bin/usbconfig.sh
 
@@ -85,8 +58,8 @@ fi
       echo 0 > /sys/class/gpio/gpio34/value;
       sleep 0.5;
     done
-  ) 
+  )
   echo "Boot complete."
-) &
+
 
 exit 0
