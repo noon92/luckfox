@@ -67,22 +67,26 @@ fi
 # does not appear to lower power consumption, but needs more testing
 #(sleep 5 && cpufreq-set -u 408000 && echo "Boot complete, setting CPU frequency to 408mhz.") &
 
-# run USB automount and config tool
-/usr/local/bin/usbconfig.sh
-
-# boot complete
 (
-  echo "Disabling ACT LED..."
-  echo "none" > /sys/class/leds/work/trigger &
-  sleep 1
+  sleep 5
+  # run USB automount and config tool
+  /usr/local/bin/usbconfig.sh
 
- # blink successful boot code
-  for i in $(seq 1 5); do
-    echo 1 > /sys/class/gpio/gpio34/value;
-    sleep 0.5;
-    echo 0 > /sys/class/gpio/gpio34/value;
-    sleep 0.5;
-  done
+  # boot complete
+  (
+    echo "Disabling ACT LED..."
+    echo "none" > /sys/class/leds/work/trigger &
+    sleep 1
+
+  # blink successful boot code
+    for i in $(seq 1 5); do
+      echo 1 > /sys/class/gpio/gpio34/value;
+      sleep 0.5;
+      echo 0 > /sys/class/gpio/gpio34/value;
+      sleep 0.5;
+    done
+  ) 
+  echo "Boot complete."
 ) &
 
 exit 0
