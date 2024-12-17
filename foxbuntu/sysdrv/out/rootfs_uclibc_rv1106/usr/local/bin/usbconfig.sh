@@ -227,7 +227,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
       log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi setting."
       sudo dhclient 2>&1 | sudo tee -a /tmp/femtofox-config.log
 
-      /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 3 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 7 "USB config" #| sudo tee -a /tmp/femtofox-config.log
       if [ $? -eq 1 ]; then
         log_message "Update of Meshtastic FAILED."
       else
@@ -237,7 +237,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
 
     if [ "$update_meshtastic" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic"
-      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic" 3 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic" 7 "USB config" #| sudo tee -a /tmp/femtofox-config.log
       if [ $? -eq 1 ]; then
         log_message "Update of Meshtastic FAILED."
       else
