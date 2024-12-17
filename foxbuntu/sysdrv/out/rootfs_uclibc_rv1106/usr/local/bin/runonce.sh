@@ -22,17 +22,8 @@ msg="First boot: Using Luckfox CPU S/N to generate nodeid for Meshtastic."
 echo "$msg"
 logger "$msg"
 systemctl daemon-reload
-msg="daemon reloaded"
-echo "$msg"
-logger "$msg"
 systemctl enable meshtasticd
-msg="meshtasticd enabled"
-echo "$msg"
-logger "$msg"
 systemctl start meshtasticd
-msg="meshtasticd started"
-echo "$msg"
-logger "$msg"
 
 # enable wifi in meshtastic settings. Because this is very important, we'll try 10 times.
 msg="First boot: Enabling wifi setting in Meshtasticd."
@@ -40,6 +31,9 @@ echo "$msg"
 logger "$msg"
 #/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
 /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
+
+sudo sed -i '/^After=network-online.target/a After=rc-local.service' /usr/lib/systemd/system/meshtasticd.service
+systemctl daemon-reload
 
 rm /usr/local/bin/.firstboot
 msg="First boot: Removing first boot flag and rebooting..."
