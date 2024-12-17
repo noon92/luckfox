@@ -7,7 +7,7 @@ for retries in $(seq 1 $attempts); do
   
   output=$(meshtastic --host 127.0.0.1 $command >&2) #>&2 lets meshtastic's output display on screen
   
-  if echo "$output" | grep -qiE "Abort|invalid|Error|refused"; then
+  if echo "$output" | grep -qiE "Abort|invalid|Error|refused|Errno"; then
     if [ "$retries" -lt $attempts ]; then
       msg="${ref:+$ref }Meshtastic update failed, retrying ($(($retries + 1))/$attempts)..."
       echo "$msg"

@@ -32,6 +32,9 @@ logger "$msg"
 #/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
 /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
 
+msg="First boot: Adding rc.local completion condition to Meshtasticd service."
+echo "$msg"
+logger "$msg"
 sudo sed -i '/^After=network-online.target/a After=rc-local.service' /usr/lib/systemd/system/meshtasticd.service
 systemctl daemon-reload
 
