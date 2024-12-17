@@ -22,8 +22,17 @@ msg="First boot: Using Luckfox CPU S/N to generate nodeid for Meshtastic."
 echo "$msg"
 logger "$msg"
 systemctl daemon-reload
+msg="daemon reloaded"
+echo "$msg"
+logger "$msg"
 systemctl enable meshtasticd
+msg="meshtasticd enabled"
+echo "$msg"
+logger "$msg"
 systemctl start meshtasticd
+msg="meshtasticd started"
+echo "$msg"
+logger "$msg"
 
 # enable wifi in meshtastic settings. Because this is very important, we'll try 10 times.
 msg="First boot: Enabling wifi setting in Meshtasticd."
