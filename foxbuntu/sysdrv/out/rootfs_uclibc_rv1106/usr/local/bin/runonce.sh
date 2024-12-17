@@ -34,7 +34,6 @@ logger "$msg"
 msg="First boot: Adding rc.local completion condition to Meshtasticd service."
 echo "$msg"
 logger "$msg"
-sudo sed -i '/^After=network-online.target/a After=rc-local.service' /usr/lib/systemd/system/meshtasticd.service
 systemctl daemon-reload
 
 rm /usr/local/bin/.firstboot
