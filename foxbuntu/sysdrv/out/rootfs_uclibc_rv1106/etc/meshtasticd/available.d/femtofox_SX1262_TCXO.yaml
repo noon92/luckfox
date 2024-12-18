@@ -14,7 +14,7 @@ Lora:
   Reset: 25 #pin13 / GPIO57 1D1
   RXen: 24 #pin12 / GPIO56 1D0 # Not strictly needed for auto-switching, but why complicate things?
 #  TXen: bridge to DIO2 on E22 module
-  spidev: spidev0.0
+  spidev: spidev0.0 #pins are (CS=6, CLK=7, MOSI=8, MISO=9)
   spiSpeed: 2000000
   
   General:
