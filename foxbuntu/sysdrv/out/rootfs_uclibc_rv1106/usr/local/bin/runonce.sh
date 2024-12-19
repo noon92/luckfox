@@ -15,7 +15,7 @@ hwaddress ether $(awk '/Serial/ {print $3}' /proc/cpuinfo | tail -c 11 | sed 's/
 EOF
 
 # set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
-seed=$(printf "%d\n" 0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) | tail -c 9)
+seed=$(echo "ibase=16; $(sudo echo $(awk '/Serial/ {print $3}' /proc/cpuinfo) | tr '[:lower:]' '[:upper:]')" | bc | tail -c 9)
 #seed=$((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0x3B9AC9FF)) #alternate method for generating seed - not in use
 sed -i "/^ExecStart=/ s:$: -h $seed:" /usr/lib/systemd/system/meshtasticd.service
 msg="First boot: Using Luckfox CPU S/N to generate nodeid for Meshtastic."
