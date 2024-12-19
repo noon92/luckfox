@@ -45,7 +45,6 @@ meshtastic_legacy_admin="true"
 > * `ai-thinker-ra-01sh`
 > * `none` *(for simradio)*
 > 
-> **Important:** You cannot set URL and security settings in the same operation - if you must set both, set the URL first, then edit the `femtofox-config.txt` file on the USB drive to remove the URL and add in your security settings.
 >
 >To add a `meshtastic_admin_key`, copy it from the app and add `base64:` to the beginning (`meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="`).
 >
@@ -71,6 +70,3 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
  
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNDkzMDI2MTM1XX0=
--->
