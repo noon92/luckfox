@@ -40,7 +40,7 @@ usb_path=$(lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINT | grep -E "vfat|ext4|ntfs|e
 full_device_path="/dev/$usb_path" # Construct the full device path
 
 #if [ -d "$mount_point" ]; then
-#  sudo rmdir "$mount_point"
+#  rmdir "$mount_point"
 #  log_message "/mnt/usb deleted."
 #fi
 
@@ -54,7 +54,7 @@ fi
 
 # Create the mount point if it doesn't exist
 if [ ! -d "$mount_point" ]; then
-  sudo mkdir -p "$mount_point"
+  mkdir -p "$mount_point"
 fi
 
 # Debugging: Log and echo the extracted device name
@@ -65,7 +65,7 @@ if mount | grep "$full_device_path" > /dev/null; then
   log_message "USB drive is already mounted."
 else
   # Mount the USB drive to the specified mount point
-  sudo mount "$full_device_path" "$mount_point"
+  mount "$full_device_path" "$mount_point"
   if [ $? -eq 0 ]; then
     log_message "USB drive mounted successfully at $mount_point."
   else
@@ -149,25 +149,36 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     meshtastic_lora_radio=$(echo "$meshtastic_lora_radio" | tr '[:upper:]' '[:lower:]')
     case "$meshtastic_lora_radio" in
       'ebyte-e22-900m30s')
-        cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900M30S_Ebyte-E22-900M22S.yaml /etc/meshtasticd/config.d
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_TCXO.yaml /etc/meshtasticd/config.d
       ;;
       'ebyte-e22-900m22s')
-        cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900M30S_Ebyte-E22-900M22S.yaml /etc/meshtasticd/config.d
-      ;;
-      'e22-900mm22s')
-        cp /etc/meshtasticd/available.d/femtofox_EByte-E22-900MM22S.yaml /etc/meshtasticd/config.d
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_TCXO.yaml /etc/meshtasticd/config.d
       ;;
       'heltec-ht-ra62')
-        cp /etc/meshtasticd/available.d/femtofox_Heltec-HT-RA62_Seeed-WIO-SX1262.yaml /etc/meshtasticd/config.d
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_TCXO.yaml /etc/meshtasticd/config.d
       ;;
       'seeed-wio-sx1262')
-        cp /etc/meshtasticd/available.d/femtofox_Heltec-HT-RA62_Seeed-WIO-SX1262.yaml /etc/meshtasticd/config.d
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_TCXO.yaml /etc/meshtasticd/config.d
       ;;
       'waveshare-sx126x-xxxm')
-        cp /etc/meshtasticd/available.d/femtofox_Waveshare-SX126X-XXXM_AI-Thinker-RA-01SH.yaml /etc/meshtasticd/config.d
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_XTAL.yaml /etc/meshtasticd/config.d
       ;;
       'ai-thinker-ra-01sh')
-        cp /etc/meshtasticd/available.d/femtofox_Waveshare-SX126X-XXXM_AI-Thinker-RA-01SH.yaml /etc/meshtasticd/config.d
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_XTAL.yaml /etc/meshtasticd/config.d
+      ;;
+      'e80-900m22s')
+        #not yet implemented
+        cp /etc/meshtasticd/available.d/femtofox_LR1121_TCXO.yaml /etc/meshtasticd/config.d
+      ;;
+      'sx1262_tcxo')
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_TCXO.yaml /etc/meshtasticd/config.d
+      ;;
+      'sx1262_xtal')
+        cp /etc/meshtasticd/available.d/femtofox_SX1262_XTAL.yaml /etc/meshtasticd/config.d
+      ;;
+      'lr1121_tcxo')
+        #not yet implemented
+        cp /etc/meshtasticd/available.d/femtofox_LR1121_TCXO.yaml /etc/meshtasticd/config.d
       ;;
       'none')
       ;;
@@ -215,12 +226,12 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
   if [ "$found_config" = true ]; then #if we found a config file containing valid data
     
     if [ "$update_wifi" = true ]; then #if wifi config found, restart wifi
-      sudo systemctl restart wpa_supplicant 2>&1 | sudo tee -a /tmp/femtofox-config.log
-      sudo wpa_cli -i wlan0 reconfigure 2>&1 | sudo tee -a /tmp/femtofox-config.log
+      systemctl restart wpa_supplicant 2>&1 | tee -a /tmp/femtofox-config.log
+      wpa_cli -i wlan0 reconfigure 2>&1 | tee -a /tmp/femtofox-config.log
       log_message "wpa_supplicant.conf updated and wifi restarted. Enabling Meshtastic wifi setting."
-      sudo dhclient 2>&1 | sudo tee -a /tmp/femtofox-config.log
+      timeout 30s dhclient -v 2>&1 | tee -a /tmp/femtofox-config.log
       
-      /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "USB config" #| tee -a /tmp/femtofox-config.log
       if [ $? -eq 1 ]; then
         log_message "Update of Meshtastic FAILED."
       else
@@ -230,7 +241,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
     
     if [ "$update_meshtastic_url" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic_url"
-      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic_url" 10 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic_url" 10 "USB config" #| tee -a /tmp/femtofox-config.log
       if [ $? -eq 1 ]; then
         log_message "Update of Meshtastic FAILED."
       else
@@ -240,7 +251,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
 
     if [ "$update_meshtastic_security" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic_security"
-      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic_security" 10 "USB config" #| sudo tee -a /tmp/femtofox-config.log
+      /usr/local/bin/updatemeshtastic.sh "$update_meshtastic_security" 10 "USB config" #| tee -a /tmp/femtofox-config.log
       if [ $? -eq 1 ]; then
         log_message "Update of Meshtastic FAILED."
       else
