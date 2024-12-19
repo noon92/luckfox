@@ -1,4 +1,4 @@
-<img src="https://github.com/noon92/luckfox/blob/main/KSE_side_shot.png" width="400">
+<img src="https://github.com/noon92/luckfox/blob/main/KSE_side_shot.png" width="750">
 
 
 # Femtofox &nbsp;&nbsp;&nbsp;<sub><sub>The tiny, low power Linux Meshtastic node
