@@ -36,13 +36,9 @@ meshtastic_legacy_admin="true"
 > **Meshtastic**
 > For `meshtastic_lora_radio`, choose your radio from the supported hardware list.
 > Options are: 
-> * `ebyte-e22-900m30sm`
-> * `ebyte-e22-900m22s`
-> * `e22-900mm22s`
-> * `heltec-ht-ra62`
-> * `seeed-wio-sx1262`
-> * `waveshare-sx126x-xxxm`
-> * `ai-thinker-ra-01sh`
+> * `femtofox_SX1262_TCXO` *(for pretty much every module with TCXO)*
+> * `femtofox_SX1262_XTAL` *(for Ebyte E22-900MM22S, AiThinker RA01SH, and Waveshare Pi hat)*
+> * `femtofox_LR1121_TCXO` *(for Ebyte E80-900M2213S)*
 > * `none` *(for simradio)*
 > 
 >
