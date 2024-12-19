@@ -67,5 +67,6 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMTE4MzAwNjVdfQ==
+eyJoaXN0b3J5IjpbLTEwMTczNTExNTgsLTEyMTE4MzAwNjVdfQ
+==
 -->
