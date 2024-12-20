@@ -1,6 +1,6 @@
 #!/bin/bash
-# one line installer
-# cd ~ && wget https://raw.githubusercontent.com/noon92/femtofox/refs/heads/main/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && bash foxbunto_env_setup.sh
+# one line installer SPUD
+# cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && bash foxbunto_env_setup.sh
 cd ~
 if [ -f /etc/os-release ]; then
     . /etc/os-release
