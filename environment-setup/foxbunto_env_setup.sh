@@ -135,7 +135,7 @@ echo "Installing the shell clients for meshtastic..."
 git clone https://github.com/pdxlocations/curses-client-for-meshtastic.git /opt/curses-client-for-meshtastic
 
 # Emesh client for meshtastic
-https://github.com/thecookingsenpai/emesh.git /opt/emesh
+git clone https://github.com/thecookingsenpai/emesh.git /opt/emesh
 
 # Install additional tools
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
