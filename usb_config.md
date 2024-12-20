@@ -36,8 +36,15 @@ meshtastic_legacy_admin="true"
 > **Meshtastic**
 > For `meshtastic_lora_radio`, choose your radio from the supported hardware list.
 > Options are: 
+> * `ebyte-e22-900m30sm`
+> * `ebyte-e22-900m22s`
+> * `e22-900mm22s`
+> * `heltec-ht-ra62`
+> * `seeed-wio-sx1262`
+> * `waveshare-sx126x-xxxm`
+> * `ai-thinker-ra-01sh`
 > * `femtofox_SX1262_TCXO` *(for pretty much every module with TCXO)*
-> * `femtofox_SX1262_XTAL` *(for Ebyte E22-900MM22S, AiThinker RA01SH, and Waveshare Pi hat)*
+> * `femtofox_SX1262_XTAL` *(for AiThinker RA01SH, and Waveshare Pi hat)*
 > * `femtofox_LR1121_TCXO` *(for Ebyte E80-900M2213S)*
 > * `none` *(for simradio)*
 > 
@@ -67,6 +74,6 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTczNTExNTgsLTEyMTE4MzAwNjVdfQ
-==
+eyJoaXN0b3J5IjpbNTExNjYwMjE2LC0xMDE3MzUxMTU4LC0xMj
+ExODMwMDY1XX0=
 -->
