@@ -166,7 +166,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
       'ai-thinker-ra-01sh')
         cp /etc/meshtasticd/available.d/femtofox_SX1262_XTAL.yaml /etc/meshtasticd/config.d
       ;;
-      'e80-900m22s')
+      'ebyte-e80-900m22s')
         #not yet implemented
         cp /etc/meshtasticd/available.d/femtofox_LR1121_TCXO.yaml /etc/meshtasticd/config.d
       ;;
