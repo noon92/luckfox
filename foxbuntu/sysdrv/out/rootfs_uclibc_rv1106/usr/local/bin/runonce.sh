@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -e ! "/usr/local/bin/.firstboot" ]; then
+    echo "Not first boot, exiting."
+    exit 0
+fi
+
 #resize filesystem to fill partition
 /usr/bin/filesystem_resize.sh
 
