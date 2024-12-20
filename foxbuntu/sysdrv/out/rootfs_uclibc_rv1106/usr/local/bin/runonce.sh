@@ -3,6 +3,14 @@
 #resize filesystem to fill partition
 /usr/bin/filesystem_resize.sh
 
+bash <<EOF
+# Add RTC support
+echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-3/new_device
+EOF
+msg="First boot: Added RTC support."
+echo "$msg"
+logger "$msg"
+
 # prevent randomized mac address for eth0
 msg="First boot: Setting eth0 MAC address to derivative of CPU s/n."
 echo "$msg"
