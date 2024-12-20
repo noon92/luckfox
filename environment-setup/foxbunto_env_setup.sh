@@ -18,7 +18,7 @@ if [ "$EUID" -eq 0 ]; then
 fi
 echo
 echo "=========================================="
-echo "           Foxbuntu Build Environment"
+echo "       SPUD Foxbuntu Build Environment"
 echo "=========================================="
 echo
 echo "Setting up new Foxbuntu build environment..."
@@ -59,7 +59,9 @@ sudo ./build.sh
 
 # get the femtofox environment
 cd ~
-git clone https://github.com/noon92/femtofox.git
+git clone https://github.com/SpudGunMan/femtofox/.git
+cd ~/femtofox
+git checkout labwork
 ~/femtofox/foxbuntu/updatefs.sh
 cd ~/luckfox-pico/
 
