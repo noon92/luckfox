@@ -103,7 +103,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 sudo apt update
 
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest meshtasticd screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git chrony python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest meshtasticd screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build
 
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 
@@ -151,6 +151,7 @@ mv /etc/update-motd.d/10-help-text /etc/update-motd.d/10-help-text.bak
 mv /etc/update-motd.d/60-unminimize /etc/update-motd.d/60-unminimize.bak
 
 sudo systemctl enable button
+sudo systemctl enable chronyd
 
 sudo systemctl disable NetworkManager
 sudo systemctl disable NetworkManager-dispatcher
