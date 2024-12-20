@@ -38,6 +38,7 @@ meshtastic_legacy_admin="true"
 > Options are: 
 > * `ebyte-e22-900m30s`
 > * `ebyte-e22-900m22s`
+> * `ebyte-e80-900m22s`
 > * `heltec-ht-ra62`
 > * `seeed-wio-sx1262`
 > * `waveshare-sx126x-xxxm`
@@ -72,7 +73,3 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
  
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4NzI5NDYxMSwtMTAxNzM1MTE1OCwtMT
-IxMTgzMDA2NV19
--->
