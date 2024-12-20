@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -e ! "/usr/local/bin/.firstboot" ]; then
+if [ ! -e "/usr/local/bin/.firstboot" ]; then
     echo "Not first boot, exiting."
     exit 0
 fi
