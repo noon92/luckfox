@@ -38,15 +38,15 @@ meshtastic_legacy_admin="true"
 > Options are: 
 > * `ebyte-e22-900m30s`
 > * `ebyte-e22-900m22s`
-> * `ebyte-e80-900m22s`
+> * `ebyte-e80-900m22s` *(experimental)*
 > * `heltec-ht-ra62`
 > * `seeed-wio-sx1262`
 > * `waveshare-sx126x-xxxm`
 > * `ai-thinker-ra-01sh`
 > * `femtofox_SX1262_TCXO` *(for Ebyte E22-900M30SM, Ebyte E22-900M22S, Heltec HT-RA62, Seeed Wio SX1262)*
 > * `femtofox_SX1262_XTAL` *(for AiThinker RA01SH, and Waveshare Pi hat)*
-> * `femtofox_LR1121_TCXO` *(for Ebyte E80-900M2213S)*
-> * `none` *(for simradio)*
+> * `femtofox_LR1121_TCXO` *(experimental, for Ebyte E80-900M2213S)*
+> * `none` *(for simulated radio)*
 > 
 >
 >To add a `meshtastic_admin_key`, copy it from the app and add `base64:` to the beginning (`meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="`).
@@ -73,6 +73,3 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
  
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0Njk5NDUwMl19
--->
