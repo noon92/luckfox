@@ -151,7 +151,6 @@ mv /etc/update-motd.d/10-help-text /etc/update-motd.d/10-help-text.bak
 mv /etc/update-motd.d/60-unminimize /etc/update-motd.d/60-unminimize.bak
 
 sudo systemctl enable button
-sudo systemctl disable wifi-mesh-control
 
 sudo systemctl disable NetworkManager
 sudo systemctl disable NetworkManager-dispatcher

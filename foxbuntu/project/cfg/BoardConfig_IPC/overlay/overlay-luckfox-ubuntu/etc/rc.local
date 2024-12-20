@@ -18,19 +18,6 @@ fi
 # activating USER LED
 echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction &
 
-# (
-#  if ip addr show wlan0 | grep -q 'inet '; then
-#    echo "Wifi (wlan0) is online.";
-#  else
-    # echo "Wifi (wlan0) is offline.";
-  # fi
-  # if ip addr show eth0 | grep -q 'inet '; then
-    # echo "Onboard ethernet (eth0) is online.";
-  # else
-    # echo "Onboard ethernet (eth0) is offline.";
-  # fi
-  # ) &
-
 # necessary for internet over usb in otg mode (see https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/)
 #sleep 5 && route add default gw 172.32.0.100 && echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 
