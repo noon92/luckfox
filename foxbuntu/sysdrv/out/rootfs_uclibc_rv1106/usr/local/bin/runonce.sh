@@ -3,6 +3,9 @@
 #resize filesystem to fill partition
 /usr/bin/filesystem_resize.sh
 
+# run USB automount and config tool
+/usr/local/bin/usbconfig.sh
+
 # prevent randomized mac address for eth0
 msg="First boot: Setting eth0 MAC address to derivative of CPU s/n."
 echo "$msg"
@@ -26,11 +29,11 @@ systemctl enable meshtasticd
 systemctl start meshtasticd
 
 # enable wifi in meshtastic settings. Because this is very important, we'll try 10 times.
-msg="First boot: Enabling wifi setting in Meshtasticd."
-echo "$msg"
-logger "$msg"
+#msg="First boot: Enabling wifi setting in Meshtasticd."
+#echo "$msg"
+#logger "$msg"
 #/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
-/usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
+#/usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
 
 rm /usr/local/bin/.firstboot
 msg="First boot: Removing first boot flag and rebooting..."

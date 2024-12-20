@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# not really needed after first boot
-/usr/bin/filesystem_resize.sh
-
 # supposedly needed for usb storage, but works anyway
 #/etc/init.d/S50usbdevice start
 
 luckfox-config load
+
+# try enable RTC
+echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
 
 #run only on first boot
 if [ -e "/usr/local/bin/.firstboot" ]; then
@@ -14,9 +14,6 @@ if [ -e "/usr/local/bin/.firstboot" ]; then
   # Wait for runonce.sh to complete
   wait $!
 fi
-
-# try enable RTC
-echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
 
 # activating USER LED
 echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction &
@@ -34,16 +31,12 @@ echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction 
   # fi
   # ) &
 
-
-
 # necessary for internet over usb in otg mode (see https://web.archive.org/web/20241006173648/https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Network-Sharing-1/)
 #sleep 5 && route add default gw 172.32.0.100 && echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 
 # does not appear to lower power consumption, but needs more testing
 #(sleep 5 && cpufreq-set -u 408000 && echo "Boot complete, setting CPU frequency to 408mhz.") &
 
-  # run USB automount and config tool
-  /usr/local/bin/usbconfig.sh
 
   # boot complete
   (
@@ -60,6 +53,5 @@ echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction 
     done
   )
   echo "Boot complete."
-
 
 exit 0
