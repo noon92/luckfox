@@ -59,9 +59,7 @@ sudo ./build.sh
 
 # get the femtofox environment
 cd ~
-git clone https://github.com/SpudGunMan/femtofox/.git
-cd ~/femtofox
-git checkout labwork
+git clone https://github.com/SpudGunMan/femtofox.git && cd ~/femtofox && git checkout labwork
 ~/femtofox/foxbuntu/updatefs.sh
 cd ~/luckfox-pico/
 
