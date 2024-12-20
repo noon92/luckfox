@@ -30,10 +30,13 @@ echo "You will need to answer some questions during the start of the script."
 echo "Please make sure you have a stable internet connection and enough disk space. (20GB)"
 echo "Choose the default of [0] if unknown, and [1] for Ubuntu when prompted."
 echo "When the Kernel build GUI appears, just exit without making any changes."
+echo "sudo may timeout, recomended to possibly disable and reboot."
+printf " 'sudo visudo' and add to bottom '$(whoami)   ALL=(ALL:ALL) NOPASSWD: ALL'"
 echo
 echo "Press Enter to continue, or Ctrl+C to cancel."
 read
 # get the luckfox build environment
+# https://wiki.luckfox.com/Luckfox-Pico/Core3566-SDK/
 if [ -d ~/femtofox ]; then
     echo "WARNING: ~/femtofox exists, this script will overwrite it."
     echo "Press Ctrl+C to cancel, or Enter to continue."
@@ -53,7 +56,7 @@ sudo apt-get install -y git ssh make gcc gcc-multilib g++-multilib module-assist
 
 git clone https://github.com/LuckfoxTECH/luckfox-pico.git
 cd ~/luckfox-pico
-echo "### Choose [1] Ubuntu ### Choose [1] Ubuntu ###"
+
 sudo ./build.sh lunch
 sudo ./build.sh
 
@@ -84,11 +87,17 @@ sudo cp /usr/bin/qemu-arm-static ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/
 echo "Entering chroot and running commands..."
 sudo mount --bind /proc ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/proc && sudo mount --bind /sys ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/sys && sudo mount --bind /dev ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/dev && sudo mount --bind /dev/pts ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/dev/pts
 
-sudo -k chroot ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106 /bin/bash <<EOF
+sudo chroot ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106 /bin/bash <<EOF
 echo "Inside chroot environment..."
 echo "tmpfs /run tmpfs rw,nodev,nosuid,size=32M 0 0" | sudo tee -a /etc/fstab
 
-wget -qO- https://meshtastic.github.io/meshtastic-deb.asc | sudo tee /etc/apt/keyrings/meshtastic-deb.asc >/dev/null
+
+# wget -qO- https://meshtastic.github.io/meshtastic-deb.asc | sudo tee /etc/apt/keyrings/meshtastic-deb.asc >/dev/null
+
+# development version without SEGFAULT issue
+wget -qO- https://github.com/meshtastic/firmware/releases/download/v2.5.11.8e2a3e5/meshtasticd_2.5.11.8e2a3e5_armhf.deb | sudo tee /etc/apt/keyrings/meshtastic-deb.asc >/dev/null
+
+
 
 echo "deb [arch=all signed-by=/etc/apt/keyrings/meshtastic-deb.asc] https://meshtastic.github.io/deb stable main" | sudo tee /etc/apt/sources.list.d/meshtastic-deb.list >/dev/null
 
@@ -139,10 +148,10 @@ git clone https://github.com/thecookingsenpai/emesh.git /opt/emesh
 
 # Install additional tools
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients python-gps
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
 #sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
-#sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
 #sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
 
 ################
@@ -203,6 +212,7 @@ cd ~/luckfox-pico/output/image && sudo ~/luckfox-pico/output/image/blkenvflash ~
 echo "foxbuntu.img build completed."
 cd ~/luckfox-pico
 ls -ls foxbuntu.img
+# https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1106/Luckfox-Pico-Ultra-W/Luckfox-Pico-emmc-burn-image
 echo "use dd, raspi-imager (apply no custom settings), balenaEtcher(ignore error), to burn the image to a microSD card"
 # End of script
 exit 0
