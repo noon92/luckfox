@@ -1,7 +1,7 @@
 
 ## USB Configuration Tool
 To configure some Femtofox settings such as wifi, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.
-&emsp;&emsp;&emsp;			**<a href="assets/femtofox-config.txt" download="assets/femtofox-config.txt">Download a sample USB configuration file here</a>**
+&emsp;&emsp;&emsp;			**<a download="assets/femtofox-config.txt">Download a sample USB configuration file here</a>**
 Configurable settings are:
  - Wifi SSID
  - Wifi PSK (password)
@@ -73,6 +73,3 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
  
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ5MTc4MDUyNl19
--->
