@@ -1,8 +1,8 @@
 
 ## USB Configuration Tool
 To configure some Femtofox settings such as wifi, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.
-&emsp;&emsp;&emsp;&emsp;			**<a href download="assets/femtofox-config.txt">Get an example USB configuration file here</a>**
 
+&emsp;&emsp;&emsp;&emsp;			**<a href download="assets/femtofox-config.txt">Get an example USB configuration file here</a>**
 Configurable settings are:
  - Wifi SSID
  - Wifi PSK (password)
