@@ -35,7 +35,7 @@ meshtastic_legacy_admin="true"
 > 
 > Use a timezone as it appears in [the tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 >
-> **Meshtastic**
+> &emsp;&emsp;**Meshtastic**
 > For `meshtastic_lora_radio`, choose your radio from the supported hardware list.
 > Options are: 
 > * `ebyte-e22-900m30s`
@@ -50,7 +50,6 @@ meshtastic_legacy_admin="true"
 > * `lr1121_tcxo` *(experimental, for Ebyte E80-900M2213S)*
 > * `none` *(for simulated radio)*
 > 
->
 >To add a `meshtastic_admin_key`, copy it from the app and add `base64:` to the beginning (`meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="`).
 >
 > Clearing the `meshtastic_admin_key` list: The admin key list can contain up to three keys - *if more are added they will be ignored*. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter `meshtastic_admin_key="0"`, without `base64:`.
@@ -74,7 +73,7 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
 |<center>✅<br>\_\_&nbsp;&nbsp;\_\_&nbsp;&nbsp;\_\_&nbsp;&nbsp;\_\_&nbsp;&nbsp;\_\_<br>5 medium blinks, each lasting 0.5 seconds | Boot complete. Appears on every successful boot and always appears last.| | |
  
 > [!NOTE]
-> Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
+> Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the USB drive failed to mount, and that the boot sequence is complete.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NTQ3MjY4MTBdfQ==
+eyJoaXN0b3J5IjpbLTEyMzE4NDYyNTJdfQ==
 -->
