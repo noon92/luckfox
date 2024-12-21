@@ -1,9 +1,9 @@
 #!/bin/bash
 echo ""
-echo "------- Start at $(date). ~8m (32gb filesystem) -------"
+echo "------- Start at $(date). ~8m -------"
 
 systemctl stop meshtasticd
-rm /etc/meshtasticd/*
+rm -rf /etc/meshtasticd
 rm /etc/wpa_supplicant/wpa_supplicant.conf
 
 # Clear dmesg Log
@@ -41,7 +41,7 @@ rm -f /var/lib/dhcp/dhclient.leases
 rm -rf /etc/udev/rules.d/70-persistent-*
 
 # Clear System Logs
-find /var/log -type f -exec rm -f {} \;
+rm -rf /var/log/*
 
 # Clear Journal Logs
 journalctl --rotate
@@ -70,10 +70,9 @@ truncate -s 0 /var/log/syslog
 truncate -s 0 /var/log/daemon.log
 truncate -s 0 /var/log/messages
 
-rm /etc/update-motd.d/*
 rm /usr/local/bin/*
 
-echo "------- Start zeroing at $(date). ~5 mins (32gb filesystem)-------"
+echo "------- Start zeroing at $(date). ~5 mins."
 dd if=/dev/zero of=~/delete_me
 echo "------- Done  zeroing at $(date)-------"
 sync
