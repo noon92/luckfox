@@ -52,7 +52,7 @@ meshtastic_legacy_admin="true"
 > 
 >To add a `meshtastic_admin_key`, copy it from the app and add `base64:` to the beginning (`meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="`).
 >
-> Clearing the `meshtastic_admin_key` list: The admin key list can contain up to three keys - *if more are added they will be ignored*. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter `meshtastic_admin_key="0"`.
+> Clearing the `meshtastic_admin_key` list: The admin key list can contain up to three keys - *if more are added they will be ignored*. The USB configuration tool supports clearing the admin key list, after which you will need to re-add your admin key/s in a second operation. To clear the admin key list, enter `meshtastic_admin_key="clear"`.
 
 > [!CAUTION]
 > Attempting to set wifi settings via USB configuration tool without a wifi adapter connected will lead to a 5 minute hang while the configuration tool runs - either disconnect and reconnect power or wait the full 5 minutes to to recover.
@@ -74,6 +74,3 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
  
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the USB drive failed to mount, and that the boot sequence is complete.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwODY2Mzg4NV19
--->
