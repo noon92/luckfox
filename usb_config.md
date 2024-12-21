@@ -2,8 +2,6 @@
 ## USB Configuration Tool
 To configure some Femtofox settings such as wifi, you can insert a USB flash drive containing a configuration file. The system will automatically recognize, mount and implement the settings you specify.
 
-&emsp;&emsp;&emsp;&emsp;			**<a href download="assets/femtofox-config.txt">[Get an example USB configuration file here</a>](assets/femtofox-config.txt)**
-
 Configurable settings are:
  - Wifi SSID
  - Wifi PSK (password)
@@ -17,7 +15,9 @@ Configurable settings are:
 	 - Security: [Legacy Admin Channel](https://meshtastic.org/docs/configuration/radio/security/#admin-channel-enabled) enable/disable
 
 ### Instructions
-The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only - log will not be saved to drive) or ext4 partition. Add a file named `femtofox-config.txt` and whichever of the the following lines you want to set, keeping in mind this is CaSe sEnSiTiVe:
+The USB drive must be formatted with a single FAT32, exFAT, NTFS (read only - log will not be saved to drive) or ext4 partition. Add a file named `femtofox-config.txt` and whichever settings you would like to change (CaSe sEnSiTiVe).
+
+&emsp;&emsp;&emsp;&emsp;			**<a href download="assets/femtofox-config.txt">[Get an example USB configuration file here</a>](assets/femtofox-config.txt)**
 ```
 wifi_ssid="Your SSID name"
 wifi_psk="wifipassword"
@@ -25,7 +25,7 @@ wifi_country="US"
 timezone="America/New_York"
 meshtastic_lora_radio="ebyte-e22-900m30s"
 meshtastic_url="https://meshtastic.org/e/#CgMSAQESCAgBOAFAA0gB"
-meshtastic_admin_key="base64:T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
+meshtastic_admin_key="T/b8EGvi/Nqi6GyGefJt/jOQr+5uWHHZuBavkNcUwWQ="
 meshtastic_legacy_admin="true"
 ```
 > [!NOTE]
@@ -76,5 +76,5 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3MjIzMDU4OF19
+eyJoaXN0b3J5IjpbLTE3MDEyNzU5OTRdfQ==
 -->
