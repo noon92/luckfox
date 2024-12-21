@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#resize filesystem to fill partition
+# resize filesystem to fill partition
 /usr/bin/filesystem_resize.sh
 
+# add RTC support
 bash <<EOF
-# Add RTC support
 echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-3/new_device
 EOF
 msg="First boot: Added RTC support."
@@ -37,9 +37,9 @@ systemctl start meshtasticd
 msg="First boot: Enabling wifi setting in Meshtasticd."
 echo "$msg"
 logger "$msg"
-#/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
 /usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
 
+# remove first boot flag
 rm /usr/local/bin/.firstboot
 msg="First boot: Removing first boot flag and rebooting..."
 echo "$msg"
