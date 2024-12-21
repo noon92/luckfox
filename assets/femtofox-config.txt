@@ -1,0 +1,39 @@
+## femtofox-config.txt
+## femtofox configuration file. https://github.com/noon92/femtofox/usbconfig.md
+## To set a setting, uncomment a line by removing its preceeding `#`
+## All settings are optional - remove any you don't want to set.
+
+### Foxbuntu settings
+
+## Localization settings. CaSe SeNsItIvE
+## List of timezones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+wifi_country="US"
+timezone="UTC"
+
+## Wifi settings / wpa_supplicant. CaSe SeNsItIvE
+wifi_ssid="wifi network name"
+wifi_psk="password"
+
+
+### Meshtastic node settings
+
+## Radio module to use. Options are:
+##  `ebyte-e22-900m30s`
+##  `ebyte-e22-900m22s`
+##  `ebyte-e80-900m22s` (experimental)
+##  `heltec-ht-ra62`
+##  `seeed-wio-sx1262`
+##  `waveshare-sx126x-xxxm`
+##  `ai-thinker-ra-01sh`
+##  `sx1262_tcxo` (for Ebyte E22-900M30SM, Ebyte E22-900M22S, Heltec HT-RA62, Seeed Wio SX1262)
+##  `sx1262_xtal` (for AiThinker RA01SH, and Waveshare Pi hat)
+##  `lr1121_tcxo` (experimental, for Ebyte E80-900M2213S)
+##  `none` (for simulated radio)
+meshtastic_lora_radio="radio_name"
+
+## URL to channel config device
+meshtastic_url="https://meshtastic.org/e/..."
+
+## Meshtastic security settings. CaSe SeNsItIvE
+meshtastic_admin_key="XX="
+meshtastic_legacy_admin="false"
