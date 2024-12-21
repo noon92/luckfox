@@ -43,9 +43,9 @@ meshtastic_legacy_admin="true"
 > * `seeed-wio-sx1262`
 > * `waveshare-sx126x-xxxm`
 > * `ai-thinker-ra-01sh`
-> * `femtofox_SX1262_TCXO` *(for Ebyte E22-900M30SM, Ebyte E22-900M22S, Heltec HT-RA62, Seeed Wio SX1262)*
-> * `femtofox_SX1262_XTAL` *(for AiThinker RA01SH, and Waveshare Pi hat)*
-> * `femtofox_LR1121_TCXO` *(experimental, for Ebyte E80-900M2213S)*
+> * `sx1262_tcxo` *(for Ebyte E22-900M30SM, Ebyte E22-900M22S, Heltec HT-RA62, Seeed Wio SX1262)*
+> * `sx1262_xtal` *(for AiThinker RA01SH, and Waveshare Pi hat)*
+> * `lr1121_tcxo` *(experimental, for Ebyte E80-900M2213S)*
 > * `none` *(for simulated radio)*
 > 
 >
@@ -74,5 +74,5 @@ When the Femtofox is finished booting, it will blink its User LED (see below) in
 > [!NOTE]
 > Boot codes can appear in sequence - for example: one long (4 second) blink, followed by 5 medium (half second) blinks means the attempt to mount the USB drive failed, and that boot is complete.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkwNzE0NTQ5OF19
+eyJoaXN0b3J5IjpbMTYxMzg1MzE3MSwxOTA3MTQ1NDk4XX0=
 -->
