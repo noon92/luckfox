@@ -7,7 +7,7 @@ mount_point="/mnt/usb"
 log_message() {
   echo "USB config: $1"  # Echo to the screen
   logger "USB config: $1"  # Log to the system log
-  echo "$(date +"%Y:%m:%d %H:%M:%S") $1" >> /tmp/femtofox-config.log # Log to file
+  echo "$(date +"%Y-%m-%d %H:%M:%S") $1" >> /tmp/femtofox-config.log # Log to file
 }
 
 exit_script() {
@@ -211,9 +211,15 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
   
   if [[ -n "$meshtastic_admin_key" ]]; then
     meshtastic_admin_key=$(echo "$meshtastic_admin_key" | sed 's/\\//g')
-    log_message "Updating Meshtastic admin key."
+    if [ "$meshtastic_admin_key" = "clear" ]; then
+      log_message "Clearing Meshtastic admin key list."
+      meshtastic_admin_key="0"
+    else
+      meshtastic_admin_key="base64:$meshtastic_admin_key"
+      log_message "Updating Meshtastic admin key."
+    fi
     found_config="true"
-    update_meshtastic_security+=" --set security.admin_key base64:$meshtastic_admin_key"
+    update_meshtastic_security+=" --set security.admin_key $meshtastic_admin_key"
   fi
   
   if [[ -n "$meshtastic_legacy_admin" ]]; then
@@ -248,7 +254,7 @@ if [ -f "$mount_point/femtofox-config.txt" ]; then
         log_message "Updated Meshtastic successfully."
       fi
     fi
-
+    
     if [ "$update_meshtastic_security" != "" ]; then
       log_message "Connecting to Meshtastic radio and submitting $update_meshtastic_security"
       /usr/local/bin/updatemeshtastic.sh "$update_meshtastic_security" 10 "USB config" #| tee -a /tmp/femtofox-config.log
