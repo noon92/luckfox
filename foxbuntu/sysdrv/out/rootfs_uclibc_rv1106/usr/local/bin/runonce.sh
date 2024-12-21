@@ -25,7 +25,7 @@ EOF
 # set meshtastic nodeid to derivative of CPU serial number (unique to this board). Check at boot in case of upgrade overwriting this.
 seed=$(sed -n '/Serial/ s/^.*: \(.*\)$/\U\1/p' /proc/cpuinfo | bc | tail -c 9)
 #seed=$((0x$(awk '/Serial/ {print $3}' /proc/cpuinfo) & 0x3B9AC9FF)) #alternate method for generating seed - not in use
-sed -i "/^ExecStart=/ s:$: -h $seed:" /usr/lib/systemd/system/meshtasticd.service
+sed -i "s|^ExecStart=/usr/sbin/meshtasticd.*|ExecStart=/usr/sbin/meshtasticd -h $seed|" /usr/lib/systemd/system/meshtasticd.service
 msg="First boot: Using Luckfox CPU S/N to generate nodeid for Meshtastic."
 echo "$msg"
 logger "$msg"
